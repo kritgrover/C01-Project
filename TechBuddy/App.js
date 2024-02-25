@@ -1,22 +1,26 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import EmergencyButton from "./components/EmergencyButton";
+// App.js
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import PreferredLanguage from './components/PreferredLanguage';
+
+// Create a navigation stack
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <EmergencyButton />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        {/* Add screens to the stack */}
+        <Stack.Screen
+          name="Launch"
+          component={PreferredLanguage}
+          options={{ title: 'Launch Page' }}
+        />
+        {/* Add more screens as needed */}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
 
 export default App;
