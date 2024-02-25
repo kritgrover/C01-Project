@@ -20,9 +20,9 @@ const TextAdjustment = () => {
     setIsBold((prevIsBold) => !prevIsBold);
   };
 
-//   const handleFontFamilyChange = (value) => {
-//     setFontFamily(value);
-//   };
+  const handleFontFamilyChange = (value) => {
+    setFontFamily(value);
+  };
 
   return (
     <View style={styles.container}>
@@ -47,17 +47,24 @@ const TextAdjustment = () => {
           style={pickerStyles}
         />
 
-        {/* <RNPickerSelect
+        <RNPickerSelect
           placeholder={{ label: 'Select Font Family', value: null }}
           items={[
-            { label: 'Normal', value: 'normal' },
-            { label: 'Serif', value: 'serif' },
-            { label: 'Sans-serif', value: 'sans-serif' },
-            { label: 'Monospace', value: 'monospace' },
+            { label: 'System', value: 'System' },
+            { label: 'Arial', value: 'Arial' },
+            { label: 'Helvetica', value: 'Helvetica' },
+            { label: 'Georgia', value: 'Georgia' },
+            { label: 'Times New Roman', value: 'Times New Roman' },
+            { label: 'Courier New', value: 'Courier New' },
+            { label: 'Courier', value: 'Courier' },
+            { label: 'Palatino', value: 'Palatino' },
+            { label: 'Verdana', value: 'Verdana' },
+            { label: 'Impact', value: 'Impact' },
+            { label: 'Lucida Console', value: 'Lucida Console' },
           ]}
-          onValueChange={(value) => handleFontFamilyChange(value)}
+          onValueChange={(value) => setFontFamily(value)}
           style={pickerStyles}
-        /> */}
+        />
       </View>
       {/* Continue button */}
       <TouchableOpacity
