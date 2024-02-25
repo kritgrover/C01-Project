@@ -1,28 +1,26 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import ModalSelector from 'react-native-modal-selector';
+import { useNavigation } from '@react-navigation/native';
+import RNPickerSelect from 'react-native-picker-select';
 
 const PreferredLanguage = () => {
+  const navigation = useNavigation();
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Set default to 'en'
 
   const languageOptions = [
-    { key: 0, label: 'English', value: 'en' },
-    { key: 1, label: 'Français', value: 'fr' },
-    { key: 2, label: 'Español', value: 'es' },
-    { key: 3, label: 'Chinese', value: 'ch'},
-    { key: 4, label: 'Russian', value: 'ru'},
-    { key: 5, label: 'Arabic', value: 'ar'},
-    { key: 6, label: 'Hindi', value: 'hi'},
-    { key: 7, label: 'Japanese', value: 'ja'},
-
-    // Add more language options as needed
-    
+    { label: 'English', value: 'en' },
+    { label: 'Français', value: 'fr' },
+    { label: 'Español', value: 'es' },
+    { label: 'Chinese', value: 'ch' },
+    { label: 'Russian', value: 'ru' },
+    { label: 'Arabic', value: 'ar' },
+    { label: 'Hindi', value: 'hi' },
+    { label: 'Japanese', value: 'ja' },
   ];
 
-  const handleLanguageSelection = (option) => {
-    setSelectedLanguage(option.value);
-    // You can perform additional actions here based on the selected language
-    // For example, you might want to store the language preference in AsyncStorage
+  const handleLanguageSelection = (value) => {
+    setSelectedLanguage(value);
+    // need to save it to mongo
   };
 
   return (
@@ -31,20 +29,12 @@ const PreferredLanguage = () => {
       <Text style={styles.welcomeText}>Welcome to TechBuddy!</Text>
 
       {/* Language dropdown */}
-      <ModalSelector
-        data={languageOptions}
-        initValue="Select a language"
-        accessible={true}
-        scrollViewAccessibilityLabel={'Scrollable options'}
-        cancelButtonAccessibilityLabel={'Cancel Button'}
-        onChange={(option) => handleLanguageSelection(option)}
-        animationType="slide"
-        backdropPressToClose={true}
-        cancelText="Cancel"
-        selectStyle={styles.selectStyle}
-        selectTextStyle={styles.selectTextStyle}
-        optionContainerStyle={styles.optionContainerStyle}
-        optionTextStyle={styles.optionTextStyle}
+      <RNPickerSelect
+        items={languageOptions}
+        placeholder={{ label: 'Select a language', value: null }}
+        value={selectedLanguage}
+        onValueChange={(value) => handleLanguageSelection(value)}
+        style={pickerSelectStyles}
       />
 
       {/* Continue button */}
@@ -53,6 +43,7 @@ const PreferredLanguage = () => {
         disabled={!selectedLanguage}
         onPress={() => {
           // Navigate to the next screen or perform actions based on the language selection
+          navigation.navigate('UpdateFont');
         }}>
         <Text style={styles.continueButtonText}>Continue</Text>
       </TouchableOpacity>
@@ -84,29 +75,28 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
-  // Additional styles for the dropdown
-  selectStyle: {
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-  },
-  selectTextStyle: {
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
     fontSize: 18,
-    color: '#333',
-  },
-  optionContainerStyle: {
-    backgroundColor: '#fff',
-    borderColor: '#ccc',
+    paddingVertical: 12,
+    paddingHorizontal: 10,
     borderWidth: 1,
+    borderColor: 'gray',
     borderRadius: 5,
-    marginTop: 2,
+    color: 'black',
+    paddingRight: 30,
   },
-  optionTextStyle: {
+  inputAndroid: {
     fontSize: 18,
-    color: '#333',
-    textAlign: 'center',
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'purple',
+    borderRadius: 5,
+    color: 'black',
+    paddingRight: 30,
   },
 });
 
