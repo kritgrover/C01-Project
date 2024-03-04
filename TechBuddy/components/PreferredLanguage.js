@@ -2,10 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 
 const PreferredLanguage = () => {
   const navigation = useNavigation();
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Set default to 'en'
+
+  useEffect(() => {
+    // Load saved language from SecureStore on component mount
+    const loadSavedLanguage = async () => {
+      try {
+        const savedLanguage = await SecureStore.getItemAsync('selectedLanguage');
+        if (savedLanguage) setSelectedLanguage(savedLanguage);
+      } catch (error) {
+        console.error('Error loading saved language:', error);
+      }
+    };
+
+    loadSavedLanguage();
+  }, []);
 
   const languageOptions = [
     { label: 'English', value: 'en' },
@@ -18,8 +34,14 @@ const PreferredLanguage = () => {
     { label: 'Japanese', value: 'ja' },
   ];
 
-  const handleLanguageSelection = (value) => {
+  const handleLanguageSelection = async (value) => {
     setSelectedLanguage(value);
+    try {
+      // Save selected language to AsyncStorage
+      await SecureStore.setItemAsync('selectedLanguage', value);
+    } catch (error) {
+      console.error('Error saving language to AsyncStorage:', error);
+    }
   };
 
   return (

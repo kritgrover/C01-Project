@@ -1,26 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import * as SecureStore from 'expo-secure-store';
 import RNPickerSelect from 'react-native-picker-select';
 
 const TextAdjustment = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
   const [fontSize, setFontSize] = useState(16);
   const [isBold, setIsBold] = useState(false);
   const [fontFamily, setFontFamily] = useState('normal');
 
   const sampleText = 'Sample Text';
 
-  const handleFontSizeChange = (value) => {
+  useEffect(() => {
+    // Load saved values from SecureStore on component mount
+    const loadSavedValues = async () => {
+      try {
+        const savedFontSize = await SecureStore.getItemAsync('fontSize');
+        const savedFontFamily = await SecureStore.getItemAsync('fontFamily');
+        const savedIsBold = await SecureStore.getItemAsync('isBold');
+
+        if (savedFontSize) setFontSize(Number(savedFontSize));
+        if (savedFontFamily) setFontFamily(savedFontFamily);
+        if (savedIsBold) setIsBold(savedIsBold === 'true');
+      } catch (error) {
+        console.error('Error loading saved values:', error);
+      }
+    };
+
+    loadSavedValues();
+  }, []);
+
+  const handleFontSizeChange = async (value) => {
     setFontSize(value);
+    try {
+      // Save font size to AsyncStorage
+      await SecureStore.setItemAsync('fontSize', String(value));
+    } catch (error) {
+      console.error('Error saving font size to AsyncStorage:', error);
+    }
   };
 
-  const toggleBold = () => {
+  const toggleBold = async () => {
     setIsBold((prevIsBold) => !prevIsBold);
+    try {
+      // Save isBold to AsyncStorage
+      await SecureStore.setItemAsync('isBold', String(!isBold));
+    } catch (error) {
+      console.error('Error saving isBold to AsyncStorage:', error);
+    }
   };
 
-  const handleFontFamilyChange = (value) => {
+  const handleFontFamilyChange = async (value) => {
     setFontFamily(value);
+    try {
+      // Save font family to AsyncStorage
+      await SecureStore.setItemAsync('fontFamily', JSON.stringify(value));
+    } catch (error) {
+      console.error('Error saving font family to AsyncStorage:', error);
+    }
   };
 
   return (
@@ -49,7 +87,6 @@ const TextAdjustment = () => {
         <RNPickerSelect
           placeholder={{ label: 'Select Font Family', value: null }}
           items={[
-            { label: 'System', value: 'System' },
             { label: 'Arial', value: 'Arial' },
             { label: 'Helvetica', value: 'Helvetica' },
             { label: 'Georgia', value: 'Georgia' },
@@ -61,7 +98,7 @@ const TextAdjustment = () => {
             { label: 'Impact', value: 'Impact' },
             { label: 'Lucida Console', value: 'Lucida Console' },
           ]}
-          onValueChange={(value) => setFontFamily(value)}
+          onValueChange={(value) => handleFontFamilyChange(value)}
           style={pickerStyles}
         />
       </View>
