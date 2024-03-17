@@ -5,6 +5,7 @@ import * as SecureStore from 'expo-secure-store';
 import PreferredLanguage from './components/PreferredLanguage';
 import EmergencyButton from './components/EmergencyButton';
 import TextAdjustment from './components/TextAdjustment';
+import Settings from "./components/Settings"
 
 const Stack = createNativeStackNavigator();
 
@@ -30,7 +31,7 @@ const App = () => {
 
         if (savedLanguage !== "" && savedFontSize !== "" && savedFontFamily !== "" && savedIsBold !== "") {
           console.log('Setting initial route to HomeScreen');
-          initialRouteRef.current = "HomeScreen";
+          initialRouteRef.current = "Settings";
           console.log('Initial Route changed:', initialRouteRef.current);
           setInitialRouteKey(Date.now().toString());
         }
@@ -49,6 +50,7 @@ const App = () => {
       <Stack.Navigator initialRouteName={initialRouteRef.current}>
         <Stack.Screen name="PreferredLanguage" component={PreferredLanguage} />
         <Stack.Screen name="UpdateFont" component={TextAdjustment} />
+        <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="HomeScreen" component={EmergencyButton} />
       </Stack.Navigator>
     </NavigationContainer>
