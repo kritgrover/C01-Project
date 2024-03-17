@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     fontSize: 18,
-    fontWeight: 'bold',
     marginBottom: 20,
   },
   continueButton: {
