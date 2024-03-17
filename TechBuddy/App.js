@@ -17,7 +17,7 @@ const App = () => {
       try {
         const savedLanguage = await SecureStore.getItemAsync('selectedLanguage');
         const savedFontSize = await SecureStore.getItemAsync('fontSize');
-        const savedFontFamily = await SecureStore.getItemAsync('fontFamily');
+        const savedFontFamily = JSON.parse(await SecureStore.getItemAsync('fontFamily'));
         const savedIsBold = await SecureStore.getItemAsync('isBold');
 
         console.log('Saved Values:', {
@@ -27,7 +27,7 @@ const App = () => {
           isBold: savedIsBold,
         });
 
-        if (savedLanguage !== null && savedFontSize !== null && savedFontFamily !== null && savedIsBold !== null) {
+        if (savedLanguage !== "" && savedFontSize !== "" && savedFontFamily !== "" && savedIsBold !== "") {
           console.log('Setting initial route to HomeScreen');
           // Update the Ref directly
           initialRouteRef.current = "HomeScreen";

@@ -17,7 +17,7 @@ const TextAdjustment = () => {
     const loadSavedValues = async () => {
       try {
         const savedFontSize = await SecureStore.getItemAsync('fontSize');
-        const savedFontFamily = await SecureStore.getItemAsync('fontFamily');
+        const savedFontFamily = JSON.parse(await SecureStore.getItemAsync('fontFamily'));
         const savedIsBold = await SecureStore.getItemAsync('isBold');
 
         if (savedFontSize) setFontSize(Number(savedFontSize));
@@ -88,15 +88,12 @@ const TextAdjustment = () => {
           placeholder={{ label: 'Select Font Family', value: null }}
           items={[
             { label: 'Arial', value: 'Arial' },
-            { label: 'Helvetica', value: 'Helvetica' },
             { label: 'Georgia', value: 'Georgia' },
             { label: 'Times New Roman', value: 'Times New Roman' },
             { label: 'Courier New', value: 'Courier New' },
-            { label: 'Courier', value: 'Courier' },
             { label: 'Palatino', value: 'Palatino' },
             { label: 'Verdana', value: 'Verdana' },
             { label: 'Impact', value: 'Impact' },
-            { label: 'Lucida Console', value: 'Lucida Console' },
           ]}
           onValueChange={(value) => handleFontFamilyChange(value)}
           style={pickerStyles}
