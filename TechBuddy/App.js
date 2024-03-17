@@ -28,7 +28,7 @@ const App = () => {
 					isBold: savedIsBold,
 				});
 
-				if (savedLanguage !== "" && savedFontSize !== "" && savedFontFamily !== "" && savedIsBold !== "") {
+				if (savedLanguage !== "" && savedFontSize !== "" && savedFontFamily !== "" && savedIsBold !== "" && savedLanguage !== null && savedFontSize !== null && savedFontFamily !== null && savedIsBold !== null) {
 					console.log('Setting initial route to HomeScreen');
 					initialRouteRef.current = "HomeScreen";
 					console.log('Initial Route changed:', initialRouteRef.current);
