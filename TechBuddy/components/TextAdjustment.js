@@ -68,7 +68,7 @@ const TextAdjustment = () => {
       </Text>
 
       <TouchableOpacity style={styles.button} onPress={toggleBold}>
-        <Text style={styles.buttonText}>{isBold ? 'Disable Bold' : 'Enable Bold'}</Text>
+        <Text style={[styles.buttonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>{isBold ? 'Disable Bold' : 'Enable Bold'}</Text>
       </TouchableOpacity>
 
       <View style={styles.pickerContainer}>
@@ -108,7 +108,7 @@ const TextAdjustment = () => {
           // Navigate to the next screen or perform actions based on the language selection
           navigation.navigate('HomeScreen');
         }}>
-        <Text style={styles.continueButtonText}>Continue</Text>
+        <Text style={[styles.continueButtonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>Continue</Text>
       </TouchableOpacity>
     </View>
   );

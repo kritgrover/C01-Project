@@ -38,8 +38,6 @@ const Settings = () => {
     loadFontSettings();
   }, []);
 
-
-
   const goToPreferredLanguage = () => {
     navigation.navigate('PreferredLanguage');
   };

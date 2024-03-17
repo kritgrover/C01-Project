@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import * as SecureStore from 'expo-secure-store';
 import {
   TouchableHighlight,
   Linking,
@@ -20,6 +21,39 @@ const EmergencyButton = () => {
     Linking.openURL(phoneNumber);
   };
 
+  const [fontFamily, setFontFamily] = useState(''); // State to store font family
+  const [fontSize, setFontSize] = useState('');
+  const [isBold, setIsBold] = useState('');
+
+  useEffect(() => {
+    const loadFontSettings = async () => {
+      try {
+        // Load font family
+        const savedFontFamily = JSON.parse(await SecureStore.getItemAsync('fontFamily'));
+        if (savedFontFamily) {
+            console.log("Font family:", savedFontFamily)
+          setFontFamily(savedFontFamily);
+        }
+
+        // Load font size
+        const savedFontSize = await SecureStore.getItemAsync('fontSize');
+        if (savedFontSize) {
+          setFontSize(savedFontSize);
+        }
+
+        const savedIsBold = await SecureStore.getItemAsync('isBold');
+        if (savedIsBold) {
+            console.log("Is bold:", savedIsBold);
+            setIsBold(savedIsBold);
+        }
+      } catch (error) {
+        console.error('Error loading font settings:', error);
+      }
+    };
+
+    loadFontSettings();
+  }, []);
+
   return (
     <View style={styles.container}>
       <TouchableHighlight
@@ -27,7 +61,7 @@ const EmergencyButton = () => {
         onPress={handleEmergencyCall}
         underlayColor="darkred" // Adjust the color when pressed
       >
-        <Text style={styles.buttonText}>Emergency</Text>
+        <Text style={[styles.buttonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>Emergency</Text>
       </TouchableHighlight>
     </View>
   );
