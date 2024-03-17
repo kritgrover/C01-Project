@@ -10,7 +10,6 @@ import Settings from "./components/Settings"
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  // Use a Ref for initialRoute
   const [initialRouteKey, setInitialRouteKey] = useState(Date.now().toString());
   const initialRouteRef = useRef("PreferredLanguage");
 

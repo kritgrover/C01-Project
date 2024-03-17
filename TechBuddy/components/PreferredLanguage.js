@@ -12,7 +12,6 @@ const PreferredLanguage = () => {
   const [isBold, setIsBold] = useState('');
 
   useEffect(() => {
-    // Load saved language from SecureStore on component mount
     const loadSavedLanguage = async () => {
       try {
         const savedLanguage = await SecureStore.getItemAsync('selectedLanguage');
@@ -57,19 +56,16 @@ const PreferredLanguage = () => {
   const handleLanguageSelection = async (value) => {
     setSelectedLanguage(value);
     try {
-      // Save selected language to AsyncStorage
       await SecureStore.setItemAsync('selectedLanguage', value);
     } catch (error) {
-      console.error('Error saving language to AsyncStorage:', error);
+      console.error('Error saving language to Expo-Secure Store:', error);
     }
   };
 
   return (
     <View style={styles.container}>
-      {/* Welcome text */}
       <Text style={[styles.welcomeText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>Welcome to TechBuddy!</Text>
 
-      {/* Language dropdown */}
       <RNPickerSelect
         items={languageOptions}
         placeholder={{ label: 'Select a language', value: null }}
@@ -78,12 +74,10 @@ const PreferredLanguage = () => {
         style={pickerSelectStyles}
       />
 
-      {/* Continue button */}
       <TouchableOpacity
         style={styles.continueButton}
         disabled={!selectedLanguage}
         onPress={() => {
-          // Navigate to the next screen or perform actions based on the language selection
           navigation.navigate('UpdateFont');
         }}>
         <Text style={[styles.continueButtonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>Continue</Text>

@@ -13,7 +13,6 @@ const TextAdjustment = () => {
   const sampleText = 'Sample Text';
 
   useEffect(() => {
-    // Load saved values from SecureStore on component mount
     const loadSavedValues = async () => {
       try {
         const savedFontSize = await SecureStore.getItemAsync('fontSize');
@@ -34,10 +33,9 @@ const TextAdjustment = () => {
   const handleFontSizeChange = async (value) => {
     setFontSize(value);
     try {
-      // Save font size to AsyncStorage
       await SecureStore.setItemAsync('fontSize', String(value));
     } catch (error) {
-      console.error('Error saving font size to AsyncStorage:', error);
+      console.error('Error saving font size to Expo-Secure Store:', error);
     }
   };
 
@@ -47,7 +45,7 @@ const TextAdjustment = () => {
       // Save isBold to AsyncStorage
       await SecureStore.setItemAsync('isBold', String(!isBold));
     } catch (error) {
-      console.error('Error saving isBold to AsyncStorage:', error);
+      console.error('Error saving isBold to Expo-Secure Store:', error);
     }
   };
 
@@ -57,7 +55,7 @@ const TextAdjustment = () => {
       // Save font family to AsyncStorage
       await SecureStore.setItemAsync('fontFamily', JSON.stringify(value));
     } catch (error) {
-      console.error('Error saving font family to AsyncStorage:', error);
+      console.error('Error saving font family to Expo-Secure Store:', error);
     }
   };
 
@@ -100,12 +98,10 @@ const TextAdjustment = () => {
           style={pickerStyles}
         />
       </View>
-      {/* Continue button */}
       <TouchableOpacity
         style={styles.continueButton}
         
         onPress={() => {
-          // Navigate to the next screen or perform actions based on the language selection
           navigation.navigate('HomeScreen');
         }}>
         <Text style={[styles.continueButtonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>Continue</Text>
