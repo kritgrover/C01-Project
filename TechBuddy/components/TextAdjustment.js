@@ -42,7 +42,6 @@ const TextAdjustment = () => {
 	const toggleBold = async () => {
 		setIsBold((prevIsBold) => !prevIsBold);
 		try {
-			// Save isBold to AsyncStorage
 			await SecureStore.setItemAsync('isBold', String(!isBold));
 		} catch (error) {
 			console.error('Error saving isBold to Expo-Secure Store:', error);
@@ -52,7 +51,6 @@ const TextAdjustment = () => {
 	const handleFontFamilyChange = async (value) => {
 		setFontFamily(value);
 		try {
-			// Save font family to AsyncStorage
 			await SecureStore.setItemAsync('fontFamily', JSON.stringify(value));
 		} catch (error) {
 			console.error('Error saving font family to Expo-Secure Store:', error);
