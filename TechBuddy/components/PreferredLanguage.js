@@ -7,6 +7,9 @@ import * as SecureStore from 'expo-secure-store';
 const PreferredLanguage = () => {
   const navigation = useNavigation();
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Set default to 'en'
+  const [fontFamily, setFontFamily] = useState(''); // State to store font family
+  const [fontSize, setFontSize] = useState('');
+  const [isBold, setIsBold] = useState('');
 
   useEffect(() => {
     // Load saved language from SecureStore on component mount
@@ -14,6 +17,24 @@ const PreferredLanguage = () => {
       try {
         const savedLanguage = await SecureStore.getItemAsync('selectedLanguage');
         if (savedLanguage) setSelectedLanguage(savedLanguage);
+        const savedFontFamily = JSON.parse(await SecureStore.getItemAsync('fontFamily'));
+        
+        if (savedFontFamily) {
+            console.log("Font family:", savedFontFamily)
+          setFontFamily(savedFontFamily);
+        }
+
+        // Load font size
+        const savedFontSize = await SecureStore.getItemAsync('fontSize');
+        if (savedFontSize) {
+          setFontSize(savedFontSize);
+        }
+
+        const savedIsBold = await SecureStore.getItemAsync('isBold');
+        if (savedIsBold) {
+            console.log("Is bold:", savedIsBold);
+            setIsBold(savedIsBold);
+        }
       } catch (error) {
         console.error('Error loading saved language:', error);
       }
@@ -46,7 +67,7 @@ const PreferredLanguage = () => {
   return (
     <View style={styles.container}>
       {/* Welcome text */}
-      <Text style={styles.welcomeText}>Welcome to TechBuddy!</Text>
+      <Text style={[styles.welcomeText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>Welcome to TechBuddy!</Text>
 
       {/* Language dropdown */}
       <RNPickerSelect
@@ -65,7 +86,7 @@ const PreferredLanguage = () => {
           // Navigate to the next screen or perform actions based on the language selection
           navigation.navigate('UpdateFont');
         }}>
-        <Text style={styles.continueButtonText}>Continue</Text>
+        <Text style={[styles.continueButtonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>Continue</Text>
       </TouchableOpacity>
     </View>
   );
