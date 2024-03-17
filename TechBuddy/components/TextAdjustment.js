@@ -8,7 +8,7 @@ const TextAdjustment = () => {
   const navigation = useNavigation();
   const [fontSize, setFontSize] = useState(16);
   const [isBold, setIsBold] = useState(false);
-  const [fontFamily, setFontFamily] = useState('normal');
+  const [fontFamily, setFontFamily] = useState('Arial');
 
   const sampleText = 'Sample Text';
 
@@ -88,6 +88,7 @@ const TextAdjustment = () => {
           placeholder={{ label: 'Select Font Family', value: null }}
           items={[
             { label: 'Arial', value: 'Arial' },
+            { label: 'Helvetica', value: 'Helvetica' },
             { label: 'Georgia', value: 'Georgia' },
             { label: 'Times New Roman', value: 'Times New Roman' },
             { label: 'Courier New', value: 'Courier New' },

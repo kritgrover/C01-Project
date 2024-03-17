@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SecureStore from 'expo-secure-store';
@@ -10,6 +10,7 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
   // Use a Ref for initialRoute
+  const [initialRouteKey, setInitialRouteKey] = useState(Date.now().toString());
   const initialRouteRef = useRef("PreferredLanguage");
 
   useEffect(() => {
@@ -29,9 +30,9 @@ const App = () => {
 
         if (savedLanguage !== "" && savedFontSize !== "" && savedFontFamily !== "" && savedIsBold !== "") {
           console.log('Setting initial route to HomeScreen');
-          // Update the Ref directly
           initialRouteRef.current = "HomeScreen";
           console.log('Initial Route changed:', initialRouteRef.current);
+          setInitialRouteKey(Date.now().toString());
         }
       } catch (error) {
         console.error("Error checking saved values:", error);
@@ -44,7 +45,7 @@ const App = () => {
   }, []);
 
   return (
-    <NavigationContainer key={initialRouteRef.current}>
+    <NavigationContainer key={initialRouteKey}>
       <Stack.Navigator initialRouteName={initialRouteRef.current}>
         <Stack.Screen name="PreferredLanguage" component={PreferredLanguage} />
         <Stack.Screen name="UpdateFont" component={TextAdjustment} />
