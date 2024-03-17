@@ -31,7 +31,7 @@ const App = () => {
 
         if (savedLanguage !== "" && savedFontSize !== "" && savedFontFamily !== "" && savedIsBold !== "") {
           console.log('Setting initial route to HomeScreen');
-          initialRouteRef.current = "Settings";
+          initialRouteRef.current = "HomeScreen";
           console.log('Initial Route changed:', initialRouteRef.current);
           setInitialRouteKey(Date.now().toString());
         }
