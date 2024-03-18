@@ -6,6 +6,8 @@ import PreferredLanguage from './components/PreferredLanguage';
 import EmergencyButton from './components/EmergencyButton';
 import TextAdjustment from './components/TextAdjustment';
 import Settings from "./components/Settings"
+import TipsScreen from './components/TipsHomeScreen';
+import LanguageChange from './components/LanguageChange';
 
 const Stack = createNativeStackNavigator();
 
@@ -44,16 +46,18 @@ const App = () => {
 		console.log('Initial Route changed (part 2 check):', initialRouteRef.current);
 	}, []);
 
-	return (
-		<NavigationContainer key={initialRouteKey}>
-			<Stack.Navigator initialRouteName={initialRouteRef.current}>
-				<Stack.Screen name="PreferredLanguage" component={PreferredLanguage} />
-				<Stack.Screen name="UpdateFont" component={TextAdjustment} />
-				<Stack.Screen name="Settings" component={Settings} />
-				<Stack.Screen name="HomeScreen" component={EmergencyButton} />
-			</Stack.Navigator>
-		</NavigationContainer>
-	);
+  return (
+    <NavigationContainer key={initialRouteKey}>
+      <Stack.Navigator initialRouteName={initialRouteRef.current}>
+        <Stack.Screen name="PreferredLanguage" component={PreferredLanguage} />
+        <Stack.Screen name="UpdateFont" component={TextAdjustment} />
+        <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="HomeScreen" component={EmergencyButton} />
+        <Stack.Screen name="TipsMenu" component={TipsScreen} />
+        <Stack.Screen name="SettingsLanguagechange" component={LanguageChange} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
 
 export default App;

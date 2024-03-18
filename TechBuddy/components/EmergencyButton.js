@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import * as SecureStore from 'expo-secure-store';
 import {
-	TouchableHighlight,
-	Linking,
-	Platform,
-	View,
-	StyleSheet,
-	Text,
+  TouchableHighlight,
+  Linking,
+  Platform,
+  View,
+  StyleSheet,
+  Text,
+  Button,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const EmergencyButton = () => {
-	const handleEmergencyCall = () => {
-		let phoneNumber = "911";
+  const navigate = useNavigation()
+  const handleEmergencyCall = () => {
+    let phoneNumber = "911";
 
 		if (Platform.OS === "android") {
 			phoneNumber = `tel:${phoneNumber}`;
@@ -52,43 +55,59 @@ const EmergencyButton = () => {
 		loadFontSettings();
 	}, []);
 
-	return (
-		<View style={styles.container}>
-			<TouchableHighlight
-				style={styles.button}
-				onPress={handleEmergencyCall}
-				underlayColor="darkred" // Adjust the color when pressed
-			>
-				<Text style={[styles.buttonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>Emergency</Text>
-			</TouchableHighlight>
-		</View>
-	);
+  return (
+    <View style={styles.container}>
+      <TouchableHighlight
+        style={styles.navigateButton}
+        underlayColor="blue"
+        onPress = {function() {navigate.navigate('TipsMenu')}}>
+        <Text style={[styles.buttonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>Lessons</Text>
+      </TouchableHighlight>
+      <TouchableHighlight
+        style={styles.button}
+        onPress={handleEmergencyCall}
+        underlayColor="darkred" // Adjust the color when pressed
+      >
+        <Text style={[styles.buttonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>Emergency</Text>
+      </TouchableHighlight>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-	container: {
-		position: "absolute",
-		bottom: 200,
-		left: 20,
-		right: 20,
-		zIndex: 1,
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	button: {
-		backgroundColor: "red",
-		borderRadius: 5,
-		padding: 10,
-		// width: 150,
-		// height: 50,
-		flex: 1,
-		justifyContent: "center",
-	},
-	buttonText: {
-		color: "white",
-		textAlign: "center",
-	},
+  container: {
+    position: "relative",
+    justifyContent: "center",
+    alignItems: "center",
+    width: '100%',
+    height: '100%'
+  },
+  button: {
+    backgroundColor: "red",
+    borderRadius: 5,
+    padding: 'auto',
+    position: 'relative',
+    marginTop: '10%',
+    height: 40,
+    width: 100,
+    marginBottom: '10%',
+    justifyContent: "center",
+  },
+  navigateButton: {
+    backgroundColor: "blue",
+    borderRadius: 5,
+    padding: 'auto',
+    position: 'relative',
+    marginTop: '10%',
+    height: 40,
+    width: 100,
+    marginBottom: '10%',
+    justifyContent: "center",
+  },
+  buttonText: {
+    color: "white",
+    textAlign: "center",
+  },
 });
 
 export default EmergencyButton;
