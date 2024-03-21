@@ -25,8 +25,6 @@ const Tip = () => {
                 );
             } catch (error) {
                 console.log("Fetch function failed:", error);
-            } finally {
-                setLoading(false);
             }
         };
 

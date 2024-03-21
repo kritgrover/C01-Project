@@ -14,7 +14,7 @@
     "expo-status-bar": "~1.11.1",
     "react": "18.2.0",
     "react-native": "0.73.4",
-    "react-native-sensitive-info": "^5.5.8"
+    "react-native-sensitive-info": "^5.5.8",
     "expo-speech": "~11.7.0",
     "react-native-web": "~0.19.6",
     "@expo/metro-runtime": "~3.1.3"

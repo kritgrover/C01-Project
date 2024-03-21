@@ -4,7 +4,7 @@ import EmergencyButton from "./components/EmergencyButton";
 import NavigationBar from "./components/NavigationBar";
 import Tip from "./components/Tip";
 import React from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native";
 import PasswordManager from "./components/PasswordManager";
 import Speak from "./components/Speak";
 
@@ -21,11 +21,14 @@ const App = () => {
     console.log("Button 3 pressed");
   };
 
-
+  
   return (
     <View style={styles.container}>
-      <Speak text={"hello this page is reading aloud with a very long text so that I can test the pausing"}/>
-      <Tip style={{float: "right"}}/>
+      <SafeAreaView style={styles.container}>
+        <PasswordManager />
+      </SafeAreaView>
+      <Speak text={"Hola mundo hello this page is reading aloud with a very long text so that I can test the pausing"} language={'es'} />
+      <Tip style={{ float: "right" }} />
       <EmergencyButton />
       <NavigationBar>
         onHomePress={handleHomePress}
@@ -34,7 +37,7 @@ const App = () => {
       </NavigationBar>
       <StatusBar style="auto" />
     </View>
-    // <SafeAreaView style={styles.container}>
+    //   <SafeAreaView style={styles.container}>
     //   <PasswordManager />
     // </SafeAreaView>
   );

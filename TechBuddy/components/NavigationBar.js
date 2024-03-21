@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, TouchableHighlight, Text } from "react-native";
+import Speak from "./Speak";
 
 const NavigationBar = ({ onHomePress, onButton2Press, onButton3Press }) => {
   return (
@@ -9,21 +10,30 @@ const NavigationBar = ({ onHomePress, onButton2Press, onButton3Press }) => {
         onPress={onHomePress}
         underlayColor="darkred"
       >
-        <Text style={styles.buttonText}>Home</Text>
+        <View>
+          <Text style={styles.buttonText}>Home</Text>
+          <Speak text={"Home Button"} />
+        </View>
       </TouchableHighlight>
       <TouchableHighlight
         style={styles.button}
         onPress={onButton2Press}
         underlayColor="darkblue"
       >
-        <Text style={styles.buttonText}>Account</Text>
+        <View>
+          <Text style={styles.buttonText}>Account</Text>
+          <Speak text={"Account Button"} />
+        </View>
       </TouchableHighlight>
       <TouchableHighlight
         style={styles.button}
         onPress={onButton3Press}
         underlayColor="darkblue"
       >
-        <Text style={styles.buttonText}>Button 3</Text>
+        <View>
+          <Text style={styles.buttonText}>Button 3</Text>
+          <Speak text={"Button 3 Button"} />
+        </View>
       </TouchableHighlight>
     </View>
   );
