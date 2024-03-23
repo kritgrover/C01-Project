@@ -6,7 +6,7 @@ import RNPickerSelect from 'react-native-picker-select';
 
 const TextAdjustment = () => {
 	const navigation = useNavigation();
-	const [fontSize, setFontSize] = useState('');
+	const [fontSize, setFontSize] = useState(16);
 	const [isBold, setIsBold] = useState('');
 	const [fontFamily, setFontFamily] = useState('');
 	const [selectedLanguage, setSelectedLanguage] = useState('en');
@@ -32,7 +32,7 @@ const TextAdjustment = () => {
 				}
 
 				const savedFontSize = await SecureStore.getItemAsync('fontSize');
-				if (savedFontSize) {
+				if (savedFontSize !== null && savedFontSize !== "" && savedFontSize !== "null") {
 					console.log("Font size:", savedFontSize);
 					setFontSize(Number(savedFontSize));
 				} else {
@@ -95,7 +95,7 @@ const TextAdjustment = () => {
 			extraLarge: 'Extra-Large',
 		},
 		fr: {
-			sampleText: 'Exemple dr texte',
+			sampleText: 'Exemple de texte',
 			continueButtonText: 'Continuez',
 			boldOn: 'Désactivez le gras',
 			boldOff: 'Activez le gras',

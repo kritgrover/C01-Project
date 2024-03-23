@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SecureStore from 'expo-secure-store';
 
@@ -178,9 +178,16 @@ const PasswordManager = () => {
 				onChangeText={setPassword}
 				secureTextEntry={true}
 			/>
-			<Button style={[styles.buttonText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]} title={textStrings[selectedLanguage].save} onPress={saveCredentials} />
+			{/* <Button style={[styles.buttonText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]} title={textStrings[selectedLanguage].save} onPress={saveCredentials} /> */}
+			<TouchableOpacity 
+				style={styles.button}
+				onPress={() => {
+					navigation.navigate('saveCredentials');
+				}}>
+ 				<Text style={[styles.saveButtonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>    {textStrings[selectedLanguage].save}</Text>
+			</TouchableOpacity>
 			<View style={styles.savedCredentialsContainer}>
-				<Text style={styles.savedCredentialsTitle}>{textStrings[selectedLanguage].savedCredentialsTitle}</Text>
+				<Text style={[styles.savedCredentialsTitle, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>{textStrings[selectedLanguage].savedCredentialsTitle}</Text>
 				{savedCredentials.map((credential, index) => (
 					<View key={index} style={styles.savedCredential}>
 						<Text style={[styles.buttonText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>{textStrings[selectedLanguage].appName}: {credential.appName}</Text>
@@ -234,6 +241,13 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		textAlign: 'center',
 	},
+
+	saveButtonText: {
+        fontSize: 16,
+        textAlign: 'center',
+        color: 'white',
+    },
+
 	sampleText: {
 		fontSize: 16,
 	},

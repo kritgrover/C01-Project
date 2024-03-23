@@ -8,7 +8,7 @@ const PreferredLanguage = () => {
 	const navigation = useNavigation();
 	const [selectedLanguage, setSelectedLanguage] = useState('en');
 	const [fontFamily, setFontFamily] = useState('');
-	const [fontSize, setFontSize] = useState('');
+	const [fontSize, setFontSize] = useState(16);
 	const [isBold, setIsBold] = useState('');
 
 	useEffect(() => {
@@ -32,7 +32,7 @@ const PreferredLanguage = () => {
 				}
 
 				const savedFontSize = await SecureStore.getItemAsync('fontSize');
-				if (savedFontSize) {
+				if (savedFontSize !== null && savedFontSize !== "" && savedFontSize !== "null") {
 					console.log("Font size:", savedFontSize);
 					setFontSize(Number(savedFontSize));
 				} else {
