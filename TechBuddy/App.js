@@ -8,6 +8,7 @@ import TextAdjustment from "./components/TextAdjustment";
 import Settings from "./components/Settings";
 import TipsScreen from "./components/TipsHomeScreen";
 import LanguageChange from "./components/LanguageChange";
+import Translate from "./components/Translate";
 
 const Stack = createNativeStackNavigator();
 
@@ -70,6 +71,7 @@ const App = () => {
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="TipsMenu" component={TipsScreen} />
+        <Stack.Screen name="Translate" component={Translate} />
         <Stack.Screen
           name="SettingsLanguagechange"
           component={LanguageChange}
