@@ -34,7 +34,7 @@ const PasswordManager = () => {
 				}
 
 				const savedFontSize = await SecureStore.getItemAsync('fontSize');
-				if (savedFontSize) {
+				if (savedFontSize !== null && savedFontSize !== "" && savedFontSize !== "null") {
 					console.log("Font size:", savedFontSize);
 					setFontSize(Number(savedFontSize));
 				} else {
