@@ -31,8 +31,19 @@ const TipsScreen = function ()
             link: 'SettingsLanguagechange'
         },
         {
-            title: ''
-        }]
+            title: 'Accessibility Settings',
+            link: 'AccessibilitySettings'
+        },
+        {
+            title: 'Logging In To Apps',
+            link: 'LoginsToApps'
+        },
+        {
+            title: "Your Phone",
+            link: 'PhoneHardware'
+        }
+      
+      ]
 
 
     return (
