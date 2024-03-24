@@ -1,4 +1,4 @@
-import React from "react";
+import React, {forwardRef} from "react";
 import {
   TouchableHighlight,
   Linking,
@@ -8,7 +8,7 @@ import {
   Text,
 } from "react-native";
 
-const EmergencyButton = () => {
+const EmergencyButton = forwardRef((props, ref) => {
   const handleEmergencyCall = () => {
     let phoneNumber = "911";
 
@@ -23,6 +23,7 @@ const EmergencyButton = () => {
   return (
     <View style={styles.container}>
       <TouchableHighlight
+        ref={ref}
         style={styles.button}
         onPress={handleEmergencyCall}
         underlayColor="darkred" // Adjust the color when pressed
@@ -31,7 +32,7 @@ const EmergencyButton = () => {
       </TouchableHighlight>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
