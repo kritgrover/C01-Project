@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Pressable, Modal, Button } from "react-native";
 import { useState, useEffect, forwardRef } from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import Speak from './Speak';
 
 const Tip = forwardRef((props, ref) => {
     const [tips, setTips] = useState(undefined);
@@ -28,7 +29,25 @@ const Tip = forwardRef((props, ref) => {
         };
 
         getTips();
+        setTips([{
+            title:
+                "In Case of Emergency",
+            content:
+                "Click the red Emergency button to contact the police."
+        }, {
+
+            title:
+                "Navigate",
+            content:
+                "To go to any screen, click the buttons at the bottom of the page."
+        }, {
+            title:
+                "Access How-to-guides",
+            content:
+                "You can access guides about your phone by clicking on the how - to button"
+        }]);
     }, []);
+
 
     const getTipState = (data) => {
         setTips(data);
@@ -64,6 +83,7 @@ const Tip = forwardRef((props, ref) => {
                         </View>
                         <View style={TipStyle.body}>
                             <Text style={TipStyle.bodyContent}>{tips[index].content}</Text>
+                            <Speak text={tips[index].content} color={"white"}></Speak>
 
                             <Pressable style={TipStyle.bodyButton} onPress={getIndex}>
                                 <Text style={TipStyle.bodyButtonText}>{"Next Tip"}</Text>
@@ -82,16 +102,14 @@ const Tip = forwardRef((props, ref) => {
                 </Modal>
             ) : (
                 <View>
-                    {/* <Pressable
+                    <Pressable
                         style={TipStyle.iconButton}
                         onPress={onOpen}
                         visible={!showTip}
-                        ref={ref}
                     >
                         <MaterialIcons name="tips-and-updates" size={38} color="#ffd33d" />
                         <Text style={TipStyle.iconButtonLabel}>{"Helpful Tips"}</Text>
-                    </Pressable> */}
-                    <Button ref={ref} onPress={showTip ? onOpen : onClose} title={'Helpful Tips'}></Button>
+                    </Pressable>
                 </View>
             )}
         </View>
@@ -123,7 +141,7 @@ const TipStyle = {
         alignItems: "center",
     },
     modalContent: {
-        height: "35%",
+        height: "70%",
         width: "100%",
         backgroundColor: "#25292e",
         borderTopRightRadius: 18,
@@ -143,7 +161,7 @@ const TipStyle = {
     },
     title: {
         color: "#fff",
-        fontSize: 20,
+        fontSize: 35,
     },
     pickerContainer: {
         flexDirection: "row",
@@ -153,7 +171,7 @@ const TipStyle = {
         paddingVertical: 20,
     },
     bodyContent: {
-        fontSize: 20,
+        fontSize: 30,
         color: "#fff",
         paddingVertical: 20,
         textAlign: "center",
@@ -174,7 +192,7 @@ const TipStyle = {
         alignItems: "center",
     },
     bodyButtonText: {
-        fontSize: 17,
+        fontSize: 25,
         color: "#fff",
     },
 };
