@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Speech from 'expo-speech';
 
-const Speak = ({text}) => {
+const Speak = ({ text, language, color }) => {
+    console.log('color', color);
 
     const [speaking, setSpeaking] = useState(false);
 
@@ -12,30 +13,26 @@ const Speak = ({text}) => {
         console.log('text:', text);
         // Speech.speak(text);
 
-        if(!speaking) {
-            console.log('hello', speaking)
-            Speech.speak(text);
+        if (!speaking) {
+            console.log('hello', speaking);
+            Speech.speak(text, {
+                language: language ? language : 'en'
+            });
             setSpeaking(true);
         } else {
             console.log('here...', speaking);
-            Speech.pause();
+            Speech.stop();
             setSpeaking(false);
         }
-        
-      };
 
-      const pauseSpeak = () => {
-        console.log('paused clicked');
-        Speech.pause;
-        setSpeaking(false);
-      }
+    };
 
     return (
         <View>
-             <Pressable style={SpeakStyle.button} onPress={speak}>
-                <MaterialCommunityIcons name={speaking ? "pause" : "text-to-speech"} size={40} color="black" />
-                <Text>Speech to Text</Text>
-             </Pressable>
+            <Pressable style={SpeakStyle.button} onPress={speak}>
+                <MaterialCommunityIcons name={speaking ? "pause" : "text-to-speech"} size={40} color={color ? color : "black"} />
+                <Text style={{color: color ? color : 'black'}}>Speech to Text</Text>
+            </Pressable>
         </View>
     );
 };
