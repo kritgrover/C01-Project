@@ -102,14 +102,16 @@ const Tip = forwardRef((props, ref) => {
                 </Modal>
             ) : (
                 <View>
-                    <Pressable
+                    {/* <Pressable
                         style={TipStyle.iconButton}
                         onPress={onOpen}
                         visible={!showTip}
+                        ref={ref}
                     >
                         <MaterialIcons name="tips-and-updates" size={38} color="#ffd33d" />
                         <Text style={TipStyle.iconButtonLabel}>{"Helpful Tips"}</Text>
-                    </Pressable>
+                    </Pressable> */}
+                    <Button ref={ref} onPress={showTip ? onOpen : onClose} title={'Helpful Tips'}></Button>
                 </View>
             )}
         </View>
