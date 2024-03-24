@@ -1,4 +1,4 @@
-import React, {forwardRef} from "react";
+import React, { forwardRef } from "react";
 import {
   TouchableHighlight,
   Linking,
@@ -6,6 +6,7 @@ import {
   View,
   StyleSheet,
   Text,
+  Button
 } from "react-native";
 
 const EmergencyButton = forwardRef((props, ref) => {
@@ -22,6 +23,8 @@ const EmergencyButton = forwardRef((props, ref) => {
 
   return (
     <View style={styles.container}>
+      <Button ref={ref} onPress={handleEmergencyCall} title={''}></Button>
+
       <TouchableHighlight
         ref={ref}
         style={styles.button}

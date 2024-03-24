@@ -1,13 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, View, Pressable, Modal, Button } from "react-native";
-import { useState, useEffect, forwardRef } from "react";
+import { useState, useEffect, forwardRef, useRef } from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Speak from './Speak';
+import VoiceCommand from "./VoiceCommand";
 
 const Tip = forwardRef((props, ref) => {
     const [tips, setTips] = useState(undefined);
     const [showTip, setShowTip] = useState(false);
     const [index, setIndex] = useState(0);
+
+    const nextRef = useRef(null);
+    const dismissRef = useRef(null);
 
     useEffect(() => {
         const getTips = async () => {
@@ -84,8 +88,11 @@ const Tip = forwardRef((props, ref) => {
                         <View style={TipStyle.body}>
                             <Text style={TipStyle.bodyContent}>{tips[index].content}</Text>
                             <Speak text={tips[index].content} color={"white"}></Speak>
+                            <VoiceCommand color={'white'} refs={[{ trigger: 'next', actual: nextRef }, { trigger: 'dismiss', actual: dismissRef }]}></VoiceCommand>
 
                             <Pressable style={TipStyle.bodyButton} onPress={getIndex}>
+                                <Button ref={nextRef} onPress={getIndex} title={""}></Button>
+
                                 <Text style={TipStyle.bodyButtonText}>{"Next Tip"}</Text>
                                 <MaterialIcons
                                     name="keyboard-arrow-right"
@@ -95,6 +102,7 @@ const Tip = forwardRef((props, ref) => {
                             </Pressable>
 
                             <Pressable style={TipStyle.bodyButton} onPress={onClose}>
+                                <Button ref={dismissRef} onPress={onClose} title={""}></Button>
                                 <Text style={TipStyle.bodyButtonText}>{"Dismiss"}</Text>
                             </Pressable>
                         </View>
@@ -102,16 +110,15 @@ const Tip = forwardRef((props, ref) => {
                 </Modal>
             ) : (
                 <View>
-                    {/* <Pressable
+                    <Pressable
                         style={TipStyle.iconButton}
                         onPress={onOpen}
                         visible={!showTip}
-                        ref={ref}
                     >
+                        <Button ref={ref} onPress={onOpen} title={''}></Button>
                         <MaterialIcons name="tips-and-updates" size={38} color="#ffd33d" />
                         <Text style={TipStyle.iconButtonLabel}>{"Helpful Tips"}</Text>
-                    </Pressable> */}
-                    <Button ref={ref} onPress={showTip ? onOpen : onClose} title={'Helpful Tips'}></Button>
+                    </Pressable>
                 </View>
             )}
         </View>

@@ -1,8 +1,9 @@
-import { StyleSheet, Text, Button, View } from 'react-native';
+import { StyleSheet, Text, Button, View, Pressable } from 'react-native';
 import { useEffect, useState, useRef } from 'react';
 import Voice from '@react-native-voice/voice';
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
-export default function VoiceCommand({language, refs}) {
+export default function VoiceCommand({ language, refs, color, size }) {
   let [started, setStarted] = useState(false);
   let [words, setWords] = useState("");
 
@@ -11,6 +12,7 @@ export default function VoiceCommand({language, refs}) {
   useEffect(() => {
     Voice.onSpeechError = onSpeechError;
     Voice.onSpeechResults = onSpeechResults;
+    console.log('color voiceover', color)
 
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
@@ -26,20 +28,18 @@ export default function VoiceCommand({language, refs}) {
 
     refs && refs.map((ref) => {
       console.log('ref trigger', ref.trigger, words);
-      if(words.length > 0 && words[0].includes(ref.trigger)) {
+      if (words.length > 0 && words[0].toLowerCase().includes(ref.trigger.toLowerCase())) {
         console.log('inside if statement', ref.actual);
 
         ref.actual.current && ref.actual.current.props.onPress();
-        // ref.actual();
 
-        // ref.actual && console.log('inside words', ref.actual.current, words[0]);
-        // ref.actual && ref.actual.current.memoizedProps.onClick;
+        stopRef.current && stopRef.current.props.onPress();
       }
     });
   }, [words]);
 
   const startSpeechToText = async () => {
-    language ? language: 'en-GB'
+    language ? language : 'en-GB'
     await Voice.start(language);
     setStarted(true);
   };
@@ -59,8 +59,17 @@ export default function VoiceCommand({language, refs}) {
 
   return (
     <View style={styles.container}>
-      {!started ? <Button title='Start Speech to Text' onPress={startSpeechToText} /> : undefined}
-      {started ? <Button ref={stopRef} title='Stop Speech to Text' onPress={stopSpeechToText} /> : undefined}
+      <Pressable style={{
+        flexDirection:'row'
+      }}>
+        <MaterialIcons
+          name="record-voice-over"
+          color={color ? color : 'black'}
+          size={size ? size : 30}
+        />
+        {!started ? <Button title='Start Speech to Text' onPress={startSpeechToText} /> : undefined}
+        {started ? <Button ref={stopRef} title='Stop Speech to Text' onPress={stopSpeechToText} /> : undefined}
+      </Pressable>
       <Text>{words}</Text>
     </View>
   );
@@ -69,7 +78,6 @@ export default function VoiceCommand({language, refs}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },

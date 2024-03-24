@@ -30,11 +30,11 @@ const HomeScreen = () => {
       <SafeAreaView style={styles.container}>
         <PasswordManager />
       </SafeAreaView>
-      <Speak
+      {/* <Speak
         text={
           "hello this page is reading aloud with a very long text so that I can test the pausing"
         }
-      />
+      /> */}
       <Tip ref={TipRef} style={{ float: "right" }} />
       <EmergencyButton ref={EmergencyRef} />
       <NavigationBar>
