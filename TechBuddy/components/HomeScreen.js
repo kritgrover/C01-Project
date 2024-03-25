@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { Pressable, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import EmergencyButton from "./EmergencyButton";
 import NavigationBar from "./NavigationBar";
 import Tip from "./Tip";
@@ -20,12 +20,12 @@ const HomeScreen = () => {
   };
 
   const handleButton3Press = () => {
-    console.log("Button 3 pressed");
+    useNavigation().navigate('TipsMenu')
   };
 
   return (
-    //
     <View style={styles.container}>
+      <ScrollView>
       <SafeAreaView style={styles.container}>
         <PasswordManager />
         <TouchableOpacity
@@ -44,6 +44,7 @@ const HomeScreen = () => {
         }
       />
       <EmergencyButton />
+      </ScrollView>
       <NavigationBar>
         onHomePress={handleHomePress}
         onButton2Press={handleButton2Press}
@@ -51,6 +52,7 @@ const HomeScreen = () => {
       </NavigationBar>
       <StatusBar style="auto" />
     </View>
+
   );
 };
 
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
     margin: 0,
-    height: '50%'
+    height: '100%'
   },
   button: {
     color: 'blue'

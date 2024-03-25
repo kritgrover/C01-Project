@@ -11,6 +11,7 @@ import LanguageChange from "./components/LanguageChange";
 import Translate from "./components/Translate";
 import accessSettings from "./components/accessSettings";
 import logInsToApps from "./components/logIns"
+import Hardware from "./components/phoneHardware";
 
 const Stack = createNativeStackNavigator();
 
@@ -85,6 +86,10 @@ const App = () => {
           name="LoginsToApps"
           component={logInsToApps}
           />
+        <Stack.Screen
+          name= "PhoneHardware"
+          component={Hardware}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

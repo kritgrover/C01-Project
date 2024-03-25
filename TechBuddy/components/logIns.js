@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Text,
   Button,
+  ScrollView,
 } from "react-native";
 import Translate from "./Translate";
 
@@ -61,6 +62,7 @@ const logInsToApps = function () {
 }, []);
 
   return (
+    <ScrollView height='500vh'>
     <View style={styles.menuContainer}>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
         <Translate text="Many apps (like this one) will require you to 'Log In' or 'Sign In'. This may seem annoying, but it is an important step to ensure your security and comfort." targetLanguage={selectedLanguage} />
@@ -71,7 +73,6 @@ const logInsToApps = function () {
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
         <Translate text="1) If you are using an app for the first time, the app will ask you to 'Sign Up'. This means creating an account for your use of an app." targetLanguage={selectedLanguage} />
       </Text>
-      {/* <img src={SettingsPicture} alt="Search Image" /> */}
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
         <Translate text="2) If you are asked to 'Sign Up', you will be asked for a Username and Password. Type in a Username and Password. You can use anything for the Username and Password, so make sure you will remember them, or write them down somewhere. Your password is used to secure your account. Many apps will require your password to fulfill certain critera. (Like being a certain size of having special characters) This is to help secure your account" targetLanguage={selectedLanguage} />
       </Text>
@@ -88,6 +89,7 @@ const logInsToApps = function () {
         <Translate text="This may seem tedious, but having an account for an app does a lot. It keeps you secure, and helps those apps tailor content for you. For YouTube for example, YouTube will only show you options related to what you like, like cooking videos, and doesn't show you what you won't like, like motorcycle videos." targetLanguage={selectedLanguage} />
       </Text>
     </View>
+    </ScrollView>
   );
 };
 

@@ -23,7 +23,7 @@ const NavigationBar = ({ onHomePress, onButton2Press, onButton3Press }) => {
         onPress={onButton3Press}
         underlayColor="darkblue"
       >
-        <Text style={styles.buttonText}>Button 3</Text>
+        <Text style={styles.buttonText}>Quick Tips</Text>
       </TouchableHighlight>
     </View>
   );

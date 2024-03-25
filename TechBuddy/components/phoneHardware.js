@@ -5,15 +5,17 @@ import {
   Linking,
   Platform,
   View,
+  Image,
   StyleSheet,
   Text,
   Button,
+  ScrollView,
 } from "react-native";
+import phoneImage from "../assets/phoneImage.jpg"
 import { useNavigation } from "@react-navigation/native";
-import SettingsPicture from "../assets/SettingsPicture.png";
 import Translate from "./Translate";
 
-const LanguageChange = function () {
+const Hardware = function () {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [fontFamily, setFontFamily] = useState('');
   const [fontSize, setFontSize] = useState(16);
@@ -63,10 +65,12 @@ const LanguageChange = function () {
 }, []);
 
   return (
-    <View style={styles.menuContainer}>
+    <ScrollView height='500vh'>
+      <View style={styles.menuContainer}>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
         <Translate text="Let's look at your phone. While every phone is different, every phone will have similar features." targetLanguage={selectedLanguage} />
       </Text>
+      <Image alt='Hardware Picture' resizeMode="contain" source={phoneImage}/>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
         <Translate text="Every phone will have a set of 3 buttons. 2 buttons will be grouped together, and 1 button will be seperate. " targetLanguage={selectedLanguage} />
       </Text>
@@ -87,6 +91,7 @@ const LanguageChange = function () {
         <Translate text="On your phone, there may also be a circular hole. This is an AUX port. This is a fancy way to say that this is a place to connect any audio device, like headphones or a stereo, to play music that your phone would emit, instead of from your phone to begin with." targetLanguage={selectedLanguage} />
       </Text>
     </View>
+    </ScrollView>
   );
 };
 
@@ -116,3 +121,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
+export default Hardware

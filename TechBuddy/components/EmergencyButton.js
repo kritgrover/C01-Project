@@ -102,14 +102,14 @@ const EmergencyButton = () => {
 
 const styles = StyleSheet.create({
 	container: {
-		position: "absolute",
-		bottom: 200,
-		left: 20,
-		right: 20,
+		position: "relative",
+		bottom: 0,
+		left: 0,
 		zIndex: 1,
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
+		
 	},
 	button: {
 		backgroundColor: "red",

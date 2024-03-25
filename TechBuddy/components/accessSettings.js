@@ -8,7 +8,9 @@ import {
   StyleSheet,
   Text,
   Button,
+  ScrollView,
 } from "react-native";
+import SettingsPicture from "../assets/SettingsPicture.png"
 import Translate from "./Translate";
 
 const accessSettings = function () {
@@ -61,16 +63,18 @@ const accessSettings = function () {
 }, []);
 
   return (
+    <ScrollView height='500vh'>
     <View style={styles.menuContainer}>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
         <Translate text="Every phone will have an Accessibility option in Settings. This section allows you to change certain parts of your phone to make it more user friendly." targetLanguage={selectedLanguage} />
       </Text>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
-        <Translate text="1) Go to your settings. (There is a link on the bottom of this page that will take you to your settings)" targetLanguage={selectedLanguage} />
+        <Translate text="1) Go to your settings." targetLanguage={selectedLanguage} />
       </Text>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
         <Translate text="2) Go to the search option. (Indicated with a magnifying glass)" targetLanguage={selectedLanguage} />
       </Text>
+      <Image style={{width: '70%', height: '100%'}} source={SettingsPicture} alt="Search Image" />
       {/* <img src={SettingsPicture} alt="Search Image" /> */}
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
         <Translate text="3) Type in 'Accessibility'." targetLanguage={selectedLanguage} />
@@ -81,10 +85,8 @@ const accessSettings = function () {
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
         <Translate text="5) Your phone may have different options at this point. Pick the settings that help you use your phone better." targetLanguage={selectedLanguage} />
       </Text>
-      <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
-        <Translate text="Below is a button which will directly lead you to the accessibility option on your settings. Tap it to immediately get to this page." targetLanguage={selectedLanguage} />
-      </Text>
     </View>
+    </ScrollView>
   );
 };
 
