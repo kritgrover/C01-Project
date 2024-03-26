@@ -20,7 +20,7 @@ export default function VoiceCommand({ language, refs, color, size }) {
   }, []);
 
   useEffect(() => {
-    if (words.length > 0 && words[0].includes("stop")) {
+    if (words.length > 0 && words[0].toLowerCase().includes("stop")) {
       stopRef.current && console.log('inside words', stopRef.current.props, words[0]);
 
       stopRef.current && stopRef.current.props.onPress();
@@ -60,7 +60,7 @@ export default function VoiceCommand({ language, refs, color, size }) {
   return (
     <View style={styles.container}>
       <Pressable style={{
-        flexDirection:'row'
+        flexDirection: 'row'
       }}>
         <MaterialIcons
           name="record-voice-over"
@@ -70,14 +70,14 @@ export default function VoiceCommand({ language, refs, color, size }) {
         {!started ? <Button title='Start Speech to Text' onPress={startSpeechToText} /> : undefined}
         {started ? <Button ref={stopRef} title='Stop Speech to Text' onPress={stopSpeechToText} /> : undefined}
       </Pressable>
-      <Text>{words}</Text>
+      {/* <Text>{words}</Text> */}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
