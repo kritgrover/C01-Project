@@ -12,6 +12,7 @@ import Translate from "./components/Translate";
 import accessSettings from "./components/accessSettings";
 import logInsToApps from "./components/logIns"
 import Hardware from "./components/phoneHardware";
+import PasswordManager from "./components/PasswordManager";
 
 const Stack = createNativeStackNavigator();
 
