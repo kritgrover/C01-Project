@@ -3,14 +3,64 @@ import { Pressable, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableO
 import EmergencyButton from "./EmergencyButton";
 import NavigationBar from "./NavigationBar";
 import Tip from "./Tip";
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from "react-native";
 import PasswordManager from "./PasswordManager";
 import Speak from "./Speak";
 import { useNavigation } from "@react-navigation/native";
+import * as SecureStore from 'expo-secure-store';
 
 const HomeScreen = () => {
-  const navigate = useNavigation()
+  const navigate = useNavigation();
+  const [fontSize, setFontSize] = useState(16);
+  const [isBold, setIsBold] = useState('');
+  const [fontFamily, setFontFamily] = useState('');
+  const [selectedLanguage, setSelectedLanguage] = useState('en');
+
+  useEffect(() => {
+    const loadSavedValues = async () => {
+      try {
+        const savedLanguage = await SecureStore.getItemAsync('selectedLanguage');
+        if (savedLanguage) {
+          console.log("Selected language:", savedLanguage);
+          setSelectedLanguage(savedLanguage);
+        } else {
+          setSelectedLanguage('en');
+        }
+
+        const savedFontFamily = JSON.parse(await SecureStore.getItemAsync('fontFamily'));
+
+        if (savedFontFamily) {
+          console.log("Font family:", savedFontFamily)
+          setFontFamily(savedFontFamily);
+        } else {
+          setFontFamily('Arial');
+        }
+
+        const savedFontSize = await SecureStore.getItemAsync('fontSize');
+        if (savedFontSize !== null && savedFontSize !== "" && savedFontSize !== "null") {
+          console.log("Font size:", savedFontSize);
+          setFontSize(Number(savedFontSize));
+        } else {
+          setFontSize(16);
+        }
+
+        const savedIsBold = await SecureStore.getItemAsync('isBold');
+        if (savedIsBold) {
+          console.log("Is bold:", savedIsBold);
+          setIsBold(savedIsBold);
+        } else {
+          setIsBold(false);
+        }
+      } catch (error) {
+        console.error('Error loading saved values:', error);
+      }
+    };
+
+    loadSavedValues();
+  }, []);
+
+
   const handleHomePress = () => {
     console.log("Home Button Pressed");
   };
@@ -23,6 +73,33 @@ const HomeScreen = () => {
     useNavigation().navigate('TipsMenu')
   };
 
+  const textStrings = {
+    en: {
+      tipsHomePage: "Tips Home Page",
+    },
+    fr: {
+      tipsHomePage: "Page d'accueil des conseils",
+    },
+    es: {
+      tipsHomePage: "Página de inicio de consejos",
+    },
+    ch: {
+      tipsHomePage: "提示主页",
+    },
+    ru: {
+      tipsHomePage: "Домашняя страница советов",
+    },
+    ar: {
+      tipsHomePage: "صفحة النصائح الرئيسية",
+    },
+    hi: {
+      tipsHomePage: "टिप्स होम पेज",
+    },
+    ja: {
+      tipsHomePage: "ヒントホームページ",
+    },
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -34,7 +111,7 @@ const HomeScreen = () => {
 					navigate.navigate('TipsMenu');
 				}}>
         
-				<Text style={styles.continueButtonText}>Tips Home Page</Text>
+				<Text style={[styles.continueButtonText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>{textStrings[selectedLanguage].tipsHomePage}</Text>
         </TouchableOpacity>
       </SafeAreaView>
       
