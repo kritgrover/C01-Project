@@ -32,7 +32,7 @@ const TipsScreen = function ()
         },
         {
             title: 'Accessibility Settings',
-            link: 'AccessibilitySettings'
+            link: 'AccessSettings'
         },
         {
             title: 'Logging In To Apps',
