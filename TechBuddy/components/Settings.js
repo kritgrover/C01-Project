@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, Image, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as SecureStore from 'expo-secure-store';
+import homeIcon from "../assets/homeIcon.png";
+import accountIcon from "../assets/accountIcon.png";
+import passwordIcon from "../assets/passwordIcon.png";
 
 const Settings = () => {
 	const navigation = useNavigation();
@@ -84,6 +87,39 @@ const Settings = () => {
 		}
 	};
 
+	const navigateToPasswordManager = () => {
+    navigation.navigate("PasswordManager");
+  };
+
+  const navigateToAccount = () => {
+    navigation.navigate("Settings");
+  };
+
+  const navigateToHome = () => {
+    navigation.navigate("HomeScreen");
+  }
+
+  // Set header options dynamically
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => (
+        <TouchableOpacity onPress={navigateToHome}>
+          <Image source={homeIcon} style={styles.homeIcon}/>
+        </TouchableOpacity>
+      ),
+      headerLeft: () => (
+        <TouchableOpacity onPress={navigateToAccount} style={styles.headerButton}>
+          <Image source={accountIcon} style={styles.accountIcon}/>
+        </TouchableOpacity>
+      ),
+      headerRight: () => (
+        <TouchableOpacity onPress={navigateToPasswordManager} style={styles.headerButton}>
+          <Image source={passwordIcon} style={styles.passwordIcon}/>
+        </TouchableOpacity>
+      ),
+    });
+  }, []);
+
 	return (
 		<View style={styles.container}>
 			<TouchableOpacity style={[styles.button]} onPress={goToPreferredLanguage}>
@@ -110,6 +146,26 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		textAlign: 'center',
 	},
+	headerButton: {
+    padding: 10,
+    marginRight: 10,
+  },
+  headerButtonText: {
+    color: 'blue',
+    fontSize: 16,
+  },
+  homeIcon: {
+    width: 30,
+    height: 30,
+  },
+  accountIcon: {
+    width: 40,
+    height: 30,
+  },
+  passwordIcon: {
+    width: 30,
+    height: 30,
+  },
 });
 
 export default Settings;

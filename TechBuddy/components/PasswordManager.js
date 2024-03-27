@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, Image, TextInput, Button, TouchableOpacity, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SecureStore from 'expo-secure-store';
+import homeIcon from "../assets/homeIcon.png";
+import accountIcon from "../assets/accountIcon.png";
+import passwordIcon from "../assets/passwordIcon.png";
+import { useNavigation } from '@react-navigation/native';
 
 const PasswordManager = () => {
+	const navigation = useNavigation();
 	const [appName, setAppName] = useState("");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -156,6 +161,39 @@ const PasswordManager = () => {
 		}
 	};
 
+	const navigateToPasswordManager = () => {
+    navigation.navigate("PasswordManager");
+  };
+
+  const navigateToAccount = () => {
+    navigation.navigate("Settings");
+  };
+
+  const navigateToHome = () => {
+    navigation.navigate("HomeScreen");
+  }
+
+	// Set header options dynamically
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => (
+        <TouchableOpacity onPress={navigateToHome}>
+          <Image source={homeIcon} style={styles.homeIcon}/>
+        </TouchableOpacity>
+      ),
+      headerLeft: () => (
+        <TouchableOpacity onPress={navigateToAccount} style={styles.headerButton}>
+          <Image source={accountIcon} style={styles.accountIcon}/>
+        </TouchableOpacity>
+      ),
+      headerRight: () => (
+        <TouchableOpacity onPress={navigateToPasswordManager} style={styles.headerButton}>
+          <Image source={passwordIcon} style={styles.passwordIcon}/>
+        </TouchableOpacity>
+      ),
+    });
+  }, []);
+
 	return (
 		<View style={styles.container}>
 			<Text style={[styles.title, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>{textStrings[selectedLanguage].passwordManagerTitle}</Text>
@@ -251,6 +289,26 @@ const styles = StyleSheet.create({
 	sampleText: {
 		fontSize: 16,
 	},
+	headerButton: {
+    padding: 10,
+    marginRight: 10,
+  },
+  headerButtonText: {
+    color: 'blue',
+    fontSize: 16,
+  },
+  homeIcon: {
+    width: 30,
+    height: 30,
+  },
+  accountIcon: {
+    width: 40,
+    height: 30,
+  },
+  passwordIcon: {
+    width: 30,
+    height: 30,
+  },
 });
 
 export default PasswordManager;

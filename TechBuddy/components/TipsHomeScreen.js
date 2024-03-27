@@ -8,9 +8,14 @@ import {
   StyleSheet,
   Text,
   Button,
+  Image,
   Pressable,
+  TouchableOpacity
 } from "react-native";
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native";
+import homeIcon from "../assets/homeIcon.png";
+import accountIcon from "../assets/accountIcon.png";
+import passwordIcon from "../assets/passwordIcon.png";
 
 const TipsScreen = function ()
 {
@@ -122,7 +127,40 @@ const TipsScreen = function ()
         loggingInToApps: "アプリにログイン",
         yourPhone: "あなたの電話",
       },
-    }
+    };
+
+    const navigateToPasswordManager = () => {
+    navigate.navigate("PasswordManager");
+  };
+
+  const navigateToAccount = () => {
+    navigate.navigate("Settings");
+  };
+
+  const navigateToHome = () => {
+    navigate.navigate("HomeScreen");
+  }
+
+  // Set header options dynamically
+  useEffect(() => {
+    navigate.setOptions({
+      headerTitle: () => (
+        <TouchableOpacity onPress={navigateToHome}>
+          <Image source={homeIcon} style={styles.homeIcon}/>
+        </TouchableOpacity>
+      ),
+      headerLeft: () => (
+        <TouchableOpacity onPress={navigateToAccount} style={styles.headerButton}>
+          <Image source={accountIcon} style={styles.accountIcon}/>
+        </TouchableOpacity>
+      ),
+      headerRight: () => (
+        <TouchableOpacity onPress={navigateToPasswordManager} style={styles.headerButton}>
+          <Image source={passwordIcon} style={styles.passwordIcon}/>
+        </TouchableOpacity>
+      ),
+    });
+  }, []);
 
     const tipsMenu = 
         [{
@@ -180,6 +218,26 @@ const styles = StyleSheet.create({
       color: "white",
       textAlign: "center",
     },
+    headerButton: {
+    padding: 10,
+    marginRight: 10,
+  },
+  headerButtonText: {
+    color: 'blue',
+    fontSize: 16,
+  },
+  homeIcon: {
+    width: 30,
+    height: 30,
+  },
+  accountIcon: {
+    width: 40,
+    height: 30,
+  },
+  passwordIcon: {
+    width: 30,
+    height: 30,
+  },
   });
 
 
