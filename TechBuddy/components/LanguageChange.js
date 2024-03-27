@@ -75,7 +75,7 @@ const LanguageChange = function () {
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
         <Translate text="2) Go to Preferences, then Languages. (If you don't see preferences, you may use the search icon in your Settings app to search 'Languages')" targetLanguage={selectedLanguage} />
       </Text>
-      <Image resizeMode="contain" style={{width: '20%', height: '100%', flex: 'contain'}} source={SettingsPicture} alt="Search Image" />
+      <Image resizeMode="contain" style={{width: '70%', height: '100%', flex: 'contain'}} source={SettingsPicture} alt="Search Image" />
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
         <Translate text="3) There should be a “Your Selected Language” option, and it will be set to English. There should also be a “Select Language” option. Tap that button." targetLanguage={selectedLanguage} />
       </Text>
