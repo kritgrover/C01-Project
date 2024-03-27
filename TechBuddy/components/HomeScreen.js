@@ -14,18 +14,15 @@ const HomeScreen = () => {
   };
 
   const handleButton2Press = () => {
-    console.log("Button 2 pressed");
+    console.log("Account Button Pressed");
   };
 
-  const handleButton3Press = () => {
-    console.log("Button 3 pressed");
+  const handlePasswordManagerPress = () => {
+    console.log("Password Manager");
   };
 
   return (
     <View style={styles.container}>
-      <SafeAreaView style={styles.container}>
-        <PasswordManager />
-      </SafeAreaView>
       <Speak
         text={
           "hello this page is reading aloud with a very long text so that I can test the pausing"
@@ -36,7 +33,7 @@ const HomeScreen = () => {
       <NavigationBar>
         onHomePress={handleHomePress}
         onButton2Press={handleButton2Press}
-        onButton3Press={handleButton3Press}
+        onButton3Press={handlePasswordManagerPress}
       </NavigationBar>
       <StatusBar style="auto" />
     </View>

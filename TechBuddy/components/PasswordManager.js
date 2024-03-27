@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NavigationBar } from "./NavigationBar";
 
 const PasswordManager = () => {
   const [appName, setAppName] = useState("");
@@ -46,6 +47,7 @@ const PasswordManager = () => {
 
   return (
     <View style={styles.container}>
+      <NavigationBar />
       <Text style={styles.title}>Password Manager</Text>
       <TextInput
         style={styles.input}

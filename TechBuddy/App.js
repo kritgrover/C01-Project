@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as SecureStore from "expo-secure-store";
@@ -8,6 +9,7 @@ import TextAdjustment from "./components/TextAdjustment";
 import Settings from "./components/Settings";
 import TipsScreen from "./components/TipsHomeScreen";
 import LanguageChange from "./components/LanguageChange";
+import PasswordManager from "./components/PasswordManager";
 
 const Stack = createNativeStackNavigator();
 
@@ -70,6 +72,7 @@ const App = () => {
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="TipsMenu" component={TipsScreen} />
+        <Stack.Screen name="PasswordManager" component={PasswordManager} />
         <Stack.Screen
           name="SettingsLanguagechange"
           component={LanguageChange}

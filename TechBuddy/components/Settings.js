@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as SecureStore from 'expo-secure-store';
+import { NavigationBar } from "./NavigationBar";
 
 const Settings = () => {
 	const navigation = useNavigation();
@@ -42,6 +43,7 @@ const Settings = () => {
 
 	return (
 		<View style={styles.container}>
+			<NavigationBar />
 			<TouchableOpacity style={[styles.button]} onPress={goToPreferredLanguage}>
 				<Text style={[styles.buttonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>Go to Preferred Language</Text>
 			</TouchableOpacity>
