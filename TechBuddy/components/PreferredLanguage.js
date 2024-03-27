@@ -123,7 +123,7 @@ const PreferredLanguage = () => {
 
 			<RNPickerSelect
 				items={languageOptions}
-				placeholder={{ label: 'Select a language', value: null }}
+				placeholder={{ label: textStrings[selectedLanguage].selectALanguage, value: null }}
 				value={selectedLanguage}
 				onValueChange={(value) => handleLanguageSelection(value)}
 				style={pickerSelectStyles}
