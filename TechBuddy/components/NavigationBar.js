@@ -60,11 +60,11 @@ const NavigationBar = ({ onHomePress, onButton2Press, onPasswordManagerPress }) 
   }
 
   const navigateToHomeScreen = () => {
-    navigation.navigate("HomeScreen")
+    navigation.navigate("HomeScreen");
   }
 
   const navigateToAccount = () => {
-    navigation.navigate("Settings")
+    navigation.navigate("Settings");
   }
 
   const textStrings = {
