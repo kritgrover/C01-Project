@@ -75,7 +75,7 @@ const accessSettings = function () {
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
         <Translate text="2) Go to the search option. (Indicated with a magnifying glass)" targetLanguage={selectedLanguage} />
       </Text>
-      <Image style={{width: '50%', height: '100%'}} resizeMode="contain" source={SettingsPicture} alt="Search Image" />
+      <Image style={{width: '20%', height: '100%'}} resizeMode="contain" source={SettingsPicture} alt="Search Image" />
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
         <Translate text="3) Type in 'Accessibility'." targetLanguage={selectedLanguage} />
       </Text>
