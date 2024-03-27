@@ -76,6 +76,7 @@ const App = () => {
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="TipsMenu" component={TipsScreen} />
         <Stack.Screen name="Translate" component={Translate} />
+        <Stack.Screen name="PasswordManager" component={PasswordManager} />
         <Stack.Screen
           name="SettingsLanguagechange"
           component={LanguageChange}
