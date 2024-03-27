@@ -74,22 +74,22 @@ const NavigationBar = ({ onHomePress, onButton2Press, onPasswordManagerPress }) 
       passwordManager: "Password Manager"
     },
     fr: {
-      home: "Accueil",
+      home: "Page d'accueil",
       account: "Compte",
       passwordManager: "Gestionnaire de mots de passe"
     },
     es: {
-      home: "Casa",
+      home: "Página de inicio",
       account: "Cuenta",
       passwordManager: "Administrador de contraseñas"
     },
     ch: {
-      home: "家",
+      home: "主页",
       account: "帐户",
       passwordManager: "密码管理器"
     },
     ru: {
-      home: "дом",
+      home: "домашняя страница",
       account: "учетная",
       passwordManager: "менеджер паролей"
     },
@@ -99,12 +99,12 @@ const NavigationBar = ({ onHomePress, onButton2Press, onPasswordManagerPress }) 
       passwordManager: "مدير كلمات المرور"
     },
     hi: {
-      home: "घर",
+      home: "होम पेज",
       account: "लेखा",
       passwordManager: "पासवर्ड प्रबंधक"
     },
     ja: {
-      home: "家",
+      home: "ホームページ",
       account: "アカウント",
       passwordManager: "パスワードマネージャー"
     },
