@@ -10,15 +10,16 @@ import TipsScreen from "./components/TipsHomeScreen";
 import LanguageChange from "./components/LanguageChange";
 import Translate from "./components/Translate";
 import accessSettings from "./components/accessSettings";
-import logInsToApps from "./components/logIns"
+import logInsToApps from "./components/logIns";
 import Hardware from "./components/phoneHardware";
 import PasswordManager from "./components/PasswordManager";
+import SplashPage from "./components/SplashPage";
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   const [initialRouteKey, setInitialRouteKey] = useState(Date.now().toString());
-  const initialRouteRef = useRef("PreferredLanguage");
+  const initialRouteRef = useRef("SplashPage");
 
   useEffect(() => {
     const checkSavedValues = async () => {
@@ -70,6 +71,7 @@ const App = () => {
   return (
     <NavigationContainer key={initialRouteKey}>
       <Stack.Navigator initialRouteName={initialRouteRef.current}>
+        <Stack.Screen name="SplashPage" component={SplashPage} />
         <Stack.Screen name="PreferredLanguage" component={PreferredLanguage} />
         <Stack.Screen name="UpdateFont" component={TextAdjustment} />
         <Stack.Screen name="Settings" component={Settings} />
@@ -81,17 +83,9 @@ const App = () => {
           name="SettingsLanguagechange"
           component={LanguageChange}
         />
-        <Stack.Screen
-          name="AccessSettings"
-          component={accessSettings}/>
-        <Stack.Screen
-          name="LoginsToApps"
-          component={logInsToApps}
-          />
-        <Stack.Screen
-          name= "PhoneHardware"
-          component={Hardware}
-        />
+        <Stack.Screen name="AccessSettings" component={accessSettings} />
+        <Stack.Screen name="LoginsToApps" component={logInsToApps} />
+        <Stack.Screen name="PhoneHardware" component={Hardware} />
       </Stack.Navigator>
     </NavigationContainer>
   );

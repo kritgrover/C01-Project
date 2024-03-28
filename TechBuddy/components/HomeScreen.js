@@ -1,7 +1,14 @@
 import { StatusBar } from "expo-status-bar";
-import { ScrollView, StyleSheet, Image, Text, TouchableOpacity, View } from "react-native";
-import * as SecureStore from 'expo-secure-store';
-import React, { useEffect, useState } from 'react';
+import {
+  ScrollView,
+  StyleSheet,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import * as SecureStore from "expo-secure-store";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PasswordManager from "./PasswordManager";
 import Speak from "./Speak";
@@ -12,39 +19,47 @@ import passwordIcon from "../assets/passwordIcon.png";
 
 const HomeScreen = ({ navigation }) => {
   const [fontSize, setFontSize] = useState(16);
-  const [isBold, setIsBold] = useState('');
-  const [fontFamily, setFontFamily] = useState('');
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [isBold, setIsBold] = useState("");
+  const [fontFamily, setFontFamily] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
 
   useEffect(() => {
     const loadSavedValues = async () => {
       try {
-        const savedLanguage = await SecureStore.getItemAsync('selectedLanguage');
+        const savedLanguage = await SecureStore.getItemAsync(
+          "selectedLanguage"
+        );
         if (savedLanguage) {
           console.log("Selected language:", savedLanguage);
           setSelectedLanguage(savedLanguage);
         } else {
-          setSelectedLanguage('en');
+          setSelectedLanguage("en");
         }
 
-        const savedFontFamily = JSON.parse(await SecureStore.getItemAsync('fontFamily'));
+        const savedFontFamily = JSON.parse(
+          await SecureStore.getItemAsync("fontFamily")
+        );
 
         if (savedFontFamily) {
-          console.log("Font family:", savedFontFamily)
+          console.log("Font family:", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {
-          setFontFamily('Arial');
+          setFontFamily("Arial");
         }
 
-        const savedFontSize = await SecureStore.getItemAsync('fontSize');
-        if (savedFontSize !== null && savedFontSize !== "" && savedFontSize !== "null") {
+        const savedFontSize = await SecureStore.getItemAsync("fontSize");
+        if (
+          savedFontSize !== null &&
+          savedFontSize !== "" &&
+          savedFontSize !== "null"
+        ) {
           console.log("Font size:", savedFontSize);
           setFontSize(Number(savedFontSize));
         } else {
           setFontSize(16);
         }
 
-        const savedIsBold = await SecureStore.getItemAsync('isBold');
+        const savedIsBold = await SecureStore.getItemAsync("isBold");
         if (savedIsBold) {
           console.log("Is bold:", savedIsBold);
           setIsBold(savedIsBold);
@@ -52,7 +67,7 @@ const HomeScreen = ({ navigation }) => {
           setIsBold(false);
         }
       } catch (error) {
-        console.error('Error loading saved values:', error);
+        console.error("Error loading saved values:", error);
       }
     };
 
@@ -96,24 +111,30 @@ const HomeScreen = ({ navigation }) => {
 
   const navigateToHome = () => {
     navigation.navigate("HomeScreen");
-  }
+  };
 
   // Set header options dynamically
   useEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <TouchableOpacity onPress={navigateToHome}>
-          <Image source={homeIcon} style={styles.homeIcon}/>
+          <Image source={homeIcon} style={styles.homeIcon} />
         </TouchableOpacity>
       ),
       headerLeft: () => (
-        <TouchableOpacity onPress={navigateToAccount} style={styles.headerButton}>
-          <Image source={accountIcon} style={styles.accountIcon}/>
+        <TouchableOpacity
+          onPress={navigateToAccount}
+          style={styles.headerButton}
+        >
+          <Image source={accountIcon} style={styles.accountIcon} />
         </TouchableOpacity>
       ),
       headerRight: () => (
-        <TouchableOpacity onPress={navigateToPasswordManager} style={styles.headerButton}>
-          <Image source={passwordIcon} style={styles.passwordIcon}/>
+        <TouchableOpacity
+          onPress={navigateToPasswordManager}
+          style={styles.headerButton}
+        >
+          <Image source={passwordIcon} style={styles.passwordIcon} />
         </TouchableOpacity>
       ),
     });
@@ -127,9 +148,21 @@ const HomeScreen = ({ navigation }) => {
           <TouchableOpacity
             style={styles.continueButton}
             onPress={() => {
-              navigation.navigate('TipsMenu');
-            }}>
-            <Text style={[styles.continueButtonText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>{textStrings[selectedLanguage].tipsHomePage}</Text>
+              navigation.navigate("TipsMenu");
+            }}
+          >
+            <Text
+              style={[
+                styles.continueButtonText,
+                {
+                  fontSize,
+                  fontWeight: isBold ? "bold" : "normal",
+                  fontFamily,
+                },
+              ]}
+            >
+              {textStrings[selectedLanguage].tipsHomePage}
+            </Text>
           </TouchableOpacity>
         </SafeAreaView>
 
@@ -152,31 +185,30 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
     margin: 0,
-    height: '100%'
+    height: "100%",
   },
   button: {
-    color: 'blue'
+    color: "blue",
   },
   continueButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: "#4CAF50",
     padding: 0,
     borderRadius: 5,
-    alignSelf: 'center',
+    alignSelf: "center",
     margin: 0,
-    width: '75%'
-
+    width: "75%",
   },
   continueButtonText: {
-    color: 'white',
+    color: "white",
     // fontSize: 18,
-    textAlign: 'center',
+    textAlign: "center",
   },
   headerButton: {
     padding: 10,
     marginRight: 10,
   },
   headerButtonText: {
-    color: 'blue',
+    color: "blue",
     fontSize: 16,
   },
   homeIcon: {
