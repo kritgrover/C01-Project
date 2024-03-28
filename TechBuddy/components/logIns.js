@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Text,
   Button,
+  Image,
   ScrollView,
   TouchableOpacity,
 } from "react-native";

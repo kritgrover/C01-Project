@@ -8,7 +8,7 @@ const TextAdjustment = () => {
 	const navigation = useNavigation();
 	const [fontSize, setFontSize] = useState(16);
 	const [isBold, setIsBold] = useState('');
-	const [fontFamily, setFontFamily] = useState('');
+	const [fontFamily, setFontFamily] = useState('Arial');
 	const [selectedLanguage, setSelectedLanguage] = useState('en');
 
 	useEffect(() => {
@@ -109,7 +109,7 @@ const TextAdjustment = () => {
 		es: {
 			sampleText: 'Texto de ejemplo',
 			continueButtonText: 'Continuar',
-			boldOn: 'Desactivar negrita', 
+			boldOn: 'Desactivar negrita',
 			boldOff: 'Habilitar negrita',
 			selectFontSize: 'Seleccionar tamaño de fuente',
 			selectFontFamily: 'Seleccionar familia de fuentes',
@@ -187,7 +187,7 @@ const TextAdjustment = () => {
 			</Text>
 
 			<TouchableOpacity style={styles.button} onPress={toggleBold}>
-			<Text style={[styles.buttonText, { fontFamily: fontFamily, fontSize: Number(fontSize), fontWeight: isBold ? 'bold' : 'normal' }]}>{isBold ? textStrings[selectedLanguage].boldOn : textStrings[selectedLanguage].boldOff}</Text>
+				<Text style={[styles.buttonText, { fontFamily: fontFamily, fontSize: Number(fontSize), fontWeight: isBold ? 'bold' : 'normal' }]}>{isBold ? textStrings[selectedLanguage].boldOn : textStrings[selectedLanguage].boldOff}</Text>
 			</TouchableOpacity>
 
 			<View style={styles.pickerContainer}>
@@ -199,6 +199,7 @@ const TextAdjustment = () => {
 						{ label: textStrings[selectedLanguage].large, value: 20 },
 						{ label: textStrings[selectedLanguage].extraLarge, value: 24 }
 					]}
+					value={fontSize}
 					onValueChange={(value) => handleFontSizeChange(value)}
 					style={pickerStyles}
 				/>
@@ -215,6 +216,7 @@ const TextAdjustment = () => {
 						{ label: 'Verdana', value: 'Verdana' },
 						{ label: 'Impact', value: 'Impact' },
 					]}
+					value={fontFamily}
 					onValueChange={(value) => handleFontFamilyChange(value)}
 					style={pickerStyles}
 				/>

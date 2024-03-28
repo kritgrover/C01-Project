@@ -101,11 +101,11 @@ const PreferredLanguage = () => {
 		{ label: 'English', value: 'en' },
 		{ label: 'Français', value: 'fr' },
 		{ label: 'Español', value: 'es' },
-		{ label: 'Chinese', value: 'ch' },
-		{ label: 'Russian', value: 'ru' },
-		{ label: 'Arabic', value: 'ar' },
-		{ label: 'Hindi', value: 'hi' },
-		{ label: 'Japanese', value: 'ja' },
+		{ label: '中文', value: 'ch' },
+		{ label: 'русский', value: 'ru' },
+		{ label: 'عربى', value: 'ar' },
+		{ label: 'हिंदी', value: 'hi' },
+		{ label: '日本語', value: 'ja' },
 	];
 
 	const handleLanguageSelection = async (value) => {
