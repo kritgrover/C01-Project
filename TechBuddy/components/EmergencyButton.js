@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, {useEffect, useState, forwardRef } from "react";
 import {
   TouchableHighlight,
   Linking,
@@ -8,6 +8,7 @@ import {
   Text,
   Button
 } from "react-native";
+import * as SecureStore from 'expo-secure-store';
 
 const EmergencyButton = forwardRef((props, ref) => {
   const handleEmergencyCall = () => {
@@ -21,7 +22,73 @@ const EmergencyButton = forwardRef((props, ref) => {
     Linking.openURL(phoneNumber);
   };
 
-  return (
+	const [fontFamily, setFontFamily] = useState('Arial');
+	const [fontSize, setFontSize] = useState(16);
+	const [isBold, setIsBold] = useState(false);
+	const [selectedLanguage, setSelectedLanguage] = useState('en');
+
+	useEffect(() => {
+		const loadFontSettings = async () => {
+			try {
+				const savedLanguage = await SecureStore.getItemAsync('selectedLanguage');
+				if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
+					setSelectedLanguage(savedLanguage);
+				} 
+
+				const savedFontFamily = JSON.parse(await SecureStore.getItemAsync('fontFamily'));
+
+				if (savedFontFamily && savedFontFamily !== "" && savedFontFamily !== "null") {
+					console.log("Font family:", savedFontFamily)
+					setFontFamily(savedFontFamily);
+				} 
+
+				const savedFontSize = await SecureStore.getItemAsync('fontSize');
+				if (savedFontSize !== null && savedFontSize !== "" && savedFontSize !== "null") {
+					console.log("Font size:", savedFontSize);
+					setFontSize(Number(savedFontSize));
+				} 
+
+				const savedIsBold = await SecureStore.getItemAsync('isBold');
+				if (savedIsBold !== null && savedIsBold !== "" && savedIsBold !== "null") {
+					console.log("Is bold:", savedIsBold);
+					setIsBold(savedIsBold);
+				} 
+			} catch (error) {
+				console.error('Error loading font settings:', error);
+			}
+		};
+
+		loadFontSettings();
+	}, []);
+
+	const textStrings = {
+		en: {
+			emergencyText: 'Emergency'
+		},
+		fr: {
+			emergencyText: 'Urgence'
+		},
+		es: {
+			emergencyText: 'Emergencia'
+		},
+		ch: {
+			emergencyText: '紧急情况'
+		},
+		ru: {
+			emergencyText: 'Чрезвычайная ситуация'
+		},
+		ar: {
+			emergencyText: 'طارئ'
+		},
+		hi: {
+			emergencyText: 'आपातकाल'
+		},
+		ja: {
+			emergencyText: '緊急'
+		}
+	};
+
+	return (
     <View style={styles.container}>
       <Button ref={ref} onPress={handleEmergencyCall} title={''}></Button>
 
@@ -38,30 +105,30 @@ const EmergencyButton = forwardRef((props, ref) => {
 });
 
 const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    bottom: 200,
-    left: 20,
-    right: 20,
-    zIndex: 1,
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  button: {
-    backgroundColor: "red",
-    borderRadius: 5,
-    padding: 10,
-    width: 150,
-    height: 50,
-    flex: 1,
-    justifyContent: "center",
-  },
-  buttonText: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
+	container: {
+		position: "relative",
+		bottom: 0,
+		left: 0,
+		zIndex: 1,
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
+		
+	},
+	button: {
+		backgroundColor: "red",
+		borderRadius: 5,
+		padding: 10,
+		// width: 150,
+		// height: 50,
+		flex: 1,
+		justifyContent: "center",
+	},
+	buttonText: {
+		color: "white",
+		// fontWeight: "bold",
+		textAlign: "center",
+	},
 });
 
 export default EmergencyButton;

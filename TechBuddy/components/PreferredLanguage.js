@@ -8,31 +8,43 @@ const PreferredLanguage = () => {
 	const navigation = useNavigation();
 	const [selectedLanguage, setSelectedLanguage] = useState('en');
 	const [fontFamily, setFontFamily] = useState('');
-	const [fontSize, setFontSize] = useState('');
+	const [fontSize, setFontSize] = useState(16);
 	const [isBold, setIsBold] = useState('');
 
 	useEffect(() => {
 		const loadSavedLanguage = async () => {
 			try {
 				const savedLanguage = await SecureStore.getItemAsync('selectedLanguage');
-				if (savedLanguage) setSelectedLanguage(savedLanguage);
+				if (savedLanguage) {
+					console.log("Selected language:", savedLanguage);
+					setSelectedLanguage(savedLanguage);
+				} else {
+					setSelectedLanguage('en');
+				}
+
 				const savedFontFamily = JSON.parse(await SecureStore.getItemAsync('fontFamily'));
 
 				if (savedFontFamily) {
 					console.log("Font family:", savedFontFamily)
 					setFontFamily(savedFontFamily);
+				} else {
+					setFontFamily('Arial');
 				}
 
-				// Load font size
 				const savedFontSize = await SecureStore.getItemAsync('fontSize');
-				if (savedFontSize) {
-					setFontSize(savedFontSize);
+				if (savedFontSize !== null && savedFontSize !== "" && savedFontSize !== "null") {
+					console.log("Font size:", savedFontSize);
+					setFontSize(Number(savedFontSize));
+				} else {
+					setFontSize(16);
 				}
 
 				const savedIsBold = await SecureStore.getItemAsync('isBold');
 				if (savedIsBold) {
 					console.log("Is bold:", savedIsBold);
 					setIsBold(savedIsBold);
+				} else {
+					setIsBold(false);
 				}
 			} catch (error) {
 				console.error('Error loading saved language:', error);
@@ -41,6 +53,49 @@ const PreferredLanguage = () => {
 
 		loadSavedLanguage();
 	}, []);
+
+	const textStrings = {
+		en: {
+			welcomeText: 'Welcome to TechBuddy!',
+			continueButtonText: 'Continue',
+			selectALanguage: 'Select a language'
+		},
+		fr: {
+			welcomeText: 'Bienvenue chez TechBuddy!',
+			continueButtonText: 'Continuez',
+			selectALanguage: 'Sélectionnez une langue'
+		},
+		es: {
+			welcomeText: '¡Bienvenido a TechBuddy!',
+			continueButtonText: 'Continuar',
+			selectALanguage: 'Selecciona un idioma'
+		},
+		ch: {
+			welcomeText: '欢迎来到科技伙伴！',
+			continueButtonText: '下一个',
+			selectALanguage: '选择语言'
+		},
+		ru: {
+			welcomeText: 'Добро пожаловать в TechBuddy!',
+			continueButtonText: 'следующий',
+			selectALanguage: 'Выберите язык'
+		},
+		ar: {
+			welcomeText: 'مرحبا بكم في TechBuddy!',
+			continueButtonText: 'يكمل',
+			selectALanguage: 'اختر لغة'
+		},
+		hi: {
+			welcomeText: 'टेकबडी में आपका स्वागत है!',
+			continueButtonText: 'आगे',
+			selectALanguage: 'भाषा चुनें'
+		},
+		ja: {
+			welcomeText: 'TechBuddy へようこそ!',
+			continueButtonText: '次',
+			selectALanguage: '言語を選択してください'
+		}
+	};
 
 	const languageOptions = [
 		{ label: 'English', value: 'en' },
@@ -64,11 +119,11 @@ const PreferredLanguage = () => {
 
 	return (
 		<View style={styles.container}>
-			<Text style={[styles.welcomeText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>Welcome to TechBuddy!</Text>
+			<Text style={[styles.welcomeText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>{textStrings[selectedLanguage].welcomeText}</Text>
 
 			<RNPickerSelect
 				items={languageOptions}
-				placeholder={{ label: 'Select a language', value: null }}
+				placeholder={{ label: textStrings[selectedLanguage].selectALanguage, value: null }}
 				value={selectedLanguage}
 				onValueChange={(value) => handleLanguageSelection(value)}
 				style={pickerSelectStyles}
@@ -80,7 +135,7 @@ const PreferredLanguage = () => {
 				onPress={() => {
 					navigation.navigate('UpdateFont');
 				}}>
-				<Text style={[styles.continueButtonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>Continue</Text>
+				<Text style={[styles.continueButtonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>{textStrings[selectedLanguage].continueButtonText}</Text>
 			</TouchableOpacity>
 		</View>
 	);
@@ -106,7 +161,7 @@ const styles = StyleSheet.create({
 	},
 	continueButtonText: {
 		color: 'white',
-		fontSize: 18,
+		// fontSize: 18,
 		textAlign: 'center',
 	},
 });
