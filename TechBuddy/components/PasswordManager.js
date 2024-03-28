@@ -7,6 +7,7 @@ import {
   Button,
   TouchableOpacity,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SecureStore from "expo-secure-store";
@@ -110,9 +111,24 @@ const PasswordManager = () => {
     }
   };
 
+  const deleteCredential = async (index) => {
+    try {
+      const updatedCredentials = savedCredentials.filter((_, i) => i !== index);
+      await AsyncStorage.setItem(
+        "savedCredentials",
+        JSON.stringify(updatedCredentials)
+      );
+      setSavedCredentials(updatedCredentials);
+    } catch (error) {
+      console.error("Error deleting credential: ", error);
+    }
+  };
+
   const textStrings = {
     en: {
       passwordManagerTitle: "Password Manager",
+      passwordManagerDescription:
+        "This space is for you to save or view your passwords.",
       appName: "App Name",
       username: "Username",
       password: "Password",
@@ -217,115 +233,131 @@ const PasswordManager = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text
-        style={[
-          styles.title,
-          { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-        ]}
-      >
-        {textStrings[selectedLanguage].passwordManagerTitle}
-      </Text>
-      <TextInput
-        style={[
-          styles.input,
-          { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-        ]}
-        placeholder={textStrings[selectedLanguage].appName}
-        value={appName}
-        onChangeText={setAppName}
-      />
-      <TextInput
-        style={[
-          styles.input,
-          { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-        ]}
-        placeholder={textStrings[selectedLanguage].username}
-        value={username}
-        onChangeText={setUsername}
-      />
-      <TextInput
-        style={[
-          styles.input,
-          { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-        ]}
-        placeholder={textStrings[selectedLanguage].password}
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry={true}
-      />
-      {/* <Button style={[styles.buttonText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]} title={textStrings[selectedLanguage].save} onPress={saveCredentials} /> */}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          navigation.navigate("saveCredentials");
-        }}
-      >
+    <ScrollView>
+      <View style={styles.container}>
         <Text
           style={[
-            styles.saveButtonText,
-            {
-              fontFamily: fontFamily,
-              fontSize: fontSize,
-              fontWeight: isBold ? "bold" : "normal",
-            },
-          ]}
-        >
-          {" "}
-          {textStrings[selectedLanguage].save}
-        </Text>
-      </TouchableOpacity>
-      <View style={styles.savedCredentialsContainer}>
-        <Text
-          style={[
-            styles.savedCredentialsTitle,
+            styles.title,
             { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
           ]}
         >
-          {textStrings[selectedLanguage].savedCredentialsTitle}
+          {textStrings[selectedLanguage].passwordManagerTitle}
         </Text>
-        {savedCredentials.map((credential, index) => (
-          <View key={index} style={styles.savedCredential}>
-            <Text
-              style={[
-                styles.buttonText,
-                {
-                  fontSize,
-                  fontWeight: isBold ? "bold" : "normal",
-                  fontFamily,
-                },
-              ]}
-            >
-              {textStrings[selectedLanguage].appName}: {credential.appName}
-            </Text>
-            <Text
-              style={[
-                styles.buttonText,
-                {
-                  fontSize,
-                  fontWeight: isBold ? "bold" : "normal",
-                  fontFamily,
-                },
-              ]}
-            >
-              {textStrings[selectedLanguage].username}: {credential.username}
-            </Text>
-            <Text
-              style={[
-                styles.buttonText,
-                {
-                  fontSize,
-                  fontWeight: isBold ? "bold" : "normal",
-                  fontFamily,
-                },
-              ]}
-            >
-              {textStrings[selectedLanguage].password}: {credential.password}
-            </Text>
-          </View>
-        ))}
+        <Text
+          style={[
+            styles.title,
+            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+          ]}
+        >
+          {textStrings[selectedLanguage].passwordManagerDescription}
+        </Text>
+        <TextInput
+          style={[
+            styles.input,
+            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+          ]}
+          placeholder={textStrings[selectedLanguage].appName}
+          value={appName}
+          onChangeText={setAppName}
+        />
+        <TextInput
+          style={[
+            styles.input,
+            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+          ]}
+          placeholder={textStrings[selectedLanguage].username}
+          value={username}
+          onChangeText={setUsername}
+        />
+        <TextInput
+          style={[
+            styles.input,
+            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+          ]}
+          placeholder={textStrings[selectedLanguage].password}
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={true}
+        />
+        {/* <Button style={[styles.buttonText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]} title={textStrings[selectedLanguage].save} onPress={saveCredentials} /> */}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            saveCredentials();
+          }}
+        >
+          <Text
+            style={[
+              styles.saveButtonText,
+              {
+                fontFamily: fontFamily,
+                fontSize: fontSize,
+                fontWeight: isBold ? "bold" : "normal",
+              },
+            ]}
+          >
+            {" "}
+            {textStrings[selectedLanguage].save}
+          </Text>
+        </TouchableOpacity>
+        <View style={styles.savedCredentialsContainer}>
+          <Text
+            style={[
+              styles.savedCredentialsTitle,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            {textStrings[selectedLanguage].savedCredentialsTitle}
+          </Text>
+          {savedCredentials.map((credential, index) => (
+            <View key={index} style={styles.savedCredential}>
+              <Text
+                style={[
+                  styles.buttonText,
+                  {
+                    fontSize,
+                    fontWeight: isBold ? "bold" : "normal",
+                    fontFamily,
+                  },
+                ]}
+              >
+                {textStrings[selectedLanguage].appName}: {credential.appName}
+              </Text>
+              <Text
+                style={[
+                  styles.buttonText,
+                  {
+                    fontSize,
+                    fontWeight: isBold ? "bold" : "normal",
+                    fontFamily,
+                  },
+                ]}
+              >
+                {textStrings[selectedLanguage].username}: {credential.username}
+              </Text>
+              <Text
+                style={[
+                  styles.buttonText,
+                  {
+                    fontSize,
+                    fontWeight: isBold ? "bold" : "normal",
+                    fontFamily,
+                  },
+                ]}
+              >
+                {textStrings[selectedLanguage].password}: {credential.password}
+              </Text>
+              <TouchableOpacity
+                style={styles.deleteButton}
+                onPress={() => deleteCredential(index)}
+              >
+                <Text style={styles.deleteButtonText}>Delete</Text>
+              </TouchableOpacity>
+            </View>
+          ))}
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -333,6 +365,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    marginHorizontal: 20,
     justifyContent: "center",
   },
   title: {
@@ -342,7 +375,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   input: {
-    height: 40,
+    height: 50,
     borderColor: "gray",
     borderWidth: 1,
     borderRadius: 5,
@@ -351,6 +384,7 @@ const styles = StyleSheet.create({
   },
   savedCredentialsContainer: {
     marginTop: 20,
+    flex: 1,
   },
   savedCredentialsTitle: {
     fontSize: 16,
@@ -358,7 +392,24 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   savedCredential: {
+    alignItems: "left",
     marginBottom: 10,
+    flexDirection: "column",
+  },
+  deleteButton: {
+    backgroundColor: "red",
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    marginVertical: 10,
+    borderRadius: 5,
+    right: 0,
+    top: 0,
+    bottom: 0,
+  },
+  deleteButtonText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 20,
   },
   button: {
     backgroundColor: "#4CAF50",

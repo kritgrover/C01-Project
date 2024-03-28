@@ -199,14 +199,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   textField1: {
-    textAlign: "center",
-    fontSize: 18,
+    textAlign: "left",
+    fontSize: 22,
     marginTop: 25,
     padding: 10,
   },
   textField2: {
-    textAlign: "center",
-    fontSize: 18,
+    textAlign: "left",
+    fontSize: 24,
     marginBottom: 25,
     padding: 10,
   },

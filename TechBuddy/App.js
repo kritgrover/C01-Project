@@ -70,7 +70,14 @@ const App = () => {
 
   return (
     <NavigationContainer key={initialRouteKey}>
-      <Stack.Navigator initialRouteName={initialRouteRef.current}>
+      <Stack.Navigator
+        initialRouteName={initialRouteRef.current}
+        screenOptions={{
+          headerStyle: {
+            height: 400, // Adjust the height as needed
+          },
+        }}
+      >
         <Stack.Screen name="SplashPage" component={SplashPage} />
         <Stack.Screen name="PreferredLanguage" component={PreferredLanguage} />
         <Stack.Screen name="UpdateFont" component={TextAdjustment} />
