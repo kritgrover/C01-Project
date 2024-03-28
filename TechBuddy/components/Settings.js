@@ -289,7 +289,7 @@ const Settings = () => {
 			<Text style={[styles.infoText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>
 				{textStrings[selectedLanguage].currentSelections}{"\n\n"}
 				{textStrings[selectedLanguage].chosenLanguage} {textStrings[selectedLanguage].language}{"\n"}
-				{textStrings[selectedLanguage.chosenFontSize]} {fontSizesString[fontSize]}{"\n"}
+				{textStrings[selectedLanguage].chosenFontSize} {fontSizesString[fontSize]}{"\n"}
 				{textStrings[selectedLanguage].chosenFontFamily} {fontFamily}{"\n"}
 				{isBold ? textStrings[selectedLanguage].boldOn : textStrings[selectedLanguage].boldOff}
 			</Text>
@@ -310,24 +310,24 @@ const Settings = () => {
 				]}
 				value={fontSize}
 				onValueChange={(value) => handleFontSizeChange(value)}
-				style={pickerStyles}
+				style={pickerSelectStyles}
 			/>
 
 			<RNPickerSelect
-				placeholder={{ label: textStrings[selectedLanguage].selectFontFamily, value: null }}
-				items={[
-					{ label: 'Arial', value: 'Arial' },
-					{ label: 'Helvetica', value: 'Helvetica' },
-					{ label: 'Georgia', value: 'Georgia' },
-					{ label: 'Times New Roman', value: 'Times New Roman' },
-					{ label: 'Courier New', value: 'Courier New' },
-					{ label: 'Palatino', value: 'Palatino' },
-					{ label: 'Verdana', value: 'Verdana' },
-					{ label: 'Impact', value: 'Impact' },
-				]}
-				value={fontFamily}
-				onValueChange={(value) => handleFontFamilyChange(value)}
-				style={pickerStyles}
+			placeholder={{ label: textStrings[selectedLanguage].selectFontFamily, value: null }}
+			items={[
+				{ label: 'Arial', value: 'Arial' },
+				{ label: 'Helvetica', value: 'Helvetica' },
+				{ label: 'Georgia', value: 'Georgia' },
+				{ label: 'Times New Roman', value: 'Times New Roman' },
+				{ label: 'Courier New', value: 'Courier New' },
+				{ label: 'Palatino', value: 'Palatino' },
+				{ label: 'Verdana', value: 'Verdana' },
+				{ label: 'Impact', value: 'Impact' },
+			]}
+			value={fontFamily}
+			onValueChange={(value) => handleFontFamilyChange(value)}
+			style={pickerSelectStyles}
 			/>
 		</View>
 	);
