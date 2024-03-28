@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Text,
 } from "react-native";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 const EmergencyButton = () => {
   const handleEmergencyCall = () => {
@@ -114,18 +115,26 @@ const EmergencyButton = () => {
         onPress={handleEmergencyCall}
         underlayColor="darkred" // Adjust the color when pressed
       >
-        <Text
-          style={[
-            styles.buttonText,
-            {
-              fontFamily: fontFamily,
-              fontSize: fontSize,
-              fontWeight: isBold ? "bold" : "normal",
-            },
-          ]}
-        >
-          {textStrings[selectedLanguage].emergencyText}
-        </Text>
+        <View style={styles.content}>
+          <MaterialIcons
+            name="local-hospital"
+            color="#fff"
+            size={38}
+            style={styles.icon}
+          />
+          <Text
+            style={[
+              styles.buttonText,
+              {
+                fontFamily: fontFamily,
+                fontSize: fontSize,
+                fontWeight: isBold ? "bold" : "normal",
+              },
+            ]}
+          >
+            {textStrings[selectedLanguage].emergencyText}
+          </Text>
+        </View>
       </TouchableHighlight>
     </View>
   );
@@ -141,18 +150,24 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  content: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  icon: {
+    marginRight: 30,
+    color: "white",
+  },
   button: {
     backgroundColor: "red",
-    borderRadius: 5,
-    padding: 10,
-    // width: 150,
-    // height: 50,
+    borderRadius: 20,
+    padding: 30,
+    width: "85%",
     flex: 1,
     justifyContent: "center",
   },
   buttonText: {
     color: "white",
-    // fontWeight: "bold",
     textAlign: "center",
   },
 });

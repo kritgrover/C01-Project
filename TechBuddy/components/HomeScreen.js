@@ -16,6 +16,8 @@ import EmergencyButton from "./EmergencyButton";
 import homeIcon from "../assets/homeIcon.png";
 import accountIcon from "../assets/accountIcon.png";
 import passwordIcon from "../assets/passwordIcon.png";
+import Tip from "./Tip";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 const HomeScreen = ({ navigation }) => {
   const [fontSize, setFontSize] = useState(16);
@@ -76,7 +78,7 @@ const HomeScreen = ({ navigation }) => {
 
   const textStrings = {
     en: {
-      tipsHomePage: "Tips Home Page",
+      tipsHomePage: "Learn more about \n your device",
     },
     fr: {
       tipsHomePage: "Page d'accueil des conseils",
@@ -143,17 +145,24 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <SafeAreaView style={styles.container}>
-          <PasswordManager />
-          <TouchableOpacity
-            style={styles.continueButton}
-            onPress={() => {
-              navigation.navigate("TipsMenu");
-            }}
-          >
+        <Text style={styles.textField1}>Start your journey</Text>
+        <Text style={styles.textField2}>to a better digital experience!</Text>
+        <TouchableOpacity
+          style={styles.howTobutton}
+          onPress={() => {
+            navigation.navigate("TipsMenu");
+          }}
+        >
+          <View style={styles.content}>
+            <MaterialIcons
+              name="book"
+              color="#fff"
+              size={36}
+              style={styles.icon}
+            />
             <Text
               style={[
-                styles.continueButtonText,
+                styles.howToText,
                 {
                   fontSize,
                   fontWeight: isBold ? "bold" : "normal",
@@ -163,14 +172,9 @@ const HomeScreen = ({ navigation }) => {
             >
               {textStrings[selectedLanguage].tipsHomePage}
             </Text>
-          </TouchableOpacity>
-        </SafeAreaView>
-
-        <Speak
-          text={
-            "hello this page is reading aloud with a very long text so that I can test the pausing"
-          }
-        />
+          </View>
+        </TouchableOpacity>
+        <Tip></Tip>
         <EmergencyButton />
       </ScrollView>
       <StatusBar style="auto" />
@@ -184,11 +188,41 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     display: "flex",
-    margin: 0,
     height: "100%",
+    width: "100%",
   },
-  button: {
-    color: "blue",
+  icon: {
+    marginRight: 30,
+  },
+  content: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  textField1: {
+    textAlign: "center",
+    fontSize: 18,
+    marginTop: 25,
+    padding: 10,
+  },
+  textField2: {
+    textAlign: "center",
+    fontSize: 18,
+    marginBottom: 25,
+    padding: 10,
+  },
+  howTobutton: {
+    backgroundColor: "blue",
+    marginVertical: 10,
+    marginHorizontal: 20,
+    padding: 30,
+    borderRadius: 20,
+    width: "90%",
+    alignItems: "center",
+  },
+  howToText: {
+    color: "white",
+    fontSize: 18,
+    textAlign: "left",
   },
   continueButton: {
     backgroundColor: "#4CAF50",
@@ -200,7 +234,6 @@ const styles = StyleSheet.create({
   },
   continueButtonText: {
     color: "white",
-    // fontSize: 18,
     textAlign: "center",
   },
   headerButton: {

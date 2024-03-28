@@ -64,7 +64,7 @@ const PreferredLanguage = () => {
 
   const textStrings = {
     en: {
-      welcomeText: "Welcome to TechBuddy!",
+      welcomeText: "Please select a language",
       continueButtonText: "Continue",
       selectALanguage: "Select a language",
     },
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 20,
+    padding: 40,
   },
   welcomeText: {
     fontSize: 18,
@@ -195,7 +195,6 @@ const styles = StyleSheet.create({
   },
   continueButtonText: {
     color: "white",
-    // fontSize: 18,
     textAlign: "center",
   },
 });
@@ -203,13 +202,15 @@ const styles = StyleSheet.create({
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
     fontSize: 18,
-    paddingVertical: 12,
-    paddingHorizontal: 10,
+    paddingVertical: 18,
+    paddingHorizontal: 18,
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 5,
     color: "black",
     paddingRight: 30,
+    justifyContent: "center",
+    alignItems: "center",
   },
   inputAndroid: {
     fontSize: 18,

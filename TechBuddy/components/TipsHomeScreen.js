@@ -233,12 +233,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   navigateButton: {
-    width: 200,
-    height: 50,
-    backgroundColor: "grey",
+    width: 250,
+    height: 70,
+    backgroundColor: "#4CAF50",
     justifyContent: "center",
     marginBottom: 10,
-    marginTop: 10,
+    marginTop: 20,
+    borderRadius: 10,
   },
   buttonText: {
     color: "white",

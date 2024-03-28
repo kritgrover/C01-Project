@@ -76,7 +76,7 @@ const Tip = () => {
             <View style={TipStyle.titleContainer}>
               <Text style={TipStyle.title}>{tips[index].title}</Text>
               <Pressable onPress={onClose}>
-                <MaterialIcons name="close" color="#fff" size={22} />
+                <MaterialIcons name="close" color="#fff" size={26} />
               </Pressable>
             </View>
             <View style={TipStyle.body}>
@@ -88,7 +88,7 @@ const Tip = () => {
                 <MaterialIcons
                   name="keyboard-arrow-right"
                   color="#fff"
-                  size={22}
+                  size={26}
                 />
               </Pressable>
 
@@ -99,14 +99,31 @@ const Tip = () => {
           </View>
         </Modal>
       ) : (
-        <View>
+        <View style={TipStyle.container}>
           <Pressable
             style={TipStyle.iconButton}
             onPress={onOpen}
             visible={!showTip}
           >
-            <MaterialIcons name="tips-and-updates" size={38} color="#ffd33d" />
-            <Text style={TipStyle.iconButtonLabel}>{"Helpful Tips"}</Text>
+            <View style={TipStyle.content}>
+              <MaterialIcons
+                name="tips-and-updates"
+                size={38}
+                style={TipStyle.icon}
+              />
+              <Text
+                style={[
+                  TipStyle.iconButtonLabel,
+                  //   {
+                  //     fontSize,
+                  //     fontWeight: isBold ? "bold" : "normal",
+                  //     fontFamily,
+                  //   },
+                ]}
+              >
+                {"Helpful Tips"}
+              </Text>
+            </View>
           </Pressable>
         </View>
       )}
@@ -115,11 +132,17 @@ const Tip = () => {
 };
 
 const TipStyle = {
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+    width: "100%",
+    display: "flex",
+  },
   tip: {
-    padding: "20px",
-    margin: "20px",
-    width: "200px",
-    borderStyle: "dotted",
+    padding: 20,
+    margin: 20,
     borderRadius: "30px",
     borderWidth: "thin",
     overflowWrap: "break-word",
@@ -127,12 +150,26 @@ const TipStyle = {
   text: {
     margin: "0px",
   },
+  content: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  icon: {
+    marginRight: 30,
+    color: "white",
+  },
   iconButton: {
-    justifyContent: "center",
+    backgroundColor: "blue",
+    marginHorizontal: 20,
+    padding: 30,
+    borderRadius: 20,
+    width: "110%",
     alignItems: "center",
   },
   iconButtonLabel: {
-    marginTop: 12,
+    color: "white",
+    fontSize: 18,
+    textAlign: "left",
   },
   nextButton: {
     justifyContent: "center",
@@ -148,8 +185,8 @@ const TipStyle = {
     bottom: 0,
   },
   titleContainer: {
-    height: "20%",
-    backgroundColor: "#464C55",
+    height: "15%",
+    backgroundColor: "#4CAF50",
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
     paddingHorizontal: 20,
@@ -159,7 +196,7 @@ const TipStyle = {
   },
   title: {
     color: "#fff",
-    fontSize: 35,
+    fontSize: 32,
   },
   pickerContainer: {
     flexDirection: "row",
@@ -171,7 +208,8 @@ const TipStyle = {
   bodyContent: {
     fontSize: 30,
     color: "#fff",
-    paddingVertical: 20,
+    margin: 15,
+    padding: 15,
     textAlign: "center",
   },
   body: {
@@ -184,8 +222,9 @@ const TipStyle = {
     borderRadius: "10px",
     borderColor: "#fff",
     paddingHorizontal: 5,
-    marginTop: 10,
-    width: 130,
+    marginTop: 35,
+    width: 200,
+    height: 50,
     justifyContent: "center",
     alignItems: "center",
   },
