@@ -3,7 +3,7 @@ import { Text } from "react-native";
 import axios from "axios";
 import he from "he";
 
-const API_KEY = "XYZ";
+const API_KEY = "AIzaSyCq0_m1W4kIvV1q10ed-qtQ_hWXINf84GA";
 const API_URL = "https://translation.googleapis.com/language/translate/v2";
 
 const Translate = ({ text, targetLanguage }) => {

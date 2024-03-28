@@ -186,7 +186,7 @@ const TipsScreen = function () {
     },
     {
       title: textStrings[selectedLanguage].loggingInToApps,
-      link: "LoginsToApps",
+      link: "LogInsToApps",
     },
     {
       title: textStrings[selectedLanguage].yourPhone,

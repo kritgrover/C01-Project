@@ -19,7 +19,7 @@ import accountIcon from "../assets/accountIcon.png";
 import passwordIcon from "../assets/passwordIcon.png";
 import { useNavigation } from "@react-navigation/native";
 
-const accessSettings = function () {
+const AccessSettings = function () {
   const navigate = useNavigation();
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const [fontFamily, setFontFamily] = useState("");
@@ -151,7 +151,7 @@ const accessSettings = function () {
   }, []);
 
   return (
-    <ScrollView height="500vh">
+    <ScrollView>
       <View style={styles.menuContainer}>
         <TouchableOpacity
           style={styles.backButton}
@@ -166,78 +166,83 @@ const accessSettings = function () {
             {textStrings[selectedLanguage].back}
           </Text>
         </TouchableOpacity>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="Every phone will have an Accessibility option in Settings. This section allows you to change certain parts of your phone to make it more user friendly."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="1) Go to your settings."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="2) Go to the search option. (Indicated with a magnifying glass)"
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
+        <View style={styles.textContainer}>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="Every phone will have an Accessibility option in Settings. This section allows you to change certain parts of your phone to make it more user friendly."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="1) Go to your settings."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="2) Go to the search option. (Indicated with a magnifying glass)"
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+        </View>
+
         <Image
-          style={{ width: "70%", height: "100%" }}
+          style={{ width: "70%" }}
           resizeMode="contain"
           source={SettingsPicture}
           alt="Search Image"
         />
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="3) Type in 'Accessibility'."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="4) Many options will appear. Pick the option 'Accessibility by tapping on it."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="5) Your phone may have different options at this point. Pick the settings that help you use your phone better."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
+        <View style={styles.textContainer}>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="3) Type in 'Accessibility'."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="4) Many options will appear. Pick the option 'Accessibility by tapping on it."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="5) Your phone may have different options at this point. Pick the settings that help you use your phone better."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+        </View>
       </View>
     </ScrollView>
   );
@@ -245,12 +250,20 @@ const accessSettings = function () {
 
 const styles = StyleSheet.create({
   menuContainer: {
-    width: "100%",
     height: "80%",
     alignItems: "center",
     margin: "auto",
     justifyContent: "top",
     alignItems: "center",
+    flex: 1,
+    marginHorizontal: 20,
+    padding: 10,
+    marginLeft: 20,
+    marginRight: 20,
+    padding: 10,
+  },
+  textContainer: {
+    alignItems: "left",
   },
   navigateButton: {
     width: 200,
@@ -261,8 +274,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   instructionText: {
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 15,
+    marginBottom: 15,
   },
   buttonText: {
     color: "white",
@@ -293,7 +306,9 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 5,
     marginTop: 20,
+    width: 150,
+    marginBottom: 20,
   },
 });
 
-export default accessSettings;
+export default AccessSettings;

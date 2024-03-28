@@ -166,89 +166,94 @@ const Hardware = function () {
             {textStrings[selectedLanguage].back}
           </Text>
         </TouchableOpacity>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="Let's look at your phone. While every phone is different, every phone will have similar features."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
+        <View style={styles.textContainer}>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="Let's look at your phone. While every phone is different, every phone will have similar features."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+        </View>
         <Image
           alt="Hardware Picture"
           resizeMode="contain"
           source={phoneImage}
+          style={{ width: "95%" }}
         />
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="Every phone will have a set of 3 buttons. 2 buttons will be grouped together, and 1 button will be seperate. "
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="The 2 grouped together buttons are volume buttons. One will increase the volume, up to the phone's max volume, and one will decrease the volume, down to no noise. You may press the button to increase or decrease the volume by one level, or hold the button to increase or decrease the volume by many levels."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
-        {/* <img src={SettingsPicture} alt="Search Image" /> */}
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="The seperate button is a power button. When the phone is off, this button can be pressed to turn the phone on. When the phone is on, pressing the button will turn the phone off. Holding this button will provide several options like shutting down the phone permanently to save battery and restarting the phone."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="If the phone is permanently turned off, hold the power button to power up the phone and start it up again."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="The bottom of your phone has a charging port. Your phone can either use an Android charger (usually if your phone is older) or a USBC charger (if your phone is newer). To charge your phone, connect the charger to this port. Make sure you have the correct charger for your phone and that the charger is oriented the correct way. Do not force the charger cable into the port if it does not go in naturally. This could damage your phone."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="On your phone, there may also be a circular hole. This is an AUX port. This is a fancy way to say that this is a place to connect any audio device, like headphones or a stereo, to play music that your phone would emit, instead of from your phone to begin with."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
+        <View style={styles.textContainer}>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="Every phone will have a set of 3 buttons. 2 buttons will be grouped together, and 1 button will be seperate. "
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="The 2 grouped together buttons are volume buttons. One will increase the volume, up to the phone's max volume, and one will decrease the volume, down to no noise. You may press the button to increase or decrease the volume by one level, or hold the button to increase or decrease the volume by many levels."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+          {/* <img src={SettingsPicture} alt="Search Image" /> */}
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="The seperate button is a power button. When the phone is off, this button can be pressed to turn the phone on. When the phone is on, pressing the button will turn the phone off. Holding this button will provide several options like shutting down the phone permanently to save battery and restarting the phone."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="If the phone is permanently turned off, hold the power button to power up the phone and start it up again."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="The bottom of your phone has a charging port. Your phone can either use an Android charger (usually if your phone is older) or a USBC charger (if your phone is newer). To charge your phone, connect the charger to this port. Make sure you have the correct charger for your phone and that the charger is oriented the correct way. Do not force the charger cable into the port if it does not go in naturally. This could damage your phone."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="On your phone, there may also be a circular hole. This is an AUX port. This is a fancy way to say that this is a place to connect any audio device, like headphones or a stereo, to play music that your phone would emit, instead of from your phone to begin with."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+        </View>
       </View>
     </ScrollView>
   );
@@ -256,12 +261,13 @@ const Hardware = function () {
 
 const styles = StyleSheet.create({
   menuContainer: {
-    width: "100%",
     height: "80%",
     alignItems: "center",
-    margin: "auto",
     justifyContent: "top",
     alignItems: "center",
+    marginLeft: 20,
+    marginRight: 20,
+    padding: 10,
   },
   navigateButton: {
     width: 200,
@@ -272,8 +278,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   instructionText: {
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 15,
+    marginBottom: 15,
   },
   buttonText: {
     color: "white",
@@ -299,11 +305,16 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  textContainer: {
+    alignItems: "left",
+  },
   backButton: {
     backgroundColor: "#4CAF50",
     padding: 15,
     borderRadius: 5,
     marginTop: 20,
+    width: 150,
+    marginBottom: 20,
   },
 });
 

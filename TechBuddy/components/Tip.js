@@ -159,7 +159,7 @@ const TipStyle = {
     color: "white",
   },
   iconButton: {
-    backgroundColor: "blue",
+    backgroundColor: "#4CAF50",
     marginHorizontal: 20,
     padding: 30,
     borderRadius: 20,

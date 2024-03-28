@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   howTobutton: {
-    backgroundColor: "blue",
+    backgroundColor: "#4CAF50",
     marginVertical: 10,
     marginHorizontal: 20,
     padding: 30,

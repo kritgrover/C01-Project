@@ -151,7 +151,7 @@ const LanguageChange = function () {
   }, []);
 
   return (
-    <ScrollView height="500vh">
+    <ScrollView>
       <View style={styles.menuContainer}>
         <TouchableOpacity
           style={styles.backButton}
@@ -166,78 +166,82 @@ const LanguageChange = function () {
             {textStrings[selectedLanguage].back}
           </Text>
         </TouchableOpacity>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="Every phone has an option to change the language on it. This will change the language of everything presented on your phone. Here’s how to do it:"
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="1) Go to your settings."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="2) Go to Preferences, then Languages. (If you don't see preferences, you may use the search icon in your Settings app to search 'Languages')"
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
+        <View style={styles.textContainer}>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="Every phone has an option to change the language on it. This will change the language of everything presented on your phone. Here’s how to do it:"
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="1) Go to your settings."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="2) Go to Preferences, then Languages. (If you don't see preferences, you may use the search icon in your Settings app to search 'Languages')"
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+        </View>
         <Image
           resizeMode="contain"
-          style={{ width: "70%", height: "100%", flex: "contain" }}
+          style={{ width: "90%" }}
           source={SettingsPicture}
           alt="Search Image"
         />
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="3) There should be a “Your Selected Language” option, and it will be set to English. There should also be a “Select Language” option. Tap that button."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="4) A list of languages should appear, scroll through until you find the one you want."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
-        <Text
-          style={[
-            styles.instructionText,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
-          ]}
-        >
-          <Translate
-            text="5) Some settings will ask you to verify that you want to change to the selected language. Make sure to select “Yes” or your changes will not be saved."
-            targetLanguage={selectedLanguage}
-          />
-        </Text>
+        <View style={styles.textContainer}>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="3) There should be a “Your Selected Language” option, and it will be set to English. There should also be a “Select Language” option. Tap that button."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="4) A list of languages should appear, scroll through until you find the one you want."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+          <Text
+            style={[
+              styles.instructionText,
+              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            ]}
+          >
+            <Translate
+              text="5) Some settings will ask you to verify that you want to change to the selected language. Make sure to select “Yes” or your changes will not be saved."
+              targetLanguage={selectedLanguage}
+            />
+          </Text>
+        </View>
       </View>
     </ScrollView>
   );
@@ -245,13 +249,18 @@ const LanguageChange = function () {
 
 const styles = StyleSheet.create({
   menuContainer: {
-    width: "100%",
     height: "80%",
     alignItems: "center",
     margin: "auto",
     justifyContent: "top",
     alignItems: "center",
     flex: 1,
+    marginLeft: 20,
+    marginRight: 20,
+    padding: 10,
+  },
+  textContainer: {
+    alignItems: "left",
   },
   navigateButton: {
     width: 200,
@@ -262,8 +271,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   instructionText: {
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 15,
+    marginBottom: 15,
   },
   buttonText: {
     color: "white",
@@ -294,6 +303,8 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 5,
     marginTop: 20,
+    width: 150,
+    marginBottom: 20,
   },
 });
 

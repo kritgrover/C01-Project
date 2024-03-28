@@ -9,8 +9,8 @@ import Settings from "./components/Settings";
 import TipsScreen from "./components/TipsHomeScreen";
 import LanguageChange from "./components/LanguageChange";
 import Translate from "./components/Translate";
-import accessSettings from "./components/accessSettings";
-import logInsToApps from "./components/logIns";
+import AccessSettings from "./components/AccessSettings";
+import LogInsToApps from "./components/LogIns";
 import Hardware from "./components/phoneHardware";
 import PasswordManager from "./components/PasswordManager";
 import SplashPage from "./components/SplashPage";
@@ -90,8 +90,8 @@ const App = () => {
           name="SettingsLanguagechange"
           component={LanguageChange}
         />
-        <Stack.Screen name="AccessSettings" component={accessSettings} />
-        <Stack.Screen name="LoginsToApps" component={logInsToApps} />
+        <Stack.Screen name="AccessSettings" component={AccessSettings} />
+        <Stack.Screen name="LogInsToApps" component={LogInsToApps} />
         <Stack.Screen name="PhoneHardware" component={Hardware} />
       </Stack.Navigator>
     </NavigationContainer>
