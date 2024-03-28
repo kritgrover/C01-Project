@@ -15,16 +15,35 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rkwan.TechBuddy"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.rkwan.TechBuddy"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "@react-native-voice/voice",
+        {
+          "microphonePermission": "Allow Voice to TechBuddy to access the microphone",
+          "speechRecognitionPermission": "Allow Voice to TechBuddy to securely recognize user speech"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "dda4a2fb-dda6-4bcf-98ea-b69fdfb337b4"
+      }
     }
   }
 }

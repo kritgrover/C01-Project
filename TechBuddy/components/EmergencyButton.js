@@ -1,27 +1,28 @@
-import React, {useEffect, useState } from "react";
-import * as SecureStore from 'expo-secure-store';
+import React, {useEffect, useState, forwardRef } from "react";
 import {
-	TouchableHighlight,
-	Linking,
-	Platform,
-	View,
-	StyleSheet,
-	Text,
+  TouchableHighlight,
+  Linking,
+  Platform,
+  View,
+  StyleSheet,
+  Text,
+  Button
 } from "react-native";
+import * as SecureStore from 'expo-secure-store';
 
-const EmergencyButton = () => {
-	const handleEmergencyCall = () => {
-		let phoneNumber = "911";
+const EmergencyButton = forwardRef((props, ref) => {
+  const handleEmergencyCall = () => {
+    let phoneNumber = "911";
 
-		if (Platform.OS === "android") {
-			phoneNumber = `tel:${phoneNumber}`;
-		} else {
-			phoneNumber = `telprompt:${phoneNumber}`;
-		}
-		Linking.openURL(phoneNumber);
-	};
+    if (Platform.OS === "android") {
+      phoneNumber = `tel:${phoneNumber}`;
+    } else {
+      phoneNumber = `telprompt:${phoneNumber}`;
+    }
+    Linking.openURL(phoneNumber);
+  };
 
-	const [fontFamily, setFontFamily] = useState('Arial'); // State to store font family
+	const [fontFamily, setFontFamily] = useState('Arial');
 	const [fontSize, setFontSize] = useState(16);
 	const [isBold, setIsBold] = useState(false);
 	const [selectedLanguage, setSelectedLanguage] = useState('en');
@@ -88,17 +89,20 @@ const EmergencyButton = () => {
 	};
 
 	return (
-		<View style={styles.container}>
-			<TouchableHighlight
-				style={styles.button}
-				onPress={handleEmergencyCall}
-				underlayColor="darkred" // Adjust the color when pressed
-			>
-				<Text style={[styles.buttonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>{textStrings[selectedLanguage].emergencyText}</Text>
-			</TouchableHighlight>
-		</View>
-	);
-};
+    <View style={styles.container}>
+      <Button ref={ref} onPress={handleEmergencyCall} title={''}></Button>
+
+      <TouchableHighlight
+        ref={ref}
+        style={styles.button}
+        onPress={handleEmergencyCall}
+        underlayColor="darkred" // Adjust the color when pressed
+      >
+        <Text style={styles.buttonText}>Emergency</Text>
+      </TouchableHighlight>
+    </View>
+  );
+});
 
 const styles = StyleSheet.create({
 	container: {

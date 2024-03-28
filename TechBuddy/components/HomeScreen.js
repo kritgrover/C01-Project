@@ -1,7 +1,10 @@
 import { StatusBar } from "expo-status-bar";
+import NavigationBar from "./NavigationBar";
+import Tip from "./Tip";
+import VoiceCommand from "./VoiceCommand";
 import { ScrollView, StyleSheet, Image, Text, TouchableOpacity, View } from "react-native";
 import * as SecureStore from 'expo-secure-store';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { SafeAreaView } from "react-native-safe-area-context";
 import PasswordManager from "./PasswordManager";
 import Speak from "./Speak";
@@ -93,7 +96,8 @@ const HomeScreen = ({ navigation }) => {
   const navigateToAccount = () => {
     navigation.navigate("Settings");
   };
-
+  const EmergencyRef = useRef(null);
+  const TipRef = useRef(null);
   const navigateToHome = () => {
     navigation.navigate("HomeScreen");
   }
@@ -132,15 +136,11 @@ const HomeScreen = ({ navigation }) => {
             <Text style={[styles.continueButtonText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>{textStrings[selectedLanguage].tipsHomePage}</Text>
           </TouchableOpacity>
         </SafeAreaView>
-
-        <Speak
-          text={
-            "hello this page is reading aloud with a very long text so that I can test the pausing"
-          }
-        />
-        <EmergencyButton />
+        <Tip ref={TipRef} style={{ float: "right" }} />
+        <EmergencyButton ref={EmergencyRef} />
       </ScrollView>
       <StatusBar style="auto" />
+      <VoiceCommand refs={[{ trigger: 'open tips', actual: TipRef }, { trigger: 'call the police', actual: EmergencyRef }]}></VoiceCommand>
     </View>
   );
 };
