@@ -6,7 +6,7 @@ import RNPickerSelect from 'react-native-picker-select';
 
 const TextAdjustment = () => {
 	const navigation = useNavigation();
-	const [fontSize, setFontSize] = useState(16);
+	const [fontSize, setFontSize] = useState('');
 	const [isBold, setIsBold] = useState('');
 	const [fontFamily, setFontFamily] = useState('Arial');
 	const [selectedLanguage, setSelectedLanguage] = useState('en');
@@ -46,6 +46,11 @@ const TextAdjustment = () => {
 				} else {
 					setIsBold(false);
 				}
+
+				console.log("Selected language TEXT ADJUSTMENT:", savedLanguage);
+				console.log("Font size TEXT ADJUSTMENT:", savedFontSize);
+				console.log("Font family TEXT ADJUSTMENT:", savedFontFamily);
+				console.log("Is bold TEXT ADJUSTMENT:", savedIsBold);
 			} catch (error) {
 				console.error('Error loading saved values:', error);
 			}
@@ -182,17 +187,18 @@ const TextAdjustment = () => {
 
 	return (
 		<View style={styles.container}>
-			<Text style={[styles.sampleText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
+			<Text style={[styles.sampleText, { fontFamily: fontFamily, fontSize: Number(fontSize), fontWeight: isBold ? 'bold' : 'normal' }]}>
 				{textStrings[selectedLanguage].sampleText}
 			</Text>
 
 			<TouchableOpacity style={styles.button} onPress={toggleBold}>
-				<Text style={[styles.buttonText, { fontFamily: fontFamily, fontSize: Number(fontSize), fontWeight: isBold ? 'bold' : 'normal' }]}>{isBold ? textStrings[selectedLanguage].boldOn : textStrings[selectedLanguage].boldOff}</Text>
+				<Text style={[styles.buttonText, { fontFamily: fontFamily, fontSize: Number(fontSize), fontWeight: isBold ? 'bold' : 'normal' }]}>{isBold ? textStrings[selectedLanguage].boldOn : textStrings[selectedLanguage].boldOff}
+				</Text>
 			</TouchableOpacity>
 
 			<View style={styles.pickerContainer}>
 				<RNPickerSelect
-					placeholder={{ label: textStrings[selectedLanguage].selectFontSize, value: null }}
+					placeholder={{ label: textStrings[selectedLanguage].selectFontSize, value: 16 }}
 					items={[
 						{ label: textStrings[selectedLanguage].small, value: 14 },
 						{ label: textStrings[selectedLanguage].default, value: 16 },
@@ -227,7 +233,7 @@ const TextAdjustment = () => {
 				onPress={() => {
 					navigation.navigate('HomeScreen');
 				}}>
-				<Text style={[styles.continueButtonText, { fontFamily: fontFamily, fontSize: fontSize, fontWeight: isBold ? 'bold' : 'normal' }]}>{textStrings[selectedLanguage].continueButtonText}</Text>
+				<Text style={[styles.continueButtonText, { fontFamily: fontFamily, fontSize: Number(fontSize), fontWeight: isBold ? 'bold' : 'normal' }]}>{textStrings[selectedLanguage].continueButtonText}</Text>
 			</TouchableOpacity>
 		</View>
 	);

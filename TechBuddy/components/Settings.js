@@ -35,7 +35,7 @@ const Settings = () => {
 				}
 
 				const savedFontSize = await SecureStore.getItemAsync('fontSize');
-				if (savedFontSize) {
+				if (savedFontSize !== null && savedFontSize !== "" && savedFontSize !== "null") {
 					console.log("Font size:", savedFontSize);
 					setFontSize(Number(savedFontSize));
 				} else {
@@ -213,10 +213,6 @@ const Settings = () => {
 		16: textStrings[selectedLanguage].default,
 		20: textStrings[selectedLanguage].large,
 		24: textStrings[selectedLanguage].extraLarge,
-		"14": textStrings[selectedLanguage].small,
-		"16": textStrings[selectedLanguage].default,
-		"20": textStrings[selectedLanguage].large,
-		"24": textStrings[selectedLanguage].extraLarge,
 	};
 
 	const navigateToPasswordManager = () => {

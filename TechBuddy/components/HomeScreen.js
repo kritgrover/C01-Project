@@ -15,8 +15,8 @@ import passwordIcon from "../assets/passwordIcon.png";
 
 const HomeScreen = ({ navigation }) => {
 	const [fontSize, setFontSize] = useState(16);
-	const [isBold, setIsBold] = useState('');
-	const [fontFamily, setFontFamily] = useState('');
+	const [isBold, setIsBold] = useState(false);
+	const [fontFamily, setFontFamily] = useState('Arial');
 	const [selectedLanguage, setSelectedLanguage] = useState('en');
 
 	useEffect(() => {

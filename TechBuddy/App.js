@@ -50,7 +50,7 @@ const App = () => {
           savedIsBold !== null
         ) {
           console.log("Setting initial route to HomeScreen");
-          initialRouteRef.current = "HomeScreen";
+          initialRouteRef.current = "PreferredLanguage";
           console.log("Initial Route changed:", initialRouteRef.current);
           setInitialRouteKey(Date.now().toString());
         }

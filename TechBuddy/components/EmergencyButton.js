@@ -98,7 +98,7 @@ const EmergencyButton = forwardRef((props, ref) => {
         onPress={handleEmergencyCall}
         underlayColor="darkred" // Adjust the color when pressed
       >
-        <Text style={styles.buttonText}>Emergency</Text>
+        <Text style={[styles.buttonText, {fontFamily: fontFamily, fontSize: Number(fontSize), fontWeight: isBold ? 'bold' : 'normal'}]}>{textStrings[selectedLanguage].emergencyText}</Text>
       </TouchableHighlight>
     </View>
   );
