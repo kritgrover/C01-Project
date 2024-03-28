@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import * as SecureStore from "expo-secure-store";
-import { useNavigation } from '@react-navigation/native';
 import {
   TouchableHighlight,
-  linking,
+  Linking,
   Platform,
   View,
   StyleSheet,
   Text,
-  Button,
   Image,
+  Button,
   ScrollView,
   TouchableOpacity,
 } from "react-native";
@@ -18,8 +17,9 @@ import Translate from "./Translate";
 import homeIcon from "../assets/homeIcon.png";
 import accountIcon from "../assets/accountIcon.png";
 import passwordIcon from "../assets/passwordIcon.png";
+import { useNavigation } from '@react-navigation/native';
 
-const LanguageChange = function () {
+const accessSettings = function () {
   const navigate = useNavigation();
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [fontFamily, setFontFamily] = useState('');
@@ -134,7 +134,7 @@ const LanguageChange = function () {
   }, []);
 
   return (
-    <ScrollView height="500vh">
+    <ScrollView height='500vh'>
     <View style={styles.menuContainer}>
       <TouchableOpacity style={styles.backButton} onPress={navigateToTipsHome}>
         <Text style={[styles.buttonText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
@@ -142,23 +142,23 @@ const LanguageChange = function () {
         </Text>
       </TouchableOpacity>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
-        <Translate text="Every phone has an option to change the language on it. This will change the language of everything presented on your phone. Here’s how to do it:" targetLanguage={selectedLanguage} />
+        <Translate text="Every phone will have an Accessibility option in Settings. This section allows you to change certain parts of your phone to make it more user friendly." targetLanguage={selectedLanguage} />
       </Text>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
         <Translate text="1) Go to your settings." targetLanguage={selectedLanguage} />
       </Text>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
-        <Translate text="2) Go to Preferences, then Languages. (If you don't see preferences, you may use the search icon in your Settings app to search 'Languages')" targetLanguage={selectedLanguage} />
+        <Translate text="2) Go to the search option. (Indicated with a magnifying glass)" targetLanguage={selectedLanguage} />
       </Text>
-      <Image resizeMode="contain" style={{width: '70%', height: '100%', flex: 'contain'}} source={SettingsPicture} alt="Search Image" />
+      <Image style={{width: '70%', height: '100%'}} resizeMode="contain" source={SettingsPicture} alt="Search Image" />
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
-        <Translate text="3) There should be a “Your Selected Language” option, and it will be set to English. There should also be a “Select Language” option. Tap that button." targetLanguage={selectedLanguage} />
-      </Text>
-      <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
-        <Translate text="4) A list of languages should appear, scroll through until you find the one you want." targetLanguage={selectedLanguage} />
+        <Translate text="3) Type in 'Accessibility'." targetLanguage={selectedLanguage} />
       </Text>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
-        <Translate text="5) Some settings will ask you to verify that you want to change to the selected language. Make sure to select “Yes” or your changes will not be saved." targetLanguage={selectedLanguage} />
+        <Translate text="4) Many options will appear. Pick the option 'Accessibility by tapping on it." targetLanguage={selectedLanguage} />
+      </Text>
+      <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
+        <Translate text="5) Your phone may have different options at this point. Pick the settings that help you use your phone better." targetLanguage={selectedLanguage} />
       </Text>
     </View>
     </ScrollView>
@@ -173,7 +173,6 @@ const styles = StyleSheet.create({
     margin: "auto",
     justifyContent: "top",
     alignItems: "center",
-    flex: 1
   },
   navigateButton: {
     width: 200,
@@ -219,4 +218,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default LanguageChange;
+export default accessSettings

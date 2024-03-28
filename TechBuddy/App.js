@@ -8,6 +8,11 @@ import TextAdjustment from "./components/TextAdjustment";
 import Settings from "./components/Settings";
 import TipsScreen from "./components/TipsHomeScreen";
 import LanguageChange from "./components/LanguageChange";
+import Translate from "./components/Translate";
+import accessSettings from "./components/accessSettings";
+import logInsToApps from "./components/logIns"
+import Hardware from "./components/phoneHardware";
+import PasswordManager from "./components/PasswordManager";
 
 const Stack = createNativeStackNavigator();
 
@@ -70,9 +75,22 @@ const App = () => {
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="TipsMenu" component={TipsScreen} />
+        <Stack.Screen name="Translate" component={Translate} />
+        <Stack.Screen name="PasswordManager" component={PasswordManager} />
         <Stack.Screen
           name="SettingsLanguagechange"
           component={LanguageChange}
+        />
+        <Stack.Screen
+          name="AccessSettings"
+          component={accessSettings}/>
+        <Stack.Screen
+          name="LoginsToApps"
+          component={logInsToApps}
+          />
+        <Stack.Screen
+          name= "PhoneHardware"
+          component={Hardware}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from "react";
 import * as SecureStore from "expo-secure-store";
-import { useNavigation } from '@react-navigation/native';
 import {
   TouchableHighlight,
-  linking,
+  Linking,
   Platform,
   View,
   StyleSheet,
   Text,
   Button,
-  Image,
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import SettingsPicture from "../assets/SettingsPicture.png"
 import Translate from "./Translate";
 import homeIcon from "../assets/homeIcon.png";
 import accountIcon from "../assets/accountIcon.png";
 import passwordIcon from "../assets/passwordIcon.png";
+import { useNavigation } from '@react-navigation/native';
 
-const LanguageChange = function () {
+const logInsToApps = function () {
   const navigate = useNavigation();
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [fontFamily, setFontFamily] = useState('');
@@ -134,7 +132,7 @@ const LanguageChange = function () {
   }, []);
 
   return (
-    <ScrollView height="500vh">
+    <ScrollView height='500vh'>
     <View style={styles.menuContainer}>
       <TouchableOpacity style={styles.backButton} onPress={navigateToTipsHome}>
         <Text style={[styles.buttonText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
@@ -142,23 +140,28 @@ const LanguageChange = function () {
         </Text>
       </TouchableOpacity>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
-        <Translate text="Every phone has an option to change the language on it. This will change the language of everything presented on your phone. Here’s how to do it:" targetLanguage={selectedLanguage} />
+        <Translate text="Many apps (like this one) will require you to 'Log In' or 'Sign In'. This may seem annoying, but it is an important step to ensure your security and comfort." targetLanguage={selectedLanguage} />
       </Text>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
-        <Translate text="1) Go to your settings." targetLanguage={selectedLanguage} />
+        <Translate text="How do you log in to an app? Here is a step by step guide." targetLanguage={selectedLanguage} />
       </Text>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
-        <Translate text="2) Go to Preferences, then Languages. (If you don't see preferences, you may use the search icon in your Settings app to search 'Languages')" targetLanguage={selectedLanguage} />
-      </Text>
-      <Image resizeMode="contain" style={{width: '70%', height: '100%', flex: 'contain'}} source={SettingsPicture} alt="Search Image" />
-      <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
-        <Translate text="3) There should be a “Your Selected Language” option, and it will be set to English. There should also be a “Select Language” option. Tap that button." targetLanguage={selectedLanguage} />
+        <Translate text="1) If you are using an app for the first time, the app will ask you to 'Sign Up'. This means creating an account for your use of an app." targetLanguage={selectedLanguage} />
       </Text>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
-        <Translate text="4) A list of languages should appear, scroll through until you find the one you want." targetLanguage={selectedLanguage} />
+        <Translate text="2) If you are asked to 'Sign Up', you will be asked for a Username and Password. Type in a Username and Password. You can use anything for the Username and Password, so make sure you will remember them, or write them down somewhere. Your password is used to secure your account. Many apps will require your password to fulfill certain critera. (Like being a certain size of having special characters) This is to help secure your account" targetLanguage={selectedLanguage} />
       </Text>
       <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
-        <Translate text="5) Some settings will ask you to verify that you want to change to the selected language. Make sure to select “Yes” or your changes will not be saved." targetLanguage={selectedLanguage} />
+        <Translate text="3) Some apps will ask you to Confirm Password. This is to make sure that you typed in the password correctly. Put in the same password as you've done before." targetLanguage={selectedLanguage} />
+      </Text>
+      <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
+        <Translate text="4) Some apps will ask you to Confirm You're Not A Robot. This is because there are robots that can automatically make millions of accounts on websites to do malicious activities on behalf of an individual. They may ask you to click a checkmark or play a small game. Do as they say. Sometimes, several attempts are needed." targetLanguage={selectedLanguage} />
+      </Text>
+      <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
+        <Translate text="5) After making an account, to log in to that account, click the Sign In or Log In option on the app if it shows up. Type the same Username and Password as you did when you made the account. If you forgot your Username or Password, click the option 'Forgot Password'. The app will give you directions on how to get your password back, or maybe reset it to another one." targetLanguage={selectedLanguage} />
+      </Text>
+      <Text style={[styles.instructionText, { fontSize, fontWeight: isBold ? 'bold' : 'normal', fontFamily }]}>
+        <Translate text="This may seem tedious, but having an account for an app does a lot. It keeps you secure, and helps those apps tailor content for you. For YouTube for example, YouTube will only show you options related to what you like, like cooking videos, and doesn't show you what you won't like, like motorcycle videos." targetLanguage={selectedLanguage} />
       </Text>
     </View>
     </ScrollView>
@@ -173,7 +176,6 @@ const styles = StyleSheet.create({
     margin: "auto",
     justifyContent: "top",
     alignItems: "center",
-    flex: 1
   },
   navigateButton: {
     width: 200,
@@ -219,4 +221,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default LanguageChange;
+export default logInsToApps
