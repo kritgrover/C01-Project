@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { StyleSheet, View, Text, Animated } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as SecureStore from "expo-secure-store";
@@ -20,8 +21,21 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   const [initialRouteKey, setInitialRouteKey] = useState(Date.now().toString());
   const initialRouteRef = useRef("SplashPage");
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    const animation = Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1500,
+      useNativeDriver: true,
+    });
+
+    animation.start(() => {
+      setTimeout(() => {
+        checkSavedValues();
+      }, 1000);
+    });
+
     const checkSavedValues = async () => {
       try {
         const savedLanguage = await SecureStore.getItemAsync(
@@ -60,13 +74,12 @@ const App = () => {
       }
     };
 
-    checkSavedValues();
-
     console.log(
       "Initial Route changed (part 2 check):",
       initialRouteRef.current
     );
-  }, []);
+    return () => animation.stop();
+  }, [fadeAnim]);
 
   return (
     <NavigationContainer key={initialRouteKey}>

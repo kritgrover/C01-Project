@@ -7,7 +7,7 @@ const SplashPage = ({ navigation }) => {
   useEffect(() => {
     const animation = Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 1500, // Adjust the duration as needed
+      duration: 1500,
       useNativeDriver: true,
     });
 
