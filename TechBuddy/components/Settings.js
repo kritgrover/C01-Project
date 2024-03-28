@@ -77,6 +77,8 @@ const Settings = () => {
 			currentSelections: "Current Selection",
 			selectFontSize: 'Select Font Size',
 			selectFontFamily: 'Select Font Family',
+			boldOnText: 'Bold On',
+			boldOffText: 'Bold Off',
 		},
 		fr: {
 			buttonText: 'Aller à la langue préférée',
@@ -93,6 +95,8 @@ const Settings = () => {
 			currentSelections: "Sélections actuelles",
 			selectFontSize: 'Sélectionnez la taille de la police',
 			selectFontFamily: 'Sélectionnez une famille de polices',
+			boldOnText: 'Gras activé',
+			boldOffText: 'Gras désactivé',
 		},
 		es: {
 			buttonText: 'Ir al idioma preferido',
@@ -109,6 +113,8 @@ const Settings = () => {
 			currentSelections: "Selecciones actuales",
 			selectFontSize: 'Seleccionar tamaño de fuente',
 			selectFontFamily: 'Seleccionar familia de fuentes',
+			boldOnText: 'Negrita activada',
+			boldOffText: 'Negrita desactivada',
 		},
 		ch: {
 			buttonText: '前往首选语言',
@@ -125,6 +131,8 @@ const Settings = () => {
 			currentSelections: "当前选择",
 			selectFontSize: '选择字体大小',
 			selectFontFamily: '选择字体系列',
+			boldOnText: '粗体已启用',
+			boldOffText: '粗体已禁用',
 		},
 		ru: {
 			buttonText: 'Перейти к предпочтительному языку',
@@ -141,6 +149,8 @@ const Settings = () => {
 			currentSelections: "Текущий выбор",
 			selectFontSize: 'Выберите размер шрифта',
 			selectFontFamily: 'Выберите семейство шрифтов',
+			boldOnText: 'Жирный включен',
+			boldOffText: 'Жирный отключен',
 		},
 		ar: {
 			buttonText: 'الانتقال إلى اللغة المفضلة',
@@ -157,6 +167,8 @@ const Settings = () => {
 			currentSelections: "الاختيارات الحالية",
 			selectFontSize: 'حدد حجم الخط',
 			selectFontFamily: 'حدد عائلة الخطوط',
+			boldOnText: 'الخط العريض مفعل',
+			boldOffText: 'الخط العريض معطل',
 		},
 		hi: {
 			buttonText: 'पसंदीदा भाषा पर जाएं',
@@ -173,6 +185,8 @@ const Settings = () => {
 			currentSelections: "वर्तमान चयन",
 			selectFontSize: 'फ़ॉन्ट आकार चुनें',
 			selectFontFamily: 'एक फ़ॉन्ट परिवार चुनें',
+			boldOnText: 'बोल्ड ऑन',
+			boldOffText: 'बोल्ड ऑफ',
 		},
 		ja: {
 			buttonText: '好きな言語に移動',
@@ -189,6 +203,8 @@ const Settings = () => {
 			currentSelections: "現在の選択",
 			selectFontSize: 'フォントサイズを選択してください',
 			selectFontFamily: 'フォントファミリーを選択してください',
+			boldOnText: '太字オン',
+			boldOffText: '太字オフ',
 		}
 	};
 
@@ -291,7 +307,7 @@ const Settings = () => {
 				{textStrings[selectedLanguage].chosenLanguage} {textStrings[selectedLanguage].language}{"\n"}
 				{textStrings[selectedLanguage].chosenFontSize} {fontSizesString[fontSize]}{"\n"}
 				{textStrings[selectedLanguage].chosenFontFamily} {fontFamily}{"\n"}
-				{isBold ? textStrings[selectedLanguage].boldOn : textStrings[selectedLanguage].boldOff}
+				{isBold ? textStrings[selectedLanguage].boldOnText : textStrings[selectedLanguage].boldOffText}
 			</Text>
 			<RNPickerSelect
 				items={languageOptions}
