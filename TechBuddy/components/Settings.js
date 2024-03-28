@@ -329,6 +329,10 @@ const Settings = () => {
 			onValueChange={(value) => handleFontFamilyChange(value)}
 			style={pickerSelectStyles}
 			/>
+
+			<TouchableOpacity style={styles.button} onPress={toggleBold}>
+				<Text style={[styles.buttonText, { fontFamily: fontFamily, fontSize: Number(fontSize), fontWeight: isBold ? 'bold' : 'normal' }]}>{isBold ? textStrings[selectedLanguage].boldOn : textStrings[selectedLanguage].boldOff}</Text>
+			</TouchableOpacity>
 		</View>
 	);
 };
