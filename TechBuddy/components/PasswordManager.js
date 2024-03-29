@@ -366,8 +366,6 @@ const PasswordManager = () => {
           ))}
         </View>
       </View>
-      <Speak text={textStrings[selectedLanguage].passwordManagerTitle + '. ' + textStrings[selectedLanguage].appName + '. ' + textStrings[selectedLanguage].username + '. ' + textStrings[selectedLanguage].password + '. ' + textStrings[selectedLanguage].save+ '. ' +textStrings[selectedLanguage].savedCredentialsTitle} language={selectedLanguage === 'ch' ? 'zh' : selectedLanguage} showText={true}></Speak>
-
     </ScrollView>
   );
 };

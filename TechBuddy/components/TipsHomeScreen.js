@@ -224,7 +224,7 @@ const TipsScreen = function () {
           </Pressable>
         );
       })}
-      <Speak text={allButtonTitles} language={selectedLanguage === 'ch'? 'zh': selectedLanguage} showText={true}></Speak>
+      {/* <Speak text={allButtonTitles} language={selectedLanguage === 'ch'? 'zh': selectedLanguage} showText={true}></Speak> */}
     </View>
   );
 };

@@ -398,7 +398,6 @@ const Settings = () => {
             : textStrings[selectedLanguage].boldOff}
         </Text>
       </TouchableOpacity>
-      <Speak text={textStrings[selectedLanguage].currentSelections + textStrings[selectedLanguage].chosenLanguage + textStrings[selectedLanguage].language + textStrings[selectedLanguage].chosenFontSize + fontSizesString[fontSize] + textStrings[selectedLanguage].chosenFontFamily + fontFamily} language={selectedLanguage === 'ch' ? 'zh' : selectedLanguage} showText={true}></Speak>
     </View>
   );
 };

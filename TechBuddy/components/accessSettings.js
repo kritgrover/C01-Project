@@ -18,6 +18,7 @@ import homeIcon from "../assets/homeIcon.png";
 import accountIcon from "../assets/accountIcon.png";
 import passwordIcon from "../assets/passwordIcon.png";
 import { useNavigation } from "@react-navigation/native";
+import Speak from "./Speak";
 
 const AccessSettings = function () {
   const navigate = useNavigation();
@@ -274,6 +275,7 @@ const AccessSettings = function () {
           </Text>
         </View>
       </View>
+      <Speak text={textStrings[selectedLanguage].num1+textStrings[selectedLanguage].num2+textStrings[selectedLanguage].num3+textStrings[selectedLanguage].num4+textStrings[selectedLanguage].num5} language={selectedLanguage === 'ch'? 'zh': selectedLanguage} showText={true}></Speak>
     </ScrollView>
   );
 };
