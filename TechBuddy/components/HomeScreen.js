@@ -192,6 +192,7 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
         <Tip></Tip>
         <EmergencyButton />
+        <Speak text={textStrings[selectedLanguage].tipsHomePage + '. Helpful Tips ' + '. ' + textStrings[selectedLanguage].emergencyText} language={selectedLanguage === 'ch'? 'zh': selectedLanguage} showText={true}></Speak>
       </ScrollView>
       <StatusBar style="auto" />
     </View>

@@ -6,6 +6,7 @@ import homeIcon from "../assets/homeIcon.png";
 import accountIcon from "../assets/accountIcon.png";
 import passwordIcon from "../assets/passwordIcon.png";
 import RNPickerSelect from "react-native-picker-select";
+import Speak from './Speak';
 
 const Settings = () => {
   const navigation = useNavigation();
@@ -397,6 +398,7 @@ const Settings = () => {
             : textStrings[selectedLanguage].boldOff}
         </Text>
       </TouchableOpacity>
+      <Speak text={textStrings[selectedLanguage].currentSelections + textStrings[selectedLanguage].chosenLanguage + textStrings[selectedLanguage].language + textStrings[selectedLanguage].chosenFontSize + fontSizesString[fontSize] + textStrings[selectedLanguage].chosenFontFamily + fontFamily} language={selectedLanguage === 'ch' ? 'zh' : selectedLanguage} showText={true}></Speak>
     </View>
   );
 };

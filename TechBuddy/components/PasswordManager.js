@@ -15,6 +15,7 @@ import homeIcon from "../assets/homeIcon.png";
 import accountIcon from "../assets/accountIcon.png";
 import passwordIcon from "../assets/passwordIcon.png";
 import { useNavigation } from "@react-navigation/native";
+import Speak from './Speak';
 
 const PasswordManager = () => {
   const navigation = useNavigation();
@@ -365,6 +366,8 @@ const PasswordManager = () => {
           ))}
         </View>
       </View>
+      <Speak text={textStrings[selectedLanguage].passwordManagerTitle + '. ' + textStrings[selectedLanguage].appName + '. ' + textStrings[selectedLanguage].username + '. ' + textStrings[selectedLanguage].password + '. ' + textStrings[selectedLanguage].save+ '. ' +textStrings[selectedLanguage].savedCredentialsTitle} language={selectedLanguage === 'ch' ? 'zh' : selectedLanguage} showText={true}></Speak>
+
     </ScrollView>
   );
 };
