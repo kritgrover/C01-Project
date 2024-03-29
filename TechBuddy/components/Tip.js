@@ -253,7 +253,7 @@ const Tip = () => {
               />
               <Text
                 style={[
-                  TipStyle.iconButtonLabel,
+                  TipStyle.iconButtonLabel, { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily },
                   //   {
                   //     fontSize,
                   //     fontWeight: isBold ? "bold" : "normal",

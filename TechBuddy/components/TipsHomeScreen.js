@@ -213,7 +213,7 @@ const TipsScreen = function () {
               style={[
                 styles.buttonText,
                 {
-                  fontSize,
+                  fontSize: Number(fontSize),
                   fontWeight: isBold ? "bold" : "normal",
                   fontFamily,
                 },

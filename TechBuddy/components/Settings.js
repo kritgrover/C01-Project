@@ -66,10 +66,6 @@ const Settings = () => {
     loadFontSettings();
   }, []);
 
-  const goToPreferredLanguage = () => {
-    navigation.navigate("PreferredLanguage");
-  };
-
   const textStrings = {
     en: {
       buttonText: "Go To Preferred Language",
@@ -317,7 +313,7 @@ const Settings = () => {
           styles.infoText,
           {
             fontFamily: fontFamily,
-            fontSize: fontSize,
+            fontSize: Number(fontSize),
             fontWeight: isBold ? "bold" : "normal",
           },
         ]}
@@ -340,7 +336,7 @@ const Settings = () => {
         items={languageOptions}
         placeholder={{
           label: textStrings[selectedLanguage].selectALanguage,
-          value: null,
+          value: "en",
         }}
         value={selectedLanguage}
         onValueChange={(value) => handleLanguageSelection(value)}
@@ -349,7 +345,7 @@ const Settings = () => {
       <RNPickerSelect
           placeholder={{
             label: textStrings[selectedLanguage].selectFontSize,
-            value: null,
+            value: 15.99,
           }}
           items={[
             { label: textStrings[selectedLanguage].small, value: 14 },
@@ -365,11 +361,10 @@ const Settings = () => {
       <RNPickerSelect
         placeholder={{
           label: textStrings[selectedLanguage].selectFontFamily,
-          value: null,
+          value: "Helvetica",
         }}
         items={[
           { label: "Arial", value: "Arial" },
-          { label: "Helvetica", value: "Helvetica" },
           { label: "Georgia", value: "Georgia" },
           { label: "Times New Roman", value: "Times New Roman" },
           { label: "Courier New", value: "Courier New" },

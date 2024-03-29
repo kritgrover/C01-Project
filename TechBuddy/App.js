@@ -50,7 +50,7 @@ const App = () => {
 
         console.log("Saved Values (App.js - start):", {
           selectedLanguage: savedLanguage,
-          fontSize: savedFontSize,
+          fontSize: Number(savedFontSize),
           fontFamily: savedFontFamily,
           isBold: savedIsBold,
         });

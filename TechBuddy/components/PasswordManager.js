@@ -247,7 +247,7 @@ const PasswordManager = () => {
         <Text
           style={[
             styles.title,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily },
           ]}
         >
           {textStrings[selectedLanguage].passwordManagerTitle}
@@ -263,7 +263,7 @@ const PasswordManager = () => {
         <TextInput
           style={[
             styles.input,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily },
           ]}
           placeholder={textStrings[selectedLanguage].appName}
           value={appName}
@@ -272,7 +272,7 @@ const PasswordManager = () => {
         <TextInput
           style={[
             styles.input,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily },
           ]}
           placeholder={textStrings[selectedLanguage].username}
           value={username}
@@ -281,7 +281,7 @@ const PasswordManager = () => {
         <TextInput
           style={[
             styles.input,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily },
           ]}
           placeholder={textStrings[selectedLanguage].password}
           value={password}
@@ -300,7 +300,7 @@ const PasswordManager = () => {
               styles.saveButtonText,
               {
                 fontFamily: fontFamily,
-                fontSize: fontSize,
+                fontSize: Number(fontSize),
                 fontWeight: isBold ? "bold" : "normal",
               },
             ]}
@@ -313,7 +313,7 @@ const PasswordManager = () => {
           <Text
             style={[
               styles.savedCredentialsTitle,
-              { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+              { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily },
             ]}
           >
             {textStrings[selectedLanguage].savedCredentialsTitle}
@@ -324,7 +324,7 @@ const PasswordManager = () => {
                 style={[
                   styles.buttonText,
                   {
-                    fontSize,
+                    fontSize: Number(fontSize),
                     fontWeight: isBold ? "bold" : "normal",
                     fontFamily,
                   },
@@ -336,7 +336,7 @@ const PasswordManager = () => {
                 style={[
                   styles.buttonText,
                   {
-                    fontSize,
+                    fontSize: Number(fontSize),
                     fontWeight: isBold ? "bold" : "normal",
                     fontFamily,
                   },
@@ -348,7 +348,7 @@ const PasswordManager = () => {
                 style={[
                   styles.buttonText,
                   {
-                    fontSize,
+                    fontSize: Number(fontSize),
                     fontWeight: isBold ? "bold" : "normal",
                     fontFamily,
                   },
