@@ -295,7 +295,7 @@ const Hardware = function () {
           </Text>
         </View>
       </View>
-      <Speak text={textStrings[selectedLanguage].preText+textStrings[selectedLanguage].volumeText+textStrings[selectedLanguage].volumeText2+textStrings[selectedLanguage].powerText+textStrings[selectedLanguage].powerText2+textStrings[selectedLanguage].chargingText} language={selectedLanguage === 'ch'? 'zh': selectedLanguage} showText={true}></Speak>
+      <Speak text={textStrings[selectedLanguage].preText + textStrings[selectedLanguage].volumeText + textStrings[selectedLanguage].volumeText2 + textStrings[selectedLanguage].powerText + textStrings[selectedLanguage].powerText2 + textStrings[selectedLanguage].chargingText} language={selectedLanguage === 'ch' ? 'zh' : selectedLanguage} showText={true}></Speak>
 
     </ScrollView>
   );
@@ -305,8 +305,10 @@ const styles = StyleSheet.create({
   menuContainer: {
     height: "80%",
     alignItems: "center",
+    margin: "auto",
     justifyContent: "top",
     alignItems: "center",
+    flex: 1,
     marginLeft: 20,
     marginRight: 20,
     padding: 10,

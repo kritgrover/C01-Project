@@ -1,0 +1,6 @@
+module Pods_TechBuddy {
+  umbrella header "Pods-TechBuddy-umbrella.h"
+
+  export *
+  module * { export * }
+}
