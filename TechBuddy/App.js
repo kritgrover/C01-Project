@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { StyleSheet, View, Text, Animated } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as SecureStore from "expo-secure-store";
@@ -9,18 +10,32 @@ import Settings from "./components/Settings";
 import TipsScreen from "./components/TipsHomeScreen";
 import LanguageChange from "./components/LanguageChange";
 import Translate from "./components/Translate";
-import accessSettings from "./components/accessSettings";
-import logInsToApps from "./components/logIns"
-import Hardware from "./components/phoneHardware";
+import AccessSettings from "./components/AccessSettings";
+import LogInsToApps from "./components/LogIns";
+import Hardware from "./components/PhoneHardware";
 import PasswordManager from "./components/PasswordManager";
+import SplashPage from "./components/SplashPage";
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   const [initialRouteKey, setInitialRouteKey] = useState(Date.now().toString());
-  const initialRouteRef = useRef("PreferredLanguage");
+  const initialRouteRef = useRef("SplashPage");
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    const animation = Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1500,
+      useNativeDriver: true,
+    });
+
+    animation.start(() => {
+      setTimeout(() => {
+        checkSavedValues();
+      }, 1000);
+    });
+
     const checkSavedValues = async () => {
       try {
         const savedLanguage = await SecureStore.getItemAsync(
@@ -59,17 +74,24 @@ const App = () => {
       }
     };
 
-    checkSavedValues();
-
     console.log(
       "Initial Route changed (part 2 check):",
       initialRouteRef.current
     );
-  }, []);
+    return () => animation.stop();
+  }, [fadeAnim]);
 
   return (
     <NavigationContainer key={initialRouteKey}>
-      <Stack.Navigator initialRouteName={initialRouteRef.current}>
+      <Stack.Navigator
+        initialRouteName={initialRouteRef.current}
+        screenOptions={{
+          headerStyle: {
+            height: 400, // Adjust the height as needed
+          },
+        }}
+      >
+        <Stack.Screen name="SplashPage" component={SplashPage} />
         <Stack.Screen name="PreferredLanguage" component={PreferredLanguage} />
         <Stack.Screen name="UpdateFont" component={TextAdjustment} />
         <Stack.Screen name="Settings" component={Settings} />
@@ -81,17 +103,9 @@ const App = () => {
           name="SettingsLanguagechange"
           component={LanguageChange}
         />
-        <Stack.Screen
-          name="AccessSettings"
-          component={accessSettings}/>
-        <Stack.Screen
-          name="LoginsToApps"
-          component={logInsToApps}
-          />
-        <Stack.Screen
-          name= "PhoneHardware"
-          component={Hardware}
-        />
+        <Stack.Screen name="AccessSettings" component={AccessSettings} />
+        <Stack.Screen name="LogInsToApps" component={LogInsToApps} />
+        <Stack.Screen name="PhoneHardware" component={Hardware} />
       </Stack.Navigator>
     </NavigationContainer>
   );
