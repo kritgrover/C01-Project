@@ -6,6 +6,7 @@ import homeIcon from "../assets/homeIcon.png";
 import accountIcon from "../assets/accountIcon.png";
 import passwordIcon from "../assets/passwordIcon.png";
 import RNPickerSelect from "react-native-picker-select";
+import Speak from './Speak';
 
 const Settings = () => {
   const navigation = useNavigation();

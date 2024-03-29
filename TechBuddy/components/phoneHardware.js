@@ -18,6 +18,7 @@ import Translate from "./Translate";
 import homeIcon from "../assets/homeIcon.png";
 import accountIcon from "../assets/accountIcon.png";
 import passwordIcon from "../assets/passwordIcon.png";
+import Speak from "./Speak";
 
 const Hardware = function () {
   const navigate = useNavigation();
@@ -290,6 +291,8 @@ const Hardware = function () {
           </Text>
         </View>
       </View>
+      <Speak text={textStrings[selectedLanguage].volumeText+textStrings[selectedLanguage].volumeText2+textStrings[selectedLanguage].powerText+textStrings[selectedLanguage].powerText2+textStrings[selectedLanguage].chargingText} language={selectedLanguage === 'ch'? 'zh': selectedLanguage} showText={true}></Speak>
+
     </ScrollView>
   );
 };

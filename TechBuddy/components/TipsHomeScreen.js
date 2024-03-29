@@ -16,6 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 import homeIcon from "../assets/homeIcon.png";
 import accountIcon from "../assets/accountIcon.png";
 import passwordIcon from "../assets/passwordIcon.png";
+import Speak from './Speak';
 
 const TipsScreen = function () {
   const navigate = useNavigation();
@@ -194,9 +195,12 @@ const TipsScreen = function () {
     },
   ];
 
+  let allButtonTitles = '';
+
   return (
     <View style={styles.menuContainer}>
       {tipsMenu.map(function (link) {
+        allButtonTitles += link.title + '. ';
         return (
           <Pressable
             key={link.title}
@@ -220,6 +224,7 @@ const TipsScreen = function () {
           </Pressable>
         );
       })}
+      {/* <Speak text={allButtonTitles} language={selectedLanguage === 'ch'? 'zh': selectedLanguage} showText={true}></Speak> */}
     </View>
   );
 };

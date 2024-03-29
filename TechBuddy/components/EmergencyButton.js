@@ -9,6 +9,7 @@ import {
   Text,
 } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import Speak from './Speak';
 
 const EmergencyButton = () => {
   const handleEmergencyCall = () => {

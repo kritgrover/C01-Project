@@ -15,6 +15,7 @@ import homeIcon from "../assets/homeIcon.png";
 import accountIcon from "../assets/accountIcon.png";
 import passwordIcon from "../assets/passwordIcon.png";
 import { useNavigation } from "@react-navigation/native";
+import Speak from './Speak';
 
 const PasswordManager = () => {
   const navigation = useNavigation();

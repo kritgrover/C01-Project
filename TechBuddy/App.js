@@ -12,7 +12,7 @@ import LanguageChange from "./components/LanguageChange";
 import Translate from "./components/Translate";
 import AccessSettings from "./components/AccessSettings";
 import LogInsToApps from "./components/LogIns";
-import Hardware from "./components/phoneHardware";
+import Hardware from "./components/PhoneHardware";
 import PasswordManager from "./components/PasswordManager";
 import SplashPage from "./components/SplashPage";
 
