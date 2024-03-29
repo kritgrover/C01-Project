@@ -9,8 +9,8 @@ import RNPickerSelect from "react-native-picker-select";
 
 const Settings = () => {
   const navigation = useNavigation();
-  const [fontFamily, setFontFamily] = useState("Arial");
-  const [fontSize, setFontSize] = useState(16);
+  const [fontFamily, setFontFamily] = useState("");
+  const [fontSize, setFontSize] = useState('');
   const [isBold, setIsBold] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("en");
 
@@ -20,7 +20,7 @@ const Settings = () => {
         const savedLanguage = await SecureStore.getItemAsync(
           "selectedLanguage"
         );
-        if (savedLanguage) {
+        if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
           console.log("Selected language:", savedLanguage);
           setSelectedLanguage(savedLanguage);
         } else {
@@ -346,20 +346,20 @@ const Settings = () => {
         style={pickerSelectStyles}
       />
       <RNPickerSelect
-        placeholder={{
-          label: textStrings[selectedLanguage].selectFontSize,
-          value: null,
-        }}
-        items={[
-          { label: textStrings[selectedLanguage].small, value: 14 },
-          { label: textStrings[selectedLanguage].default, value: 16 },
-          { label: textStrings[selectedLanguage].large, value: 20 },
-          { label: textStrings[selectedLanguage].extraLarge, value: 24 },
-        ]}
-        value={fontSize}
-        onValueChange={(value) => handleFontSizeChange(value)}
-        style={pickerSelectStyles}
-      />
+          placeholder={{
+            label: textStrings[selectedLanguage].selectFontSize,
+            value: null,
+          }}
+          items={[
+            { label: textStrings[selectedLanguage].small, value: 14 },
+            { label: textStrings[selectedLanguage].default, value: 16 },
+            { label: textStrings[selectedLanguage].large, value: 20 },
+            { label: textStrings[selectedLanguage].extraLarge, value: 24 },
+          ]}
+          value={Number(fontSize)}
+          onValueChange={(value) => handleFontSizeChange(value)}
+          style={pickerSelectStyles}
+        />
 
       <RNPickerSelect
         placeholder={{
