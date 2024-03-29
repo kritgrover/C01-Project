@@ -33,25 +33,27 @@ const AccessSettings = function () {
         const savedLanguage = await SecureStore.getItemAsync(
           "selectedLanguage"
         );
-        if (savedLanguage) {
+        if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
           console.log(
-            "Selected language: (in LanguageChange.js) ",
+            "Selected language: (AccessSettings) ",
             savedLanguage
           );
           setSelectedLanguage(savedLanguage);
         } else {
           setSelectedLanguage("en");
+          console.log("Selected language (AccessSettings - false version):", savedLanguage);
         }
 
         const savedFontFamily = JSON.parse(
           await SecureStore.getItemAsync("fontFamily")
         );
 
-        if (savedFontFamily) {
-          console.log("Font family:", savedFontFamily);
+        if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
+          console.log("Font family (AccessSettings):", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {
           setFontFamily("Arial");
+          console.log("Font family (AccessSettings - false version):", savedFontFamily);
         }
 
         const savedFontSize = await SecureStore.getItemAsync("fontSize");
@@ -60,18 +62,20 @@ const AccessSettings = function () {
           savedFontSize !== "" &&
           savedFontSize !== "null"
         ) {
-          console.log("Font size:", savedFontSize);
+          console.log("Font size (AccessSettings):", savedFontSize);
           setFontSize(Number(savedFontSize));
         } else {
           setFontSize(16);
+          console.log("Font size (AccessSettings - false version):", savedFontSize);
         }
 
         const savedIsBold = await SecureStore.getItemAsync("isBold");
-        if (savedIsBold) {
-          console.log("Is bold:", savedIsBold);
+        if (savedIsBold !== null && savedIsBold !== "" && savedIsBold !== "null" && savedIsBold == "true") {
+          console.log("Is bold (AccessSettings):", savedIsBold);
           setIsBold(savedIsBold);
         } else {
           setIsBold(false);
+          console.log("Is bold (AccessSettings - false version):", savedIsBold);
         }
       } catch (error) {
         console.error("Error loading saved language:", error);

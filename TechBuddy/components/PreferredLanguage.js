@@ -18,10 +18,14 @@ const PreferredLanguage = () => {
           "selectedLanguage"
         );
         if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
-          console.log("Selected language:", savedLanguage);
+          console.log(
+            "Selected language: (PreferredLanguage) ",
+            savedLanguage
+          );
           setSelectedLanguage(savedLanguage);
         } else {
           setSelectedLanguage("en");
+          console.log("Selected language: (PreferredLanguage -- false version) ", selectedLanguage);
         }
 
         const savedFontFamily = JSON.parse(
@@ -29,10 +33,11 @@ const PreferredLanguage = () => {
         );
 
         if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
-          console.log("Font family:", savedFontFamily);
+          console.log("Font family (PreferredLanguage):", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {
           setFontFamily("Arial");
+          console.log("Font family (PreferredLanguage -- false version):", savedFontFamily);
         }
 
         const savedFontSize = await SecureStore.getItemAsync("fontSize");
@@ -41,18 +46,20 @@ const PreferredLanguage = () => {
           savedFontSize !== "" &&
           savedFontSize !== "null"
         ) {
-          console.log("Font size:", savedFontSize);
+          console.log("Font size (PreferredLanguage):", savedFontSize);
           setFontSize(Number(savedFontSize));
         } else {
           setFontSize(16);
+          console.log("Font size (PreferredLanguage -- false version):", savedFontSize);
         }
 
         const savedIsBold = await SecureStore.getItemAsync("isBold");
-        if (savedIsBold) {
-          console.log("Is bold:", savedIsBold);
+        if (savedIsBold !== null && savedIsBold !== "" && savedIsBold !== "null" && savedIsBold == "true") {
+          console.log("Is bold (PreferredLanguage):", savedIsBold);
           setIsBold(savedIsBold);
         } else {
           setIsBold(false);
+          console.log("Is bold (PreferredLanguage -- false version):", savedIsBold);
         }
       } catch (error) {
         console.error("Error loading saved language:", error);

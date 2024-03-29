@@ -20,22 +20,27 @@ const Tip = () => {
         const savedLanguage = await SecureStore.getItemAsync(
           "selectedLanguage"
         );
-        if (savedLanguage) {
-          console.log("Selected language:", savedLanguage);
+        if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
+          console.log(
+            "Selected language: (Tip) ",
+            savedLanguage
+          );
           setSelectedLanguage(savedLanguage);
         } else {
           setSelectedLanguage("en");
+          console.log("Selected language: (Tip -- false version) ", selectedLanguage);
         }
 
         const savedFontFamily = JSON.parse(
           await SecureStore.getItemAsync("fontFamily")
         );
 
-        if (savedFontFamily) {
-          console.log("Font family:", savedFontFamily);
+        if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
+          console.log("Font family (Tip):", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {
           setFontFamily("Arial");
+          console.log("Font family (Tip -- false version):", savedFontFamily);
         }
 
         const savedFontSize = await SecureStore.getItemAsync("fontSize");
@@ -44,21 +49,23 @@ const Tip = () => {
           savedFontSize !== "" &&
           savedFontSize !== "null"
         ) {
-          console.log("Font size:", savedFontSize);
+          console.log("Font size (Tip):", savedFontSize);
           setFontSize(Number(savedFontSize));
         } else {
           setFontSize(16);
+          console.log("Font size (Tip -- false version):", savedFontSize);
         }
 
         const savedIsBold = await SecureStore.getItemAsync("isBold");
-        if (savedIsBold) {
-          console.log("Is bold:", savedIsBold);
+        if (savedIsBold !== null && savedIsBold !== "" && savedIsBold !== "null" && savedIsBold == "true") {
+          console.log("Is bold (Tip):", savedIsBold);
           setIsBold(savedIsBold);
         } else {
           setIsBold(false);
+          console.log("Is bold (Tip -- false version):", savedIsBold);
         }
       } catch (error) {
-        console.error("Error loading saved values:", error);
+        console.error("Error loading saved language:", error);
       }
     };
 
@@ -214,26 +221,26 @@ const Tip = () => {
         <Modal animationType="slide" transparent={true} visible={showTip}>
           <View style={TipStyle.modalContent}>
             <View style={TipStyle.titleContainer}>
-              <Text style={TipStyle.title}>{tips[index].title}</Text>
+              <Text style={[TipStyle.title, { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily }]}>{tips[index].title}</Text>
               <Pressable onPress={onClose}>
                 <MaterialIcons name="close" color="#fff" size={26} />
               </Pressable>
             </View>
             <View style={TipStyle.body}>
-              <Text style={TipStyle.bodyContent}>{tips[index].content}</Text>
+              <Text style={[TipStyle.bodyContent, { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily }]}>{tips[index].content}</Text>
               <Speak text={tips[index].content} language={selectedLanguage === 'ch'? 'zh': selectedLanguage} color={"white"} showText={true}></Speak>
 
               <Pressable style={TipStyle.bodyButton} onPress={getIndex}>
-                <Text style={TipStyle.bodyButtonText}>{textStrings[selectedLanguage].nextTip}</Text>
+                <Text style={[TipStyle.bodyButtonText, { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily }]}>{textStrings[selectedLanguage].nextTip}</Text>
                 <MaterialIcons
                   name="keyboard-arrow-right"
                   color="#fff"
-                  size={26}
+                  size={fontSize}
                 />
               </Pressable>
 
               <Pressable style={TipStyle.bodyButton} onPress={onClose}>
-                <Text style={TipStyle.bodyButtonText}>{textStrings[selectedLanguage].dismiss}</Text>
+                <Text style={[TipStyle.bodyButtonText, { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily }]}>{textStrings[selectedLanguage].dismiss}</Text>
               </Pressable>
             </View>
           </View>

@@ -32,10 +32,11 @@ const HomeScreen = ({ navigation }) => {
           "selectedLanguage"
         );
         if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
-          console.log("Selected language:", savedLanguage);
+          console.log("Selected language (HomeScreen):", savedLanguage);
           setSelectedLanguage(savedLanguage);
         } else {
           setSelectedLanguage("en");
+          console.log("Selected language (HomeScreen - false version):", savedLanguage);
         }
 
         const savedFontFamily = JSON.parse(
@@ -43,10 +44,11 @@ const HomeScreen = ({ navigation }) => {
         );
 
         if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
-          console.log("Font family:", savedFontFamily);
+          console.log("Font family (HomeScreen):", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {
           setFontFamily("Arial");
+          console.log("Font family (HomeScreen - false version):", savedFontFamily);
         }
 
         const savedFontSize = await SecureStore.getItemAsync("fontSize");
@@ -59,14 +61,16 @@ const HomeScreen = ({ navigation }) => {
           setFontSize(Number(savedFontSize));
         } else {
           setFontSize(16);
+          console.log("Font size (HomeScreen - false version):", savedFontSize);
         }
 
         const savedIsBold = await SecureStore.getItemAsync("isBold");
-        if (savedIsBold) {
-          console.log("Is bold:", savedIsBold);
+        if (savedIsBold !== null && savedIsBold !== "" && savedIsBold !== "null" && savedIsBold == "true") {
+          console.log("Is bold (HomeScreen):", savedIsBold);
           setIsBold(savedIsBold);
         } else {
           setIsBold(false);
+          console.log("Is bold (HomeScreen - false version):", savedIsBold);
         }
       } catch (error) {
         console.error("Error loading saved values:", error);
@@ -161,8 +165,8 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Text style={styles.textField1}>{textStrings[selectedLanguage].startYourJourney}</Text>
-        <Text style={styles.textField2}>{textStrings[selectedLanguage].betterDigitalExperience}</Text>
+        <Text style={[styles.textField1, { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily }]}>{textStrings[selectedLanguage].startYourJourney}</Text>
+        <Text style={[styles.textField2, { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily }]}>{textStrings[selectedLanguage].betterDigitalExperience}</Text>
         <TouchableOpacity
           style={styles.howTobutton}
           onPress={() => {

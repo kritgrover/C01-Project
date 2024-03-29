@@ -23,7 +23,7 @@ const EmergencyButton = () => {
     Linking.openURL(phoneNumber);
   };
 
-  const [fontFamily, setFontFamily] = useState("Arial"); // State to store font family
+  const [fontFamily, setFontFamily] = useState("Arial");
   const [fontSize, setFontSize] = useState(16);
   const [isBold, setIsBold] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("en");
@@ -34,25 +34,27 @@ const EmergencyButton = () => {
         const savedLanguage = await SecureStore.getItemAsync(
           "selectedLanguage"
         );
-        if (
-          savedLanguage !== null &&
-          savedLanguage !== "" &&
-          savedLanguage !== "null"
-        ) {
+        if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
+          console.log(
+            "Selected language: (EmergencyButton) ",
+            savedLanguage
+          );
           setSelectedLanguage(savedLanguage);
+        } else {
+          setSelectedLanguage("en");
+          console.log("Selected language (EmergencyButton - false version):", savedLanguage);
         }
 
         const savedFontFamily = JSON.parse(
           await SecureStore.getItemAsync("fontFamily")
         );
 
-        if (
-          savedFontFamily &&
-          savedFontFamily !== "" &&
-          savedFontFamily !== "null"
-        ) {
-          console.log("Font family:", savedFontFamily);
+        if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
+          console.log("Font family (EmergencyButton):", savedFontFamily);
           setFontFamily(savedFontFamily);
+        } else {
+          setFontFamily("Arial");
+          console.log("Font family (EmergencyButton - false version):", savedFontFamily);
         }
 
         const savedFontSize = await SecureStore.getItemAsync("fontSize");
@@ -61,21 +63,23 @@ const EmergencyButton = () => {
           savedFontSize !== "" &&
           savedFontSize !== "null"
         ) {
-          console.log("Font size:", savedFontSize);
+          console.log("Font size (EmergencyButton):", savedFontSize);
           setFontSize(Number(savedFontSize));
+        } else {
+          setFontSize(16);
+          console.log("Font size (EmergencyButton - false version):", savedFontSize);
         }
 
         const savedIsBold = await SecureStore.getItemAsync("isBold");
-        if (
-          savedIsBold !== null &&
-          savedIsBold !== "" &&
-          savedIsBold !== "null"
-        ) {
-          console.log("Is bold:", savedIsBold);
+        if (savedIsBold !== null && savedIsBold !== "" && savedIsBold !== "null" && savedIsBold == "true") {
+          console.log("Is bold (EmergencyButton):", savedIsBold);
           setIsBold(savedIsBold);
+        } else {
+          setIsBold(false);
+          console.log("Is bold (EmergencyButton - false version):", savedIsBold);
         }
       } catch (error) {
-        console.error("Error loading font settings:", error);
+        console.error("Error loading saved language:", error);
       }
     };
 

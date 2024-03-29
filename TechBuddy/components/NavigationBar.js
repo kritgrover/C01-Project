@@ -21,25 +21,27 @@ const NavigationBar = ({
         const savedLanguage = await SecureStore.getItemAsync(
           "selectedLanguage"
         );
-        if (savedLanguage) {
+        if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
           console.log(
-            "Selected language: (in NavigationBar.js) ",
+            "Selected language: (NavigationBar) ",
             savedLanguage
           );
           setSelectedLanguage(savedLanguage);
         } else {
           setSelectedLanguage("en");
+          console.log("Selected language: (NavigationBar -- false version) ", selectedLanguage);
         }
 
         const savedFontFamily = JSON.parse(
           await SecureStore.getItemAsync("fontFamily")
         );
 
-        if (savedFontFamily) {
-          console.log("Font family:", savedFontFamily);
+        if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
+          console.log("Font family (NavigationBar):", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {
           setFontFamily("Arial");
+          console.log("Font family (NavigationBar -- false version):", savedFontFamily);
         }
 
         const savedFontSize = await SecureStore.getItemAsync("fontSize");
@@ -48,18 +50,20 @@ const NavigationBar = ({
           savedFontSize !== "" &&
           savedFontSize !== "null"
         ) {
-          console.log("Font size:", savedFontSize);
+          console.log("Font size (NavigationBar):", savedFontSize);
           setFontSize(Number(savedFontSize));
         } else {
           setFontSize(16);
+          console.log("Font size (NavigationBar -- false version):", savedFontSize);
         }
 
         const savedIsBold = await SecureStore.getItemAsync("isBold");
-        if (savedIsBold) {
-          console.log("Is bold:", savedIsBold);
+        if (savedIsBold !== null && savedIsBold !== "" && savedIsBold !== "null" && savedIsBold == "true") {
+          console.log("Is bold (NavigationBar):", savedIsBold);
           setIsBold(savedIsBold);
         } else {
           setIsBold(false);
+          console.log("Is bold (NavigationBar -- false version):", savedIsBold);
         }
       } catch (error) {
         console.error("Error loading saved language:", error);

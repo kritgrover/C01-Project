@@ -32,10 +32,14 @@ const TipsScreen = function () {
           "selectedLanguage"
         );
         if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
-          console.log("Selected language:", savedLanguage);
+          console.log(
+            "Selected language: (TipsHomeScreen) ",
+            savedLanguage
+          );
           setSelectedLanguage(savedLanguage);
         } else {
           setSelectedLanguage("en");
+          console.log("Selected language: (TipsHomeScreen -- false version) ", selectedLanguage);
         }
 
         const savedFontFamily = JSON.parse(
@@ -43,10 +47,11 @@ const TipsScreen = function () {
         );
 
         if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
-          console.log("Font family:", savedFontFamily);
+          console.log("Font family (TipsHomeScreen):", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {
           setFontFamily("Arial");
+          console.log("Font family (TipsHomeScreen -- false version):", savedFontFamily);
         }
 
         const savedFontSize = await SecureStore.getItemAsync("fontSize");
@@ -55,21 +60,23 @@ const TipsScreen = function () {
           savedFontSize !== "" &&
           savedFontSize !== "null"
         ) {
-          console.log("Font size:", savedFontSize);
+          console.log("Font size (TipsHomeScreen):", savedFontSize);
           setFontSize(Number(savedFontSize));
         } else {
           setFontSize(16);
+          console.log("Font size (TipsHomeScreen -- false version):", savedFontSize);
         }
 
         const savedIsBold = await SecureStore.getItemAsync("isBold");
-        if (savedIsBold) {
-          console.log("Is bold:", savedIsBold);
+        if (savedIsBold !== null && savedIsBold !== "" && savedIsBold !== "null" && savedIsBold == "true") {
+          console.log("Is bold (TipsHomeScreen):", savedIsBold);
           setIsBold(savedIsBold);
         } else {
           setIsBold(false);
+          console.log("Is bold (TipsHomeScreen -- false version):", savedIsBold);
         }
       } catch (error) {
-        console.error("Error loading saved values:", error);
+        console.error("Error loading saved language:", error);
       }
     };
 

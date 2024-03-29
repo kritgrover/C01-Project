@@ -35,10 +35,14 @@ const PasswordManager = () => {
           "selectedLanguage"
         );
         if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
-          console.log("Selected language (PasswordManager):", savedLanguage);
+          console.log(
+            "Selected language: (PasswordManager) ",
+            savedLanguage
+          );
           setSelectedLanguage(savedLanguage);
         } else {
           setSelectedLanguage("en");
+          console.log("Selected language: (PasswordManager -- false version) ", selectedLanguage);
         }
 
         const savedFontFamily = JSON.parse(
@@ -50,6 +54,7 @@ const PasswordManager = () => {
           setFontFamily(savedFontFamily);
         } else {
           setFontFamily("Arial");
+          console.log("Font family (PasswordManager -- false version):", savedFontFamily);
         }
 
         const savedFontSize = await SecureStore.getItemAsync("fontSize");
@@ -58,21 +63,23 @@ const PasswordManager = () => {
           savedFontSize !== "" &&
           savedFontSize !== "null"
         ) {
-          console.log("Font size:", savedFontSize);
+          console.log("Font size (PasswordManager):", savedFontSize);
           setFontSize(Number(savedFontSize));
         } else {
           setFontSize(16);
+          console.log("Font size (PasswordManager -- false version):", savedFontSize);
         }
 
         const savedIsBold = await SecureStore.getItemAsync("isBold");
-        if (savedIsBold) {
-          console.log("Is bold:", savedIsBold);
+        if (savedIsBold !== null && savedIsBold !== "" && savedIsBold !== "null" && savedIsBold == "true") {
+          console.log("Is bold (PasswordManager):", savedIsBold);
           setIsBold(savedIsBold);
         } else {
           setIsBold(false);
+          console.log("Is bold (PasswordManager -- false version):", savedIsBold);
         }
       } catch (error) {
-        console.error("Error loading saved values:", error);
+        console.error("Error loading saved language:", error);
       }
     };
 
@@ -247,7 +254,11 @@ const PasswordManager = () => {
         <Text
           style={[
             styles.title,
-            { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily },
+            {
+              fontFamily: fontFamily,
+              fontSize: Number(fontSize),
+              fontWeight: isBold ? "bold" : "normal",
+            },
           ]}
         >
           {textStrings[selectedLanguage].passwordManagerTitle}
@@ -255,7 +266,11 @@ const PasswordManager = () => {
         <Text
           style={[
             styles.title,
-            { fontSize, fontWeight: isBold ? "bold" : "normal", fontFamily },
+            {
+              fontFamily: fontFamily,
+              fontSize: Number(fontSize),
+              fontWeight: isBold ? "bold" : "normal",
+            },
           ]}
         >
           {textStrings[selectedLanguage].passwordManagerDescription}
@@ -263,7 +278,11 @@ const PasswordManager = () => {
         <TextInput
           style={[
             styles.input,
-            { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily },
+            {
+              fontFamily: fontFamily,
+              fontSize: Number(fontSize),
+              fontWeight: isBold ? "bold" : "normal",
+            },
           ]}
           placeholder={textStrings[selectedLanguage].appName}
           value={appName}
@@ -272,7 +291,11 @@ const PasswordManager = () => {
         <TextInput
           style={[
             styles.input,
-            { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily },
+            {
+              fontFamily: fontFamily,
+              fontSize: Number(fontSize),
+              fontWeight: isBold ? "bold" : "normal",
+            },
           ]}
           placeholder={textStrings[selectedLanguage].username}
           value={username}
@@ -281,7 +304,11 @@ const PasswordManager = () => {
         <TextInput
           style={[
             styles.input,
-            { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily },
+            {
+              fontFamily: fontFamily,
+              fontSize: Number(fontSize),
+              fontWeight: isBold ? "bold" : "normal",
+            },
           ]}
           placeholder={textStrings[selectedLanguage].password}
           value={password}
@@ -313,7 +340,11 @@ const PasswordManager = () => {
           <Text
             style={[
               styles.savedCredentialsTitle,
-              { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily },
+              {
+                fontFamily: fontFamily,
+                fontSize: Number(fontSize),
+                fontWeight: isBold ? "bold" : "normal",
+              },
             ]}
           >
             {textStrings[selectedLanguage].savedCredentialsTitle}
@@ -324,9 +355,9 @@ const PasswordManager = () => {
                 style={[
                   styles.buttonText,
                   {
+                    fontFamily: fontFamily,
                     fontSize: Number(fontSize),
                     fontWeight: isBold ? "bold" : "normal",
-                    fontFamily,
                   },
                 ]}
               >
@@ -336,9 +367,9 @@ const PasswordManager = () => {
                 style={[
                   styles.buttonText,
                   {
+                    fontFamily: fontFamily,
                     fontSize: Number(fontSize),
                     fontWeight: isBold ? "bold" : "normal",
-                    fontFamily,
                   },
                 ]}
               >
@@ -348,9 +379,9 @@ const PasswordManager = () => {
                 style={[
                   styles.buttonText,
                   {
+                    fontFamily: fontFamily,
                     fontSize: Number(fontSize),
                     fontWeight: isBold ? "bold" : "normal",
-                    fontFamily,
                   },
                 ]}
               >
@@ -379,7 +410,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold",
+    // fontWeight: "bold",
     marginBottom: 20,
     textAlign: "center",
   },
@@ -397,7 +428,7 @@ const styles = StyleSheet.create({
   },
   savedCredentialsTitle: {
     fontSize: 16,
-    fontWeight: "bold",
+    // fontWeight: "bold",
     marginBottom: 10,
   },
   savedCredential: {
@@ -417,7 +448,7 @@ const styles = StyleSheet.create({
   },
   deleteButtonText: {
     color: "white",
-    fontWeight: "bold",
+    // fontWeight: "bold",
     fontSize: 20,
   },
   button: {
