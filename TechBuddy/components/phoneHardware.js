@@ -295,7 +295,7 @@ const Hardware = function () {
           </Text>
         </View>
       </View>
-      <Speak text={textStrings[selectedLanguage].volumeText+textStrings[selectedLanguage].volumeText2+textStrings[selectedLanguage].powerText+textStrings[selectedLanguage].powerText2+textStrings[selectedLanguage].chargingText} language={selectedLanguage === 'ch'? 'zh': selectedLanguage} showText={true}></Speak>
+      <Speak text={textStrings[selectedLanguage].preText+textStrings[selectedLanguage].volumeText+textStrings[selectedLanguage].volumeText2+textStrings[selectedLanguage].powerText+textStrings[selectedLanguage].powerText2+textStrings[selectedLanguage].chargingText} language={selectedLanguage === 'ch'? 'zh': selectedLanguage} showText={true}></Speak>
 
     </ScrollView>
   );

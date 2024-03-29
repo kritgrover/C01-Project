@@ -277,7 +277,7 @@ const LanguageChange = function () {
             {textStrings[selectedLanguage].num5}
           </Text>
         </View>
-        <Speak text={textStrings[selectedLanguage].num1+textStrings[selectedLanguage].num2+textStrings[selectedLanguage].num3+textStrings[selectedLanguage].num4+textStrings[selectedLanguage].num5} language={selectedLanguage === 'ch'? 'zh': selectedLanguage} showText={true}></Speak>
+        <Speak text={textStrings[selectedLanguage].preText+textStrings[selectedLanguage].num1+textStrings[selectedLanguage].num2+textStrings[selectedLanguage].num3+textStrings[selectedLanguage].num4+textStrings[selectedLanguage].num5} language={selectedLanguage === 'ch'? 'zh': selectedLanguage} showText={true}></Speak>
 
       </View>
     </ScrollView>
