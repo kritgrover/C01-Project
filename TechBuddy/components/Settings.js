@@ -31,7 +31,7 @@ const Settings = () => {
           await SecureStore.getItemAsync("fontFamily")
         );
 
-        if (savedFontFamily) {
+        if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
           console.log("Font family:", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {

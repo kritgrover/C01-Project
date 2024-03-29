@@ -32,7 +32,7 @@ const Hardware = function () {
         const savedLanguage = await SecureStore.getItemAsync(
           "selectedLanguage"
         );
-        if (savedLanguage) {
+        if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
           console.log(
             "Selected language: (in LanguageChange.js) ",
             savedLanguage
@@ -46,7 +46,7 @@ const Hardware = function () {
           await SecureStore.getItemAsync("fontFamily")
         );
 
-        if (savedFontFamily) {
+        if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
           console.log("Font family:", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {

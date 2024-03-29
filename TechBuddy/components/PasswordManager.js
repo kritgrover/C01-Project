@@ -33,8 +33,8 @@ const PasswordManager = () => {
         const savedLanguage = await SecureStore.getItemAsync(
           "selectedLanguage"
         );
-        if (savedLanguage) {
-          console.log("Selected language:", savedLanguage);
+        if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
+          console.log("Selected language (PasswordManager):", savedLanguage);
           setSelectedLanguage(savedLanguage);
         } else {
           setSelectedLanguage("en");
@@ -44,8 +44,8 @@ const PasswordManager = () => {
           await SecureStore.getItemAsync("fontFamily")
         );
 
-        if (savedFontFamily) {
-          console.log("Font family:", savedFontFamily);
+        if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
+          console.log("Font family (PasswordManager):", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {
           setFontFamily("Arial");
