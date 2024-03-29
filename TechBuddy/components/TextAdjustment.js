@@ -17,7 +17,7 @@ const TextAdjustment = () => {
         const savedLanguage = await SecureStore.getItemAsync(
           "selectedLanguage"
         );
-        if (savedLanguage) {
+        if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
           console.log("Selected language:", savedLanguage);
           setSelectedLanguage(savedLanguage);
         } else {
@@ -28,7 +28,7 @@ const TextAdjustment = () => {
           await SecureStore.getItemAsync("fontFamily")
         );
 
-        if (savedFontFamily) {
+        if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
           console.log("Font family:", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {

@@ -32,9 +32,9 @@ const LogInsToApps = function () {
         const savedLanguage = await SecureStore.getItemAsync(
           "selectedLanguage"
         );
-        if (savedLanguage) {
+        if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
           console.log(
-            "Selected language: (in LanguageChange.js) ",
+            "Selected language: (in LogIns.js) ",
             savedLanguage
           );
           setSelectedLanguage(savedLanguage);
@@ -46,8 +46,8 @@ const LogInsToApps = function () {
           await SecureStore.getItemAsync("fontFamily")
         );
 
-        if (savedFontFamily) {
-          console.log("Font family:", savedFontFamily);
+        if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
+          console.log("Font family (in LogIns.js):", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {
           setFontFamily("Arial");

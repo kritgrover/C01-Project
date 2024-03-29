@@ -19,7 +19,7 @@ import passwordIcon from "../assets/passwordIcon.png";
 import Tip from "./Tip";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreenCopy = ({ navigation }) => {
   const [fontSize, setFontSize] = useState(16);
   const [isBold, setIsBold] = useState("");
   const [fontFamily, setFontFamily] = useState("");
@@ -274,4 +274,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default HomeScreenCopy;

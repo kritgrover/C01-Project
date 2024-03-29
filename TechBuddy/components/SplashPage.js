@@ -20,7 +20,7 @@ const SplashPage = ({ navigation }) => {
           "selectedLanguage"
         );
         if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
-          console.log("Selected language:", savedLanguage);
+          console.log("Selected language (splash):", savedLanguage);
           setSelectedLanguage(savedLanguage);
         } else {
           setSelectedLanguage("en");
