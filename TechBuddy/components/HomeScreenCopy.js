@@ -1,9 +1,14 @@
 import { StatusBar } from "expo-status-bar";
-import Tip from "./Tip";
-import VoiceCommand from "./VoiceCommand";
-import { ScrollView, StyleSheet, Image, Text, TouchableOpacity, View } from "react-native";
-import * as SecureStore from 'expo-secure-store';
-import React, { useEffect, useState, useRef } from 'react';
+import {
+  ScrollView,
+  StyleSheet,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import * as SecureStore from "expo-secure-store";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PasswordManager from "./PasswordManager";
 import Speak from "./Speak";
@@ -11,9 +16,10 @@ import EmergencyButton from "./EmergencyButton";
 import homeIcon from "../assets/homeIcon.png";
 import accountIcon from "../assets/accountIcon.png";
 import passwordIcon from "../assets/passwordIcon.png";
+import Tip from "./Tip";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreenCopy = ({ navigation }) => {
   const [fontSize, setFontSize] = useState(16);
   const [isBold, setIsBold] = useState("");
   const [fontFamily, setFontFamily] = useState("");
@@ -120,8 +126,7 @@ const HomeScreen = ({ navigation }) => {
   const navigateToAccount = () => {
     navigation.navigate("Settings");
   };
-  const EmergencyRef = useRef(null);
-  const TipRef = useRef(null);
+
   const navigateToHome = () => {
     navigation.navigate("HomeScreen");
   };
@@ -185,11 +190,10 @@ const HomeScreen = ({ navigation }) => {
             </Text>
           </View>
         </TouchableOpacity>
-        <Tip ref={TipRef} style={{ float: "right" }} />
-        <EmergencyButton ref={EmergencyRef} />
+        <Tip></Tip>
+        <EmergencyButton />
       </ScrollView>
       <StatusBar style="auto" />
-      <VoiceCommand refs={[{ trigger: 'open tips', actual: TipRef }, { trigger: 'call the police', actual: EmergencyRef }]}></VoiceCommand>
     </View>
   );
 };
@@ -270,4 +274,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default HomeScreenCopy;

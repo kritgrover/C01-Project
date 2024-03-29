@@ -10,8 +10,8 @@ import Speak from './Speak';
 
 const Settings = () => {
   const navigation = useNavigation();
-  const [fontFamily, setFontFamily] = useState("Arial");
-  const [fontSize, setFontSize] = useState(16);
+  const [fontFamily, setFontFamily] = useState("");
+  const [fontSize, setFontSize] = useState('');
   const [isBold, setIsBold] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("en");
 
@@ -21,7 +21,7 @@ const Settings = () => {
         const savedLanguage = await SecureStore.getItemAsync(
           "selectedLanguage"
         );
-        if (savedLanguage) {
+        if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
           console.log("Selected language:", savedLanguage);
           setSelectedLanguage(savedLanguage);
         } else {
@@ -32,7 +32,7 @@ const Settings = () => {
           await SecureStore.getItemAsync("fontFamily")
         );
 
-        if (savedFontFamily) {
+        if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
           console.log("Font family:", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {
@@ -65,10 +65,6 @@ const Settings = () => {
 
     loadFontSettings();
   }, []);
-
-  const goToPreferredLanguage = () => {
-    navigation.navigate("PreferredLanguage");
-  };
 
   const textStrings = {
     en: {
@@ -317,7 +313,7 @@ const Settings = () => {
           styles.infoText,
           {
             fontFamily: fontFamily,
-            fontSize: fontSize,
+            fontSize: Number(fontSize),
             fontWeight: isBold ? "bold" : "normal",
           },
         ]}
@@ -340,36 +336,35 @@ const Settings = () => {
         items={languageOptions}
         placeholder={{
           label: textStrings[selectedLanguage].selectALanguage,
-          value: null,
+          value: "en",
         }}
         value={selectedLanguage}
         onValueChange={(value) => handleLanguageSelection(value)}
         style={pickerSelectStyles}
       />
       <RNPickerSelect
-        placeholder={{
-          label: textStrings[selectedLanguage].selectFontSize,
-          value: null,
-        }}
-        items={[
-          { label: textStrings[selectedLanguage].small, value: 14 },
-          { label: textStrings[selectedLanguage].default, value: 16 },
-          { label: textStrings[selectedLanguage].large, value: 20 },
-          { label: textStrings[selectedLanguage].extraLarge, value: 24 },
-        ]}
-        value={fontSize}
-        onValueChange={(value) => handleFontSizeChange(value)}
-        style={pickerSelectStyles}
-      />
+          placeholder={{
+            label: textStrings[selectedLanguage].selectFontSize,
+            value: 15.99,
+          }}
+          items={[
+            { label: textStrings[selectedLanguage].small, value: 14 },
+            { label: textStrings[selectedLanguage].default, value: 16 },
+            { label: textStrings[selectedLanguage].large, value: 20 },
+            { label: textStrings[selectedLanguage].extraLarge, value: 24 },
+          ]}
+          value={Number(fontSize)}
+          onValueChange={(value) => handleFontSizeChange(value)}
+          style={pickerSelectStyles}
+        />
 
       <RNPickerSelect
         placeholder={{
           label: textStrings[selectedLanguage].selectFontFamily,
-          value: null,
+          value: "Helvetica",
         }}
         items={[
           { label: "Arial", value: "Arial" },
-          { label: "Helvetica", value: "Helvetica" },
           { label: "Georgia", value: "Georgia" },
           { label: "Times New Roman", value: "Times New Roman" },
           { label: "Courier New", value: "Courier New" },

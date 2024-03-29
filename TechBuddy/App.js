@@ -15,6 +15,7 @@ import LogInsToApps from "./components/LogIns";
 import Hardware from "./components/PhoneHardware";
 import PasswordManager from "./components/PasswordManager";
 import SplashPage from "./components/SplashPage";
+import HomeScreenCopy from "./components/HomeScreenCopy";
 
 const Stack = createNativeStackNavigator();
 
@@ -47,9 +48,9 @@ const App = () => {
         );
         const savedIsBold = await SecureStore.getItemAsync("isBold");
 
-        console.log("Saved Values:", {
+        console.log("Saved Values (App.js - start):", {
           selectedLanguage: savedLanguage,
-          fontSize: savedFontSize,
+          fontSize: Number(savedFontSize),
           fontFamily: savedFontFamily,
           isBold: savedIsBold,
         });
@@ -65,7 +66,7 @@ const App = () => {
           savedIsBold !== null
         ) {
           console.log("Setting initial route to HomeScreen");
-          initialRouteRef.current = "HomeScreen";
+          initialRouteRef.current = "HomeScreenCopy";
           console.log("Initial Route changed:", initialRouteRef.current);
           setInitialRouteKey(Date.now().toString());
         }
@@ -93,12 +94,13 @@ const App = () => {
       >
         <Stack.Screen name="SplashPage" component={SplashPage} />
         <Stack.Screen name="PreferredLanguage" component={PreferredLanguage} />
+        <Stack.Screen name="HomeScreenCopy" component={HomeScreenCopy} />
         <Stack.Screen name="UpdateFont" component={TextAdjustment} />
         <Stack.Screen name="Settings" component={Settings} />
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="TipsMenu" component={TipsScreen} />
         <Stack.Screen name="Translate" component={Translate} />
         <Stack.Screen name="PasswordManager" component={PasswordManager} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen
           name="SettingsLanguagechange"
           component={LanguageChange}

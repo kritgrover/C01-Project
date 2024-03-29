@@ -28,7 +28,7 @@ const PreferredLanguage = () => {
           await SecureStore.getItemAsync("fontFamily")
         );
 
-        if (savedFontFamily) {
+        if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
           console.log("Font family:", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {
@@ -132,7 +132,7 @@ const PreferredLanguage = () => {
           styles.welcomeText,
           {
             fontFamily: fontFamily,
-            fontSize: fontSize,
+            fontSize: Number(fontSize),
             fontWeight: isBold ? "bold" : "normal",
           },
         ]}
@@ -144,7 +144,7 @@ const PreferredLanguage = () => {
         items={languageOptions}
         placeholder={{
           label: textStrings[selectedLanguage].selectALanguage,
-          value: null,
+          value: "en",
         }}
         value={selectedLanguage}
         onValueChange={(value) => handleLanguageSelection(value)}
@@ -163,7 +163,7 @@ const PreferredLanguage = () => {
             styles.continueButtonText,
             {
               fontFamily: fontFamily,
-              fontSize: fontSize,
+              fontSize: Number(fontSize),
               fontWeight: isBold ? "bold" : "normal",
             },
           ]}
