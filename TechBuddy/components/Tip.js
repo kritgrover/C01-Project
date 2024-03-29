@@ -221,7 +221,7 @@ const Tip = () => {
             </View>
             <View style={TipStyle.body}>
               <Text style={TipStyle.bodyContent}>{tips[index].content}</Text>
-              <Speak text={tips[index].content} color={"white"} showText={true}></Speak>
+              <Speak text={tips[index].content} language={selectedLanguage} color={"white"} showText={true}></Speak>
 
               <Pressable style={TipStyle.bodyButton} onPress={getIndex}>
                 <Text style={TipStyle.bodyButtonText}>{textStrings[selectedLanguage].nextTip}</Text>
