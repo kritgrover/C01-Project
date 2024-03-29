@@ -175,25 +175,6 @@ const Tip = () => {
   };
 
   useEffect(() => {
-    const getTips = async () => {
-      try {
-        await fetch("http://localhost:4000/getAllTips").then(
-          async (response) => {
-            if (!response.ok) {
-              console.log("Served failed:", response.status);
-            } else {
-              await response.json().then((data) => {
-                getTipState(data.response);
-              });
-            }
-          }
-        );
-      } catch (error) {
-        console.log("Fetch function failed:", error);
-      }
-    };
-
-    getTips();
     setTips([
       {
         title: textStrings[selectedLanguage].emergencyTitle,
@@ -208,11 +189,7 @@ const Tip = () => {
         content: textStrings[selectedLanguage].accessContent,
       },
     ]);
-  }, []);
-
-  const getTipState = (data) => {
-    setTips(data);
-  };
+  }, [selectedLanguage]);
 
   const onClose = () => {
     setShowTip(false);
@@ -386,7 +363,7 @@ const TipStyle = {
     borderColor: "#fff",
     paddingHorizontal: 5,
     marginTop: 35,
-    width: 200,
+    //width: 200,
     height: 50,
     justifyContent: "center",
     alignItems: "center",
