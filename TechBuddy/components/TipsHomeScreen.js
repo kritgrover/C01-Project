@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import * as SecureStore from "expo-secure-store";
 import {
   TouchableHighlight,
@@ -16,6 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 import homeIcon from "../assets/homeIcon.png";
 import accountIcon from "../assets/accountIcon.png";
 import passwordIcon from "../assets/passwordIcon.png";
+import VoiceCommand from "./VoiceCommand";
 import Speak from './Speak';
 
 const TipsScreen = function () {
@@ -196,10 +197,14 @@ const TipsScreen = function () {
   ];
 
   let allButtonTitles = '';
+  const ref0 = useRef(null);
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
 
   return (
     <View style={styles.menuContainer}>
-      {tipsMenu.map(function (link) {
+      {tipsMenu.map(function (link, index) {
         allButtonTitles += link.title + '. ';
         return (
           <Pressable
@@ -209,6 +214,10 @@ const TipsScreen = function () {
             }}
             style={styles.navigateButton}
           >
+            <Button style={{ display: 'none' }} ref={eval('ref' + index)} onPress={function () {
+              navigate.navigate(link.link);
+            }} title={""}></Button>
+
             <Text
               style={[
                 styles.buttonText,
@@ -224,7 +233,7 @@ const TipsScreen = function () {
           </Pressable>
         );
       })}
-      {/* <Speak text={allButtonTitles} language={selectedLanguage === 'ch'? 'zh': selectedLanguage} showText={true}></Speak> */}
+      <VoiceCommand refs={[{ trigger: textStrings[selectedLanguage].languageChange, actual: ref0 }, { trigger: textStrings[selectedLanguage].accessibilitySettings, actual: ref1 }, { trigger: textStrings[selectedLanguage].loggingInToApps, actual: ref2 }, { trigger: textStrings[selectedLanguage].yourPhone, actual: ref3 }]} language={selectedLanguage}></VoiceCommand>
     </View>
   );
 };

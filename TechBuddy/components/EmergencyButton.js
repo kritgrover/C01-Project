@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Speak from './Speak';
-import * as SecureStore from 'expo-secure-store';
 
 const EmergencyButton = forwardRef((props, ref) => {
   const handleEmergencyCall = () => {
