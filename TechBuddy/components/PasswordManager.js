@@ -134,6 +134,7 @@ const PasswordManager = () => {
       password: "Password",
       savedCredentialsTitle: "Saved Credentials:",
       save: "Save",
+      delete: "Delete",
     },
     fr: {
       passwordManagerTitle: "Gestionnaire de mots de passe",
@@ -142,6 +143,7 @@ const PasswordManager = () => {
       password: "Mot de passe",
       savedCredentialsTitle: "Informations d'identification enregistrées:",
       save: "Sauvegardez",
+      delete: "Effacez",
     },
     es: {
       passwordManagerTitle: "Administrador de contraseñas",
@@ -150,6 +152,7 @@ const PasswordManager = () => {
       password: "Contraseña",
       savedCredentialsTitle: "Credenciales guardadas:",
       save: "Guardar",
+      delete: "Borrar",
     },
     ch: {
       passwordManagerTitle: "密码管理器",
@@ -158,6 +161,7 @@ const PasswordManager = () => {
       password: "密码",
       savedCredentialsTitle: "已保存的凭据:",
       save: "保存",
+      delete: "删除",
     },
     ru: {
       passwordManagerTitle: "Менеджер паролей",
@@ -166,6 +170,7 @@ const PasswordManager = () => {
       password: "пароль",
       savedCredentialsTitle: "Сохраненные учетные данные:",
       save: "Сохранить",
+      delete: "Удалить",
     },
     ar: {
       passwordManagerTitle: "مدير كلمات المرور",
@@ -174,6 +179,7 @@ const PasswordManager = () => {
       password: "كلمة السر",
       savedCredentialsTitle: "بيانات الاعتماد المحفوظة:",
       save: "حفظ",
+      delete: "حذف",
     },
     hi: {
       passwordManagerTitle: "पासवर्ड प्रबंधक",
@@ -182,6 +188,7 @@ const PasswordManager = () => {
       password: "पासवर्ड",
       savedCredentialsTitle: "सहेजी गई पहचान:",
       save: "सहेजें",
+      delete: "हटाएं",
     },
     ja: {
       passwordManagerTitle: "パスワードマネージャ",
@@ -190,6 +197,7 @@ const PasswordManager = () => {
       password: "パスワード",
       savedCredentialsTitle: "保存された資格情報:",
       save: "セーブ",
+      delete: "削除",
     },
   };
 
@@ -351,7 +359,7 @@ const PasswordManager = () => {
                 style={styles.deleteButton}
                 onPress={() => deleteCredential(index)}
               >
-                <Text style={styles.deleteButtonText}>Delete</Text>
+                <Text style={styles.deleteButtonText}>{textStrings[selectedLanguage].delete}</Text>
               </TouchableOpacity>
             </View>
           ))}

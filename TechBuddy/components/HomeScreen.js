@@ -79,27 +79,43 @@ const HomeScreen = ({ navigation }) => {
   const textStrings = {
     en: {
       tipsHomePage: "Learn more about \n your device",
+      startYourJourney: "Start your journey",
+      betterDigitalExperience: "to a better digital experience!",
     },
     fr: {
       tipsHomePage: "Page d'accueil des conseils",
+      startYourJourney: "Commencez votre voyage",
+      betterDigitalExperience: "vers une meilleure expérience numérique!",
     },
     es: {
       tipsHomePage: "Página de inicio de consejos",
+      startYourJourney: "Comience su viaje",
+      betterDigitalExperience: "hacia una mejor experiencia digital!",
     },
     ch: {
       tipsHomePage: "提示主页",
+      startYourJourney: "开始你的旅程",
+      betterDigitalExperience: "迈向更好的数字体验！",
     },
     ru: {
       tipsHomePage: "Домашняя страница советов",
+      startYourJourney: "Начните свой путь",
+      betterDigitalExperience: "к лучшему цифровому опыту!",
     },
     ar: {
       tipsHomePage: "صفحة النصائح الرئيسية",
+      startYourJourney: "ابدأ رحلتك",
+      betterDigitalExperience: "إلى تجربة رقمية أفضل!",
     },
     hi: {
       tipsHomePage: "टिप्स होम पेज",
+      startYourJourney: "अपनी यात्रा शुरू करें",
+      betterDigitalExperience: "एक बेहतर डिजिटल अनुभव के लिए!",
     },
     ja: {
       tipsHomePage: "ヒントホームページ",
+      startYourJourney: "あなたの旅を始める",
+      betterDigitalExperience: "より良いデジタル体験へ！",
     },
   };
 
@@ -145,8 +161,8 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Text style={styles.textField1}>Start your journey</Text>
-        <Text style={styles.textField2}>to a better digital experience!</Text>
+        <Text style={styles.textField1}>{textStrings[selectedLanguage].startYourJourney}</Text>
+        <Text style={styles.textField2}>{textStrings[selectedLanguage].betterDigitalExperience}</Text>
         <TouchableOpacity
           style={styles.howTobutton}
           onPress={() => {

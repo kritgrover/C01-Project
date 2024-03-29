@@ -1,8 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { StyleSheet, View, Text, Animated } from "react-native";
+import * as SecureStore from "expo-secure-store";
+import Translate from "./Translate";
 
 const SplashPage = ({ navigation }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
 
   useEffect(() => {
     const animation = Animated.timing(fadeAnim, {
@@ -10,6 +13,24 @@ const SplashPage = ({ navigation }) => {
       duration: 1500,
       useNativeDriver: true,
     });
+
+    const loadSavedLanguage = async () => {
+      try {
+        const savedLanguage = await SecureStore.getItemAsync(
+          "selectedLanguage"
+        );
+        if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
+          console.log("Selected language:", savedLanguage);
+          setSelectedLanguage(savedLanguage);
+        } else {
+          setSelectedLanguage("en");
+        }
+      } catch (error) {
+        console.error("Error loading saved language:", error);
+      }
+    };
+
+    loadSavedLanguage();
 
     animation.start(() => {
       setTimeout(() => {
@@ -19,6 +40,33 @@ const SplashPage = ({ navigation }) => {
 
     return () => animation.stop();
   }, [fadeAnim, navigation]);
+
+  const textStrings = {
+    en: {
+      welcome: "Welcome to",
+    },
+    fr: {
+      welcome: "Bienvenue à",
+    },
+    es: {
+      welcome: "Bienvenido a",
+    },
+    ch: {
+      welcome: "欢迎来到",
+    },
+    ru: {
+      welcome: "Добро пожаловать в",
+    },
+    ar: {
+      welcome: "مرحبًا بك في",
+    },
+    hi: {
+      welcome: "आपका स्वागत है",
+    },
+    ja: {
+      welcome: "ようこそ",
+    },
+  };
 
   return (
     <View style={styles.container}>
@@ -35,7 +83,9 @@ const SplashPage = ({ navigation }) => {
           ],
         }}
       >
-        <Text style={[styles.text, styles.welcomeText]}>Welcome to</Text>
+        <Text style={[styles.text, styles.welcomeText]}>
+          {textStrings[selectedLanguage].welcome}
+        </Text>
         <Text style={[styles.text, styles.bold, styles.appName]}>
           TechBuddy
         </Text>

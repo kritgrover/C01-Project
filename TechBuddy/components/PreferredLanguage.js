@@ -17,7 +17,7 @@ const PreferredLanguage = () => {
         const savedLanguage = await SecureStore.getItemAsync(
           "selectedLanguage"
         );
-        if (savedLanguage) {
+        if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
           console.log("Selected language:", savedLanguage);
           setSelectedLanguage(savedLanguage);
         } else {
@@ -69,37 +69,37 @@ const PreferredLanguage = () => {
       selectALanguage: "Select a language",
     },
     fr: {
-      welcomeText: "Bienvenue chez TechBuddy!",
+      welcomeText: "Veuillez sélectionner une langue",
       continueButtonText: "Continuez",
       selectALanguage: "Sélectionnez une langue",
     },
     es: {
-      welcomeText: "¡Bienvenido a TechBuddy!",
+      welcomeText: "Por favor, seleccione un idioma",
       continueButtonText: "Continuar",
       selectALanguage: "Selecciona un idioma",
     },
     ch: {
-      welcomeText: "欢迎来到科技伙伴！",
+      welcomeText: "请选择语言",
       continueButtonText: "下一个",
       selectALanguage: "选择语言",
     },
     ru: {
-      welcomeText: "Добро пожаловать в TechBuddy!",
+      welcomeText: "Пожалуйста, выберите язык",
       continueButtonText: "следующий",
       selectALanguage: "Выберите язык",
     },
     ar: {
-      welcomeText: "مرحبا بكم في TechBuddy!",
+      welcomeText: "يرجى تحديد لغة",
       continueButtonText: "يكمل",
       selectALanguage: "اختر لغة",
     },
     hi: {
-      welcomeText: "टेकबडी में आपका स्वागत है!",
+      welcomeText: "कृपया एक भाषा चुनें",
       continueButtonText: "आगे",
       selectALanguage: "भाषा चुनें",
     },
     ja: {
-      welcomeText: "TechBuddy へようこそ!",
+      welcomeText: "言語を選択してください",
       continueButtonText: "次",
       selectALanguage: "言語を選択してください",
     },
