@@ -19,7 +19,7 @@ import passwordIcon from "../assets/passwordIcon.png";
 import Tip from "./Tip";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreenCopy = ({ navigation }) => {
   const [fontSize, setFontSize] = useState(16);
   const [isBold, setIsBold] = useState("");
   const [fontFamily, setFontFamily] = useState("");
@@ -32,11 +32,11 @@ const HomeScreen = ({ navigation }) => {
           "selectedLanguage"
         );
         if (savedLanguage !== null && savedLanguage !== "" && savedLanguage !== "null") {
-          console.log("Selected language (HomeScreen):", savedLanguage);
+          console.log("Selected language (HomeScreenCopy):", savedLanguage);
           setSelectedLanguage(savedLanguage);
         } else {
           setSelectedLanguage("en");
-          console.log("Selected language (HomeScreen - false version):", savedLanguage);
+          console.log("Selected language (HomeScreenCopy - false version):", savedLanguage);
         }
 
         const savedFontFamily = JSON.parse(
@@ -44,11 +44,11 @@ const HomeScreen = ({ navigation }) => {
         );
 
         if (savedFontFamily !== null && savedFontFamily !== "" && savedFontFamily !== "null") {
-          console.log("Font family (HomeScreen):", savedFontFamily);
+          console.log("Font family (HomeScreenCopy):", savedFontFamily);
           setFontFamily(savedFontFamily);
         } else {
           setFontFamily("Arial");
-          console.log("Font family (HomeScreen - false version):", savedFontFamily);
+          console.log("Font family (HomeScreenCopy - false version):", savedFontFamily);
         }
 
         const savedFontSize = await SecureStore.getItemAsync("fontSize");
@@ -57,20 +57,20 @@ const HomeScreen = ({ navigation }) => {
           savedFontSize !== "" &&
           savedFontSize !== "null"
         ) {
-          console.log("Font size:", savedFontSize);
+          console.log("Font size (HomeScreenCopy):", savedFontSize);
           setFontSize(Number(savedFontSize));
         } else {
           setFontSize(16);
-          console.log("Font size (HomeScreen - false version):", savedFontSize);
+          console.log("Font size (HomeScreenCopy - false verion):", savedFontSize);
         }
 
         const savedIsBold = await SecureStore.getItemAsync("isBold");
         if (savedIsBold !== null && savedIsBold !== "" && savedIsBold !== "null" && savedIsBold == "true") {
-          console.log("Is bold (HomeScreen):", savedIsBold);
+          console.log("Is bold (HomeScreenCopy):", savedIsBold);
           setIsBold(savedIsBold);
         } else {
           setIsBold(false);
-          console.log("Is bold (HomeScreen - false version):", savedIsBold);
+          console.log("Is bold (HomeScreenCopy - false version):", savedIsBold);
         }
       } catch (error) {
         console.error("Error loading saved values:", error);
@@ -165,8 +165,8 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Text style={[styles.textField1, { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily }]}>{textStrings[selectedLanguage].startYourJourney}</Text>
-        <Text style={[styles.textField2, { fontSize: Number(fontSize), fontWeight: isBold ? "bold" : "normal", fontFamily }]}>{textStrings[selectedLanguage].betterDigitalExperience}</Text>
+        <Text style={styles.textField1}>{textStrings[selectedLanguage].startYourJourney}</Text>
+        <Text style={styles.textField2}>{textStrings[selectedLanguage].betterDigitalExperience}</Text>
         <TouchableOpacity
           style={styles.howTobutton}
           onPress={() => {
@@ -278,4 +278,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default HomeScreenCopy;
